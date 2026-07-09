@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JYG Garment</title>
+<link rel="preload" as="video" href="images/img_000.mp4" type="video/mp4">
+<style>body{margin:0;background:#0a0a0a;font-family:sans-serif}</style>
+</head>
+<body>
+<header style="position:fixed;top:0;left:0;width:100%;z-index:1000;background:rgba(10,10,10,0.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.05);font-family:sans-serif;">
+    <div style="max-width:1200px;margin:0 auto;padding:15px 5%;display:flex;justify-content:space-between;align-items:center;">
+        <div style="font-size:1.4rem;font-weight:800;color:#fff;letter-spacing:-0.5px;">JYG<span style="color:#D4A843;">garment</span></div>
+        <nav style="display:flex;gap:30px;align-items:center;">
+            <a href="#" style="color:#fff;text-decoration:none;font-size:0.85rem;font-weight:600;transition:0.3s;" onmouseover="this.style.color='#D4A843'" onmouseout="this.style.color='#fff'">Home</a>
+            <a href="https://jyggarment.myshopify.com/collections/all" style="color:#fff;text-decoration:none;font-size:0.85rem;font-weight:600;transition:0.3s;" onmouseover="this.style.color='#D4A843'" onmouseout="this.style.color='#fff'">Catalog</a>
+            <a href="https://bcn4cki9yopm.feishu.cn/share/base/form/shrcnRt2PZLuVbK4MAIdRborUDd" target="_blank" style="background:#D4A843;color:#000;padding:8px 18px;border-radius:4px;text-decoration:none;font-size:0.8rem;font-weight:700;text-transform:uppercase;">Contact Us</a>
+        </nav>
+    </div>
+</header>
+
+<!-- WhatsApp Floating Button (Bottom Left) -->
+<a href="https://api.whatsapp.com/send/?phone=8613922181466" target="_blank" style="position:fixed;bottom:30px;left:30px;z-index:9999;width:56px;height:56px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 15px rgba(0,0,0,0.3);transition:transform 0.3s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+    <svg width="32" height="32" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.347-.883-.786-1.48-1.756-1.653-2.053-.174-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.136 1.36.117 1.871.05.57-.075 1.758-.716 2.003-1.408.245-.693.245-1.287.172-1.407-.073-.075-.27-.149-.567-.298zM12.01 21.496c-1.933 0-3.822-.519-5.484-1.499l-.393-.231-4.077 1.07 1.088-3.978-.253-.403C1.845 14.905 1.3 12.993 1.3 11.003c0-5.913 4.808-10.72 10.727-10.72 2.868 0 5.561 1.117 7.59 3.145 2.028 2.028 3.144 4.721 3.144 7.583 0 5.913-4.808 10.722-10.721 10.722z"/></svg>
+</a>
+
+<!-- Floating Quote Button (Bottom Right) -->
+<a href="https://bcn4cki9yopm.feishu.cn/share/base/form/shrcnRt2PZLuVbK4MAIdRborUDd" target="_blank" style="position:fixed;bottom:30px;right:30px;z-index:9999;background:#D4A843;color:#000;padding:15px 25px;border-radius:50px;text-decoration:none;font-size:0.9rem;font-weight:800;text-transform:uppercase;box-shadow:0 4px 15px rgba(0,0,0,0.3);transition:all 0.3s;font-family:sans-serif;" onmouseover="this.style.transform='translateY(-5px)';this.style.boxShadow='0 8px 25px rgba(212,168,67,0.4)'" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 4px 15px rgba(0,0,0,0.3)'">
+    Get A Free Quote
+</a>
+
+<style>
+#heroVideo{opacity:0;transition:opacity .8s ease}
+#heroVideo.playing{opacity:1}
+</style>
+<section style="position:relative;padding:100px 5% 90px;font-family:sans-serif;overflow:hidden;min-height:85vh;display:flex;align-items:center;background:#0a0a0a;">
+<video id="heroVideo" muted loop playsinline disableRemotePlayback preload="metadata" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:0;transform:translateZ(0);will-change:transform;backface-visibility:hidden;-webkit-transform:translateZ(0);">
+<source src="images/img_000.mp4" type="video/mp4">
+</video>
+<script>
+(function(){var v=document.getElementById('heroVideo');v.oncanplay=v.onplaying=function(){v.classList.add('playing')};v.load();v.play().catch(function(){})})()
+</script>
+<div style="position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg,rgba(0,0,0,.65) 0%,rgba(0,0,0,.4) 100%);z-index:1;"></div>
+<div style="position:relative;z-index:2;max-width:1200px;margin:0 auto;width:100%;">
+<h1 style="font-size:clamp(2.2rem,5vw,3.6rem);font-weight:800;color:#fff;line-height:1.15;margin-bottom:20px;max-width:850px;">Custom Apparel Manufacturer<br><span style="color:#D4A843;">Bring Your Brand Designs to Market</span></h1>
+<p style="color:rgba(255,255,255,.55);font-size:1rem;max-width:580px;margin-bottom:35px;line-height:1.6;">From concept to delivery — we turn your designs into premium garments at factory-direct pricing. Low minimums, fast turnaround, 50+ country shipping.</p>
+<div style="display:flex;flex-wrap:wrap;gap:12px;margin-bottom:35px;">
+<span style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:#999;padding:10px 22px;font-size:.78rem;border-radius:50px;">MOQ<span style="color:#D4A843;font-weight:700;"> 100 pcs</span></span>
+<span style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:#999;padding:10px 22px;font-size:.78rem;border-radius:50px;">Lead Time<span style="color:#D4A843;font-weight:700;"> 20 Days</span></span>
+<span style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:#999;padding:10px 22px;font-size:.78rem;border-radius:50px;">Shipping<span style="color:#D4A843;font-weight:700;"> 50+ Countries</span></span>
+<span style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:#999;padding:10px 22px;font-size:.78rem;border-radius:50px;"><span style="color:#D4A843;font-weight:700;">Free</span> Design Service</span>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:14px;"><a href="https://bcn4cki9yopm.feishu.cn/share/base/form/shrcnRt2PZLuVbK4MAIdRborUDd" target="_blank" style="display:inline-block;background:#D4A843;color:#000;padding:16px 36px;font-weight:700;text-decoration:none;text-transform:uppercase;font-size:.85rem;">Start Your Project</a><a href="https://bcn4cki9yopm.feishu.cn/share/base/form/shrcnRt2PZLuVbK4MAIdRborUDd" target="_blank" style="display:inline-block;border:2px solid rgba(255,255,255,.25);color:#fff;padding:16px 36px;font-weight:700;text-decoration:none;text-transform:uppercase;font-size:.85rem;">Request Quote</a></div>
+</div>
+</section>
+
+<section style="background:#0d0d0d;padding:80px 5%;font-family:sans-serif;"><style>
+.pg-card .pg-img-1{transition:opacity .4s ease}
+.pg-card .pg-img-2{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .4s ease}
+.pg-card:hover .pg-img-1{opacity:0}
+.pg-card:hover .pg-img-2{opacity:1}
+</style>
+<div style="max-width:1200px;margin:0 auto;">
+<h2 style="font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;color:#fff;text-align:center;margin-bottom:8px;">What We Manufacture</h2>
+<p style="color:rgba(255,255,255,.55);font-size:.9rem;text-align:center;margin-bottom:45px;">Every garment shown is a custom order we have fulfilled — your design, our craftsmanship.</p>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;">
+<div class="pg-card" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:8px;overflow:hidden;"><div style="position:relative;overflow:hidden;aspect-ratio:3/4;"><img loading="lazy" class="pg-img-1" src="images/img_102.jpg" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" alt="Linen Shirt"><img loading="lazy" class="pg-img-2" src="images/img_009.jpg" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" alt="Linen Shirt"></div>><div style="padding:18px;"><h3 style="font-size:.9rem;font-weight:700;color:#fff;margin-bottom:6px;text-align:center;">Linen Casual Shirt</h3><p style="font-size:.75rem;color:rgba(255,255,255,.4);margin-bottom:14px;text-align:center;">MOQ 100 / Lead Time: 20 Days</p><a href="https://bcn4cki9yopm.feishu.cn/share/base/form/shrcnRt2PZLuVbK4MAIdRborUDd" target="_blank" style="display:block;margin:0 auto;width:fit-content;text-align:center;border:1.5px solid #D4A843;color:#D4A843;padding:8px 20px;font-size:.72rem;font-weight:700;text-decoration:none;text-transform:uppercase;border-radius:4px;">Quote This Product</a></div></div>
+<div class="pg-card" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:8px;overflow:hidden;"><div style="position:relative;overflow:hidden;aspect-ratio:3/4;"><img loading="lazy" class="pg-img-1" src="images/img_103.jpg" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" alt="Wide Leg Trousers"><img loading="lazy" class="pg-img-2" src="images/img_009.jpg" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" alt="Wide Leg Trousers"></div>><div style="padding:18px;"><h3 style="font-size:.9rem;font-weight:700;color:#fff;margin-bottom:6px;text-align:center;">Wide Leg Trousers</h3><p style="font-size:.75rem;color:rgba(255,255,255,.4);margin-bottom:14px;text-align:center;">MOQ 100 / Lead Time: 20 Days</p><a href="https://bcn4cki9yopm.feishu.cn/share/base/form/shrcnRt2PZLuVbK4MAIdRborUDd" target="_blank" style="display:block;margin:0 auto;width:fit-content;text-align:center;border:1.5px solid #D4A843;color:#D4A843;padding:8px 20px;font-size:.72rem;font-weight:700;text-decoration:none;text-transform:uppercase;border-radius:4px;">Quote This Product</a></div></div>
+<div class="pg-card" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:8px;overflow:hidden;"><div style="position:relative;overflow:hidden;aspect-ratio:3/4;"><img loading="lazy" class="pg-img-1" src="images/img_101.webp" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" alt="Linen Blazer"><img loading="lazy" class="pg-img-2" src="images/img_009.jpg" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" alt="Linen Blazer"></div>><div style="padding:18px;"><h3 style="font-size:.9rem;font-weight:700;color:#fff;margin-bottom:6px;text-align:center;">Linen Blazer</h3><p style="font-size:.75rem;color:rgba(255,255,255,.4);margin-bottom:14px;text-align:center;">MOQ 100 / Lead Time: 20 Days</p><a href="https://bcn4cki9yopm.feishu.cn/share/base/form/shrcnRt2PZLuVbK4MAIdRborUDd" target="_blank" style="display:block;margin:0 auto;width:fit-content;text-align:center;border:1.5px solid #D4A843;color:#D4A843;padding:8px 20px;font-size:.72rem;font-weight:700;text-decoration:none;text-transform:uppercase;border-radius:4px;">Quote This Product</a></div></div>
+<div class="pg-card" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:8px;overflow:hidden;"><div style="position:relative;overflow:hidden;aspect-ratio:3/4;"><img loading="lazy" class="pg-img-1" src="images/img_100.webp" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" alt="Heritage Blazer"><img loading="lazy" class="pg-img-2" src="images/img_009.jpg" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" alt="Heritage Blazer"></div>><div style="padding:18px;"><h3 style="font-size:.9rem;font-weight:700;color:#fff;margin-bottom:6px;text-align:center;">Heritage Blazer</h3><p style="font-size:.75rem;color:rgba(255,255,255,.4);margin-bottom:14px;text-align:center;">MOQ 100 / Lead Time: 20 Days</p><a href="https://bcn4cki9yopm.feishu.cn/share/base/form/shrcnRt2PZLuVbK4MAIdRborUDd" target="_blank" style="display:block;margin:0 auto;width:fit-content;text-align:center;border:1.5px solid #D4A843;color:#D4A843;padding:8px 20px;font-size:.72rem;font-weight:700;text-decoration:none;text-transform:uppercase;border-radius:4px;">Quote This Product</a></div></div>
+<div class="pg-card" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:8px;overflow:hidden;"><div style="position:relative;overflow:hidden;aspect-ratio:3/4;"><img loading="lazy" class="pg-img-1" src="images/img_102.jpg" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" alt="Cotton Tee"><img loading="lazy" class="pg-img-2" src="images/img_009.jpg" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" alt="Cotton Tee"></div>><div style="padding:18px;"><h3 style="font-size:.9rem;font-weight:700;color:#fff;margin-bottom:6px;text-align:center;">Premium Cotton Tee</h3><p style="font-size:.75rem;color:rgba(255,255,255,.4);margin-bottom:14px;text-align:center;">MOQ 100 / Lead Time: 20 Days</p><a href="https://bcn4cki9yopm.feishu.cn/share/base/form/shrcnRt2PZLuVbK4MAIdRborUDd" target="_blank" style="display:block;margin:0 auto;width:fit-content;text-align:center;border:1.5px solid #D4A843;color:#D4A843;padding:8px 20px;font-size:.72rem;font-weight:700;text-decoration:none;text-transform:uppercase;border-radius:4px;">Quote This Product</a></div></div>
+<div class="pg-card" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:8px;overflow:hidden;"><div style="position:relative;overflow:hidden;aspect-ratio:3/4;"><img loading="lazy" class="pg-img-1" src="images/img_103.jpg" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" alt="Chinos"><img loading="lazy" class="pg-img-2" src="images/img_009.jpg" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" alt="Chinos"></div>><div style="padding:18px;"><h3 style="font-size:.9rem;font-weight:700;color:#fff;margin-bottom:6px;text-align:center;">Tailored Chinos</h3><p style="font-size:.75rem;color:rgba(255,255,255,.4);margin-bottom:14px;text-align:center;">MOQ 100 / Lead Time: 20 Days</p><a href="https://bcn4cki9yopm.feishu.cn/share/base/form/shrcnRt2PZLuVbK4MAIdRborUDd" target="_blank" style="display:block;margin:0 auto;width:fit-content;text-align:center;border:1.5px solid #D4A843;color:#D4A843;padding:8px 20px;font-size:.72rem;font-weight:700;text-decoration:none;text-transform:uppercase;border-radius:4px;">Quote This Product</a></div></div>
+<div class="pg-card" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:8px;overflow:hidden;"><div style="position:relative;overflow:hidden;aspect-ratio:3/4;"><img loading="lazy" class="pg-img-1" src="images/img_101.webp" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" alt="Maxi Dress"><img loading="lazy" class="pg-img-2" src="images/img_009.jpg" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" alt="Maxi Dress"></div>><div style="padding:18px;"><h3 style="font-size:.9rem;font-weight:700;color:#fff;margin-bottom:6px;text-align:center;">Silk Maxi Dress</h3><p style="font-size:.75rem;color:rgba(255,255,255,.4);margin-bottom:14px;text-align:center;">MOQ 100 / Lead Time: 20 Days</p><a href="https://bcn4cki9yopm.feishu.cn/share/base/form/shrcnRt2PZLuVbK4MAIdRborUDd" target="_blank" style="display:block;margin:0 auto;width:fit-content;text-align:center;border:1.5px solid #D4A843;color:#D4A843;padding:8px 20px;font-size:.72rem;font-weight:700;text-decoration:none;text-transform:uppercase;border-radius:4px;">Quote This Product</a></div></div>
+<div class="pg-card" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:8px;overflow:hidden;"><div style="position:relative;overflow:hidden;aspect-ratio:3/4;"><img loading="lazy" class="pg-img-1" src="images/img_100.webp" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" alt="Sweater"><img loading="lazy" class="pg-img-2" src="images/img_009.jpg" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" alt="Sweater"></div>><div style="padding:18px;"><h3 style="font-size:.9rem;font-weight:700;color:#fff;margin-bottom:6px;text-align:center;">Cashmere Sweater</h3><p style="font-size:.75rem;color:rgba(255,255,255,.4);margin-bottom:14px;text-align:center;">MOQ 100 / Lead Time: 20 Days</p><a href="https://bcn4cki9yopm.feishu.cn/share/base/form/shrcnRt2PZLuVbK4MAIdRborUDd" target="_blank" style="display:block;margin:0 auto;width:fit-content;text-align:center;border:1.5px solid #D4A843;color:#D4A843;padding:8px 20px;font-size:.72rem;font-weight:700;text-decoration:none;text-transform:uppercase;border-radius:4px;">Quote This Product</a></div></div>
+<div class="pg-card" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:8px;overflow:hidden;"><div style="position:relative;overflow:hidden;aspect-ratio:3/4;"><img loading="lazy" class="pg-img-1" src="images/img_102.jpg" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" alt="Denim Jacket"><img loading="lazy" class="pg-img-2" src="images/img_009.jpg" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" alt="Denim Jacket"></div>><div style="padding:18px;"><h3 style="font-size:.9rem;font-weight:700;color:#fff;margin-bottom:6px;text-align:center;">Denim Jacket</h3><p style="font-size:.75rem;color:rgba(255,255,255,.4);margin-bottom:14px;text-align:center;">MOQ 100 / Lead Time: 20 Days</p><a href="https://bcn4cki9yopm.feishu.cn/share/base/form/shrcnRt2PZLuVbK4MAIdRborUDd" target="_blank" style="display:block;margin:0 auto;width:fit-content;text-align:center;border:1.5px solid #D4A843;color:#D4A843;padding:8px 20px;font-size:.72rem;font-weight:700;text-decoration:none;text-transform:uppercase;border-radius:4px;">Quote This Product</a></div></div>
+<div class="pg-card" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:8px;overflow:hidden;"><div style="position:relative;overflow:hidden;aspect-ratio:3/4;"><img loading="lazy" class="pg-img-1" src="images/img_103.jpg" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" alt="Shorts"><img loading="lazy" class="pg-img-2" src="images/img_009.jpg" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" alt="Shorts"></div>><div style="padding:18px;"><h3 style="font-size:.9rem;font-weight:700;color:#fff;margin-bottom:6px;text-align:center;">Linen Shorts</h3><p style="font-size:.75rem;color:rgba(255,255,255,.4);margin-bottom:14px;text-align:center;">MOQ 100 / Lead Time: 20 Days</p><a href="https://bcn4cki9yopm.feishu.cn/share/base/form/shrcnRt2PZLuVbK4MAIdRborUDd" target="_blank" style="display:block;margin:0 auto;width:fit-content;text-align:center;border:1.5px solid #D4A843;color:#D4A843;padding:8px 20px;font-size:.72rem;font-weight:700;text-decoration:none;text-transform:uppercase;border-radius:4px;">Quote This Product</a></div></div>
+<div class="pg-card" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:8px;overflow:hidden;"><div style="position:relative;overflow:hidden;aspect-ratio:3/4;"><img loading="lazy" class="pg-img-1" src="images/img_101.webp" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" alt="Overcoat"><img loading="lazy" class="pg-img-2" src="images/img_009.jpg" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" alt="Overcoat"></div>><div style="padding:18px;"><h3 style="font-size:.9rem;font-weight:700;color:#fff;margin-bottom:6px;text-align:center;">Wool Overcoat</h3><p style="font-size:.75rem;color:rgba(255,255,255,.4);margin-bottom:14px;text-align:center;">MOQ 100 / Lead Time: 20 Days</p><a href="https://bcn4cki9yopm.feishu.cn/share/base/form/shrcnRt2PZLuVbK4MAIdRborUDd" target="_blank" style="display:block;margin:0 auto;width:fit-content;text-align:center;border:1.5px solid #D4A843;color:#D4A843;padding:8px 20px;font-size:.72rem;font-weight:700;text-decoration:none;text-transform:uppercase;border-radius:4px;">Quote This Product</a></div></div>
+<div class="pg-card" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:8px;overflow:hidden;"><div style="position:relative;overflow:hidden;aspect-ratio:3/4;"><img loading="lazy" class="pg-img-1" src="images/img_100.webp" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" alt="Hoodie"><img loading="lazy" class="pg-img-2" src="images/img_009.jpg" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" alt="Hoodie"></div>><div style="padding:18px;"><h3 style="font-size:.9rem;font-weight:700;color:#fff;margin-bottom:6px;text-align:center;">Organic Hoodie</h3><p style="font-size:.75rem;color:rgba(255,255,255,.4);margin-bottom:14px;text-align:center;">MOQ 100 / Lead Time: 20 Days</p><a href="https://bcn4cki9yopm.feishu.cn/share/base/form/shrcnRt2PZLuVbK4MAIdRborUDd" target="_blank" style="display:block;margin:0 auto;width:fit-content;text-align:center;border:1.5px solid #D4A843;color:#D4A843;padding:8px 20px;font-size:.72rem;font-weight:700;text-decoration:none;text-transform:uppercase;border-radius:4px;">Quote This Product</a></div></div>
+</div>
+</div>
+</section>
+
+<section style="background:#0d0d0d;padding:80px 5%;font-family:sans-serif;">
+<div style="max-width:1200px;margin:0 auto;">
+<h2 style="font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;color:#fff;text-align:center;margin-bottom:8px;">End-to-End Customization</h2>
+<p style="color:rgba(255,255,255,.55);font-size:.9rem;text-align:center;margin-bottom:40px;max-width:600px;margin-left:auto;margin-right:auto;">From fabric selection to packaging — every element of your garment is customizable to your brand specifications.</p>
+<img loading="lazy" src="images/img_008.jpg" style="width:100%;display:block;border-radius:6px;" alt="Customization Process">
+</div>
+</section>
+
+<section style="background:#0d0d0d;padding:60px 0 80px;font-family:sans-serif;overflow:hidden;">
+<div style="max-width:1200px;margin:0 auto 40px;padding:0 5%;">
+<h2 style="font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;color:#fff;text-align:center;margin-bottom:8px;">Customize Craftsmanship</h2>
+<p style="color:rgba(255,255,255,.55);font-size:.9rem;text-align:center;">Contact Our Colleagues For More Info</p>
+</div>
+<style>
+@keyframes craftScrollL{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+@keyframes craftScrollR{0%{transform:translateX(-50%)}100%{transform:translateX(0)}}
+.craft-track{display:flex;gap:12px;width:max-content}
+.craft-track-l{animation:craftScrollL 80s linear infinite}
+.craft-track-r{animation:craftScrollR 80s linear infinite}
+.craft-track img{height:220px;width:auto;border-radius:4px;flex-shrink:0;transition:filter .3s}
+.craft-track img:hover{filter:brightness(1.35)}
+.craft-row{overflow:hidden;margin-bottom:12px}
+.craft-row:hover .craft-track{animation-play-state:paused}
+</style>
+<div class="craft-row">
+<div class="craft-track craft-track-l">
+<img loading="lazy" src="images/img_006.png"><img loading="lazy" src="images/img_006.png"><img loading="lazy" src="images/img_006.png"><img loading="lazy" src="images/img_006.png"><img loading="lazy" src="images/img_006.png"><img loading="lazy" src="images/img_006.png">
+</div>
+</div>
+<div class="craft-row">
+<div class="craft-track craft-track-r">
+<img loading="lazy" src="images/img_002.png"><img loading="lazy" src="images/img_002.png"><img loading="lazy" src="images/img_002.png"><img loading="lazy" src="images/img_002.png"><img loading="lazy" src="images/img_002.png"><img loading="lazy" src="images/img_002.png">
+</div>
+</div>
+<div class="craft-row">
+<div class="craft-track craft-track-l">
+<img loading="lazy" src="images/img_004.png"><img loading="lazy" src="images/img_004.png"><img loading="lazy" src="images/img_004.png"><img loading="lazy" src="images/img_004.png"><img loading="lazy" src="images/img_004.png"><img loading="lazy" src="images/img_004.png">
+</div>
+</div>
+</section>
+
+<section style="background:#0d0d0d;padding:90px 5%;font-family:sans-serif;">
+<div style="max-width:900px;margin:0 auto;text-align:center;">
+<div style="color:#D4A843;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;margin-bottom:18px;">BUILT FOR SCALE</div>
+<h2 style="font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:800;color:#fff;line-height:1.25;margin-bottom:22px;">See Your Apparel Being Made <span style="color:#D4A843;">Live</span></h2>
+<p style="color:rgba(255,255,255,.55);font-size:.95rem;line-height:1.7;max-width:650px;margin:0 auto 30px;">A 5,000 sqm facility with 10+ production lines and 100+ skilled garment workers. We will send photo and video updates throughout your production — you'll never wonder what's happening to your order.</p>
+<div style="display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-bottom:40px;"><a href="https://bcn4cki9yopm.feishu.cn/share/base/form/shrcnRt2PZLuVbK4MAIdRborUDd" target="_blank" style="display:inline-block;background:#D4A843;color:#000;padding:14px 32px;font-weight:700;text-decoration:none;text-transform:uppercase;font-size:.82rem;">Schedule Factory Tour</a><a href="https://bcn4cki9yopm.feishu.cn/share/base/form/shrcnRt2PZLuVbK4MAIdRborUDd" target="_blank" style="display:inline-block;border:2px solid rgba(255,255,255,.25);color:#fff;padding:14px 32px;font-weight:700;text-decoration:none;text-transform:uppercase;font-size:.82rem;">Request Quote</a></div>
+</div>
+<div style="max-width:900px;margin:50px auto 0;display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between;">
+<div style="text-align:center;flex:1;min-width:120px;"><div style="font-size:1.8rem;font-weight:800;color:#D4A843;">15+</div><div style="color:rgba(255,255,255,.5);font-size:.7rem;text-transform:uppercase;margin-top:4px;">Years Experience</div></div>
+<div style="text-align:center;flex:1;min-width:120px;"><div style="font-size:1.8rem;font-weight:800;color:#D4A843;">2,000+</div><div style="color:rgba(255,255,255,.5);font-size:.7rem;text-transform:uppercase;margin-top:4px;">Global Brands</div></div>
+<div style="text-align:center;flex:1;min-width:120px;"><div style="font-size:1.8rem;font-weight:800;color:#D4A843;">100 pcs</div><div style="color:rgba(255,255,255,.5);font-size:.7rem;text-transform:uppercase;margin-top:4px;">Low MOQ</div></div>
+<div style="text-align:center;flex:1;min-width:120px;"><div style="font-size:1.8rem;font-weight:800;color:#D4A843;">100+</div><div style="color:rgba(255,255,255,.5);font-size:.7rem;text-transform:uppercase;margin-top:4px;">Expert Staff</div></div>
+<div style="text-align:center;flex:1;min-width:120px;"><div style="font-size:1.8rem;font-weight:800;color:#D4A843;">5k</div><div style="color:rgba(255,255,255,.5);font-size:.7rem;text-transform:uppercase;margin-top:4px;">SQM Facility</div></div>
+<div style="text-align:center;flex:1;min-width:120px;"><div style="font-size:1.8rem;font-weight:800;color:#D4A843;">200K</div><div style="color:rgba(255,255,255,.5);font-size:.7rem;text-transform:uppercase;margin-top:4px;">Units Annually</div></div>
+</div>
+</section>
+
+<section style="background:#0d0d0d;padding:80px 5%;font-family:sans-serif;">
+<div style="max-width:1200px;margin:0 auto;">
+<h2 style="font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;color:#fff;text-align:center;margin-bottom:8px;">Production Excellence</h2>
+<p style="color:rgba(255,255,255,.5);font-size:.9rem;text-align:center;margin-bottom:40px;">From pattern making to final QC — every stage of production under one roof.</p>
+<img loading="lazy" src="images/img_001.png" style="width:100%;display:block;border-radius:6px;" alt="Production Process">
+</div>
+</section>
+
+<section style="background:#0d0d0d;padding:80px 5%;font-family:sans-serif;">
+<div style="max-width:1200px;margin:0 auto;">
+<h2 style="font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;color:#fff;text-align:center;margin-bottom:8px;">Experience Our Showroom</h2>
+<p style="color:rgba(255,255,255,.55);font-size:.9rem;text-align:center;margin-bottom:40px;max-width:550px;margin-left:auto;margin-right:auto;">Visit our Guangzhou showroom to inspect fabric quality, stitching precision, and finishing standards before you commit.</p>
+<img loading="lazy" src="images/img_003.jpg" style="width:100%;display:block;border-radius:6px;" alt="Showroom">
+</div>
+</section>
+
+<section style="background:#0d0d0d;padding:80px 5%;font-family:sans-serif;">
+<div style="max-width:1100px;margin:0 auto;">
+<h2 style="font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;color:#fff;text-align:center;margin-bottom:40px;">Meet Our Team</h2>
+<div style="display:flex;flex-wrap:wrap;gap:50px;align-items:flex-start;">
+<div style="flex:0 0 320px;min-width:260px;">
+<img loading="lazy" src="images/img_007.jpg" style="width:100%;border-radius:8px;display:block;" alt="Darron">
+</div>
+<div style="flex:1;min-width:300px;color:rgba(255,255,255,.85);font-size:.9rem;line-height:1.75;">
+<h3 style="color:#D4A843;font-size:1.25rem;font-weight:700;margin:0 0 4px;">Meet Darron</h3>
+<p style="color:rgba(255,255,255,.5);font-size:.78rem;margin:0 0 24px;">Director of Supply Chain at JYG | Guangzhou, China</p>
+<p style="margin:0 0 14px;">"As a Supply Chain Partner in the fashion industry, I've built my work around one truth: great brands live or die by their supply chain's ability to deliver on promises. That's why my daily focus is on the small, critical details — from confirming garment craftsmanship to optimizing delivery routes that prevent missteps and ensure commitments.</p>
+<p style="margin:0 0 14px;">Our core mission: the <span style="color:#D4A843;">7 Rights of Supply Chain</span>.<br>Get the right product, in the right condition, with the right quantity, at the right time, to the right place, for the right cost, to the right customer."</p>
+<p style="color:rgba(255,255,255,.45);font-size:.8rem;margin:0 0 28px;">Living in USA for 6 years and now basing in Guangzhou, China</p>
+<div style="border-top:1px solid rgba(255,255,255,.08);padding-top:24px;">
+<h4 style="color:#D4A843;font-size:.75rem;text-transform:uppercase;letter-spacing:1px;margin:0 0 12px;">Connect with Us</h4>
+<div style="display:flex;flex-wrap:wrap;gap:20px;">
+<a href="https://www.instagram.com/jyggarment" target="_blank" style="color:rgba(255,255,255,.55);text-decoration:none;font-size:.78rem;">Instagram: @jyggarment</a>
+<a href="https://www.facebook.com/darron.apparel" target="_blank" style="color:rgba(255,255,255,.55);text-decoration:none;font-size:.78rem;">Facebook: darron.apparel</a>
+<a href="https://www.tiktok.com/@jyggarment" target="_blank" style="color:rgba(255,255,255,.55);text-decoration:none;font-size:.78rem;">TikTok: @jyggarment</a>
+<a href="https://www.linkedin.com/incareer/in/jiarun-chen" target="_blank" style="color:rgba(255,255,255,.55);text-decoration:none;font-size:.78rem;">LinkedIn: jiarun-chen</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section style="background:#0d0d0d;padding:80px 5%;font-family:sans-serif;">
+<div style="max-width:1100px;margin:0 auto;">
+<h2 style="font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;color:#fff;text-align:center;margin-bottom:40px;">Our Story</h2>
+<div style="display:flex;flex-wrap:wrap;gap:50px;align-items:flex-start;">
+<div style="flex:0 0 340px;min-width:260px;">
+<img loading="lazy" src="images/img_005.png" style="width:100%;border-radius:8px;display:block;" alt="Our Team">
+</div>
+<div style="flex:1;min-width:300px;color:rgba(255,255,255,.85);font-size:.9rem;line-height:1.75;">
+<p style="margin:0 0 14px;">As a 3rd-gen merchant family, we know what it takes to build a brand that lasts — just like my grandpa did when he opened his shop in 1973. Ming Lang Ge (MLG) was established in 1998 by my father. We have been around the garment industry for about 30 yrs.</p>
+<p style="margin:0 0 14px;"><strong style="color:#D4A843;">JYG</strong></p>
+<p style="margin:0;">The year was 2025. We had a bold thought: What if we keep luxury-level quality for that premium vibe, but price is something all entrepreneurs with passion and bold ideas can afford? So they can easily build their own shops with their brand, no more dealing with unclear pricing and professional photography? That's how our international branch <strong style="color:#D4A843;">JYG</strong> began.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section style="background:#0d0d0d;padding:80px 5%;font-family:sans-serif;">
+<div style="max-width:1100px;margin:0 auto;">
+<h2 style="font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;color:#fff;text-align:center;margin-bottom:8px;">What Our Clients Say</h2>
+<p style="color:rgba(255,255,255,.55);font-size:.9rem;text-align:center;margin-bottom:45px;max-width:550px;margin-left:auto;margin-right:auto;">Trusted by over 2,000 brands across 50 plus countries. Here is what they have to say about working with us.</p>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;">
+<div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:10px;padding:28px 24px 24px;display:flex;flex-direction:column;justify-content:space-between;">
+<div style="color:#D4A843;font-size:2.2rem;line-height:1;margin-bottom:14px;font-family:Georgia,serif;">"</div>
+<p style="color:rgba(255,255,255,.75);font-size:.85rem;line-height:1.7;margin:0 0 20px;">One of the main reasons I chose to work with you, Jia, is honestly your personality. Your communication, your willingness to listen, your honesty, and the fact that you aren't afraid to give your own recommendations have made this process enjoyable and productive. It feels like we're working together toward the same goal rather than simply placing an order, and I really value that!!</p>
+<div style="border-top:1px solid rgba(255,255,255,.06);padding-top:14px;color:#D4A843;font-size:.78rem;font-weight:600;">Kian &mdash; UK</div>
+</div>
+<div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:10px;padding:28px 24px 24px;display:flex;flex-direction:column;justify-content:space-between;">
+<div style="color:#D4A843;font-size:2.2rem;line-height:1;margin-bottom:14px;font-family:Georgia,serif;">"</div>
+<p style="color:rgba(255,255,255,.75);font-size:.85rem;line-height:1.7;margin:0 0 20px;">The price needs to be reasonable and MOQs and lead times are fair. It is highly important the quality produced for me because I want to be known as high quality and nothing else. It is important to see you have done similar things in the past but for me most importantly is the response speed and professional communication is very very good here and much appreciated and makes it very easy and enjoyable to work with you Darron I appreciate it.</p>
+<div style="border-top:1px solid rgba(255,255,255,.06);padding-top:14px;color:#D4A843;font-size:.78rem;font-weight:600;">Murphy &mdash; US</div>
+</div>
+<div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:10px;padding:28px 24px 24px;display:flex;flex-direction:column;justify-content:space-between;">
+<div style="color:#D4A843;font-size:2.2rem;line-height:1;margin-bottom:14px;font-family:Georgia,serif;">"</div>
+<p style="color:rgba(255,255,255,.75);font-size:.85rem;line-height:1.7;margin:0 0 20px;">Hey! I received the clothes and I'm really impressed. The quality is amazing — soft fabric, great fit, and everything looks just like the pictures. Thank you so much, I'm very happy with the purchase!</p>
+<div style="border-top:1px solid rgba(255,255,255,.06);padding-top:14px;color:#D4A843;font-size:.78rem;font-weight:600;">Yukkit &mdash; AUS</div>
+</div>
+</div>
+</div>
+</section>
+
+<footer style="background:#0a0a0a;padding:60px 5% 30px;font-family:sans-serif;border-top:1px solid rgba(255,255,255,.06);">
+<div style="max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;gap:40px;justify-content:space-between;">
+<div style="flex:1;min-width:240px;">
+<h4 style="color:#fff;font-size:.9rem;font-weight:700;margin:0 0 16px;">Join The Community</h4>
+<p style="color:rgba(255,255,255,.45);font-size:.8rem;line-height:1.7;margin:0 0 10px;">Address: 101, Building A28, Huifu Industrial Park, Guangzhou, Guangdong, China</p>
+<p style="color:rgba(255,255,255,.45);font-size:.8rem;margin:0 0 6px;"><a href="mailto:jyggarment@foxmail.com" style="color:rgba(255,255,255,.45);text-decoration:none;">jyggarment@foxmail.com</a></p>
+<p style="color:rgba(255,255,255,.45);font-size:.8rem;margin:0;">+86 13922181466</p>
+</div>
+<div style="flex:0 0 auto;min-width:200px;">
+<h4 style="color:#fff;font-size:.9rem;font-weight:700;margin:0 0 16px;">Follow Us</h4>
+<div style="display:flex;gap:16px;align-items:center;">
+<a href="https://www.instagram.com/jyggarment/" target="_blank" style="display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.06);transition:all .3s;" onmouseover="this.style.background='#D4A843';this.style.color='#000'" onmouseout="this.style.background='rgba(255,255,255,.06)';this.style.color='#fff'">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:#fff;"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+</a>
+<a href="https://www.facebook.com/darron.apparel" target="_blank" style="display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.06);transition:all .3s;" onmouseover="this.style.background='#D4A843';this.style.color='#000'" onmouseout="this.style.background='rgba(255,255,255,.06)';this.style.color='#fff'">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:#fff;"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path></svg>
+</a>
+<a href="https://www.tiktok.com/@jyggarment" target="_blank" style="display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.06);transition:all .3s;" onmouseover="this.style.background='#D4A843';this.style.color='#000'" onmouseout="this.style.background='rgba(255,255,255,.06)';this.style.color='#fff'">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:#fff;"><path d="M9 12a4 4 0 104 4V4a5 5 0 005 5"></path></svg>
+</a>
+</div>
+</div>
+</div>
+<div style="max-width:1100px;margin:30px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.06);text-align:center;color:rgba(255,255,255,.25);font-size:.7rem;">JYG Garment &copy; 2025. All Rights Reserved.</div>
+</footer>
+
+</body>
+</html>

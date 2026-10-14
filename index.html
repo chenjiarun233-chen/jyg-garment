@@ -7,14 +7,24 @@
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="512x512" href="favicon.png">
 <link rel="apple-touch-icon" href="favicon.png">
-<!-- The full-file preload for img_000.mp4 was removed on purpose: the
-     <video preload="metadata"> element requests the same 2.1 MB file again,
-     so the preload bought a second competing download and delayed FCP/LCP.
-     The poster image covers the hero until playback starts. -->
+<!-- Fonts are self-hosted from fonts/ (see the @font-face rules below), so no
+     third-party stylesheet sits in the critical path. The full-file preload for
+     img_000.mp4 stays removed on purpose: a 2.1 MB video must not compete with
+     the hero poster and the webfonts for bandwidth on a mobile connection. -->
 <style>body{margin:0;background:#ffffff;font-family:var(--font-body);font-weight:500}</style>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="preload" href="fonts/playfairdisplay-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{font-family:'Playfair Display';font-style:normal;font-weight:700;font-display:swap;src:url('fonts/playfairdisplay-latin.woff2') format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+@font-face{font-family:'Playfair Display';font-style:normal;font-weight:800;font-display:swap;src:url('fonts/playfairdisplay-latin.woff2') format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+@font-face{font-family:'Playfair Display';font-style:normal;font-weight:900;font-display:swap;src:url('fonts/playfairdisplay-latin.woff2') format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+@font-face{font-family:'Inter';font-style:normal;font-weight:400;font-display:swap;src:url('fonts/inter-latin.woff2') format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+@font-face{font-family:'Inter';font-style:normal;font-weight:500;font-display:swap;src:url('fonts/inter-latin.woff2') format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+@font-face{font-family:'Inter';font-style:normal;font-weight:600;font-display:swap;src:url('fonts/inter-latin.woff2') format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+@font-face{font-family:'Inter';font-style:normal;font-weight:700;font-display:swap;src:url('fonts/inter-latin.woff2') format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+@font-face{font-family:'Inter';font-style:normal;font-weight:800;font-display:swap;src:url('fonts/inter-latin.woff2') format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+@font-face{font-family:'Inter';font-style:normal;font-weight:900;font-display:swap;src:url('fonts/inter-latin.woff2') format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+</style>
 <meta name="description" content="JYG Garment is a custom apparel manufacturer in Guangzhou, China. Low MOQ from 100 pieces, 20-day lead time and free design service for emerging brands. OEM and ODM custom garment production.">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <link rel="canonical" href="https://chenjiarun233-chen.github.io/jyg-garment/">
@@ -308,7 +318,7 @@ div[style*="minmax(240px"] a{font-size:0.65rem!important;padding:9px 6px!importa
 <source src="images/img_000.mp4" type="video/mp4">
 </video>
 <script>
-(function(){var v=document.getElementById('heroVideo');v.oncanplay=v.onplaying=function(){v.classList.add('playing')};v.load();v.play().catch(function(){})})()
+(function(){var v=document.getElementById('heroVideo');v.oncanplay=v.onplaying=function(){v.classList.add('playing')};v.play().catch(function(){})})()
 </script>
 <div style="position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg,rgba(0,0,0,.65) 0%,rgba(0,0,0,.4) 100%);z-index:1;"></div>
 <div style="position:relative;z-index:2;max-width:1200px;margin:0 auto;width:100%;">
@@ -488,7 +498,7 @@ div[style*="minmax(240px"] a{font-size:0.65rem!important;padding:9px 6px!importa
 <source src="images/img_015.mp4" type="video/mp4">
 </video>
 <script>
-(function(){var v=document.getElementById('liveVideo');v.oncanplay=v.onplaying=function(){v.classList.add('playing')};v.load();v.play().catch(function(){})})()
+(function(){var v=document.getElementById('liveVideo');v.oncanplay=v.onplaying=function(){v.classList.add('playing')};v.play().catch(function(){})})()
 </script>
 <div style="position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg,rgba(0,0,0,.72) 0%,rgba(0,0,0,.55) 100%);z-index:1;"></div>
 

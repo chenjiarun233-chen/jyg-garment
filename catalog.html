@@ -30,6 +30,8 @@
             display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:30px;
         }
     </style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -69,17 +71,30 @@
             background: var(--color-gold); color: #fff; padding: 16px 30px; border-radius: 50px;
             text-decoration: none; font-size:1.08rem; font-weight:900;
             display: flex; align-items: center; gap: 12px;
-            box-shadow: 0 0 0 0 rgba(212,168,67,0);
-            animation: quote-float 3s ease-in-out infinite, quote-glow 3s infinite;
+            box-shadow: 0 8px 25px rgba(212,168,67,0.3);
+            animation: quote-float 3s ease-in-out infinite;
             transition: all 0.4s ease; text-transform: uppercase; letter-spacing: 0.5px;
         }
         @keyframes quote-float {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-10px); }
         }
-        @keyframes quote-glow {
-            0%, 100% { box-shadow: 0 8px 25px rgba(212,168,67,0.3); }
-            50% { box-shadow: 0 15px 45px rgba(212,168,67,0.6); }
+        /* Performance fix: the glow used to animate box-shadow, which cannot be
+           GPU-composited and therefore repainted on every frame (PageSpeed:
+           "non-composited animation"). The glow now lives on a pseudo-element and
+           only opacity is animated, so it runs on the compositor. Visual result is
+           the same pulsing gold halo. */
+        .quote-float::after {
+            content: ''; position: absolute;
+            top: 0; right: 0; bottom: 0; left: 0;
+            border-radius: inherit;
+            box-shadow: 0 0 30px 4px rgba(212,168,67,0.6);
+            opacity: 0.4; animation: quote-glow-pulse 3s ease-in-out infinite;
+            pointer-events: none; z-index: -1;
+        }
+        @keyframes quote-glow-pulse {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 1; }
         }
         .quote-float:hover { 
             transform: scale(1.05) translateY(-5px); 

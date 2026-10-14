@@ -9,6 +9,8 @@
 <link rel="apple-touch-icon" href="favicon.png">
 <link rel="preload" as="video" href="images/img_000.mp4" type="video/mp4">
 <style>body{margin:0;background:#ffffff;font-family:var(--font-body);font-weight:500}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <meta name="description" content="JYG Garment is a custom apparel manufacturer in Guangzhou, China. Low MOQ from 100 pieces, 20-day lead time and free design service for emerging brands. OEM and ODM custom garment production.">
 <meta name="robots" content="index,follow,max-image-preview:large">
@@ -62,17 +64,30 @@
             background: var(--color-gold); color: #fff; padding: 16px 30px; border-radius: 50px;
             text-decoration: none; font-size:1.08rem; font-weight:900;
             display: flex; align-items: center; gap: 12px;
-            box-shadow: 0 0 0 0 rgba(212,168,67,0);
-            animation: quote-float 3s ease-in-out infinite, quote-glow 3s infinite;
+            box-shadow: 0 8px 25px rgba(212,168,67,0.3);
+            animation: quote-float 3s ease-in-out infinite;
             transition: all 0.4s ease; text-transform: uppercase; letter-spacing: 0.5px;
         }
         @keyframes quote-float {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-10px); }
         }
-        @keyframes quote-glow {
-            0%, 100% { box-shadow: 0 8px 25px rgba(212,168,67,0.3); }
-            50% { box-shadow: 0 15px 45px rgba(212,168,67,0.6); }
+        /* Performance fix: the glow used to animate box-shadow, which cannot be
+           GPU-composited and therefore repainted on every frame (PageSpeed:
+           "non-composited animation"). The glow now lives on a pseudo-element and
+           only opacity is animated, so it runs on the compositor. Visual result is
+           the same pulsing gold halo. */
+        .quote-float::after {
+            content: ''; position: absolute;
+            top: 0; right: 0; bottom: 0; left: 0;
+            border-radius: inherit;
+            box-shadow: 0 0 30px 4px rgba(212,168,67,0.6);
+            opacity: 0.4; animation: quote-glow-pulse 3s ease-in-out infinite;
+            pointer-events: none; z-index: -1;
+        }
+        @keyframes quote-glow-pulse {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 1; }
         }
         .quote-float:hover { 
             transform: scale(1.05) translateY(-5px); 
@@ -277,11 +292,16 @@ div[style*="minmax(240px"] a{font-size:0.65rem!important;padding:9px 6px!importa
 
 
 <style>
-#heroVideo{opacity:0;transition:opacity .8s ease}
+/* opacity is 1 from the very start so the poster is visible immediately
+   while the video buffers. This used to be opacity:0 until the 'canplay'
+   event, which left the hero as a plain black box until the video had
+   loaded - and it also made the poster unreachable, because a poster
+   paints INSIDE the video element and therefore inherited opacity:0. */
+#heroVideo{opacity:1;transition:opacity .8s ease}
 #heroVideo.playing{opacity:1}
 </style>
 <section style="position:relative;padding:100px 5% 90px;font-family:var(--font-body);overflow:hidden;min-height:85vh;display:flex;align-items:center;background:#0a0a0a;">
-<video id="heroVideo" muted loop playsinline disableRemotePlayback preload="metadata" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:0;transform:translateZ(0);will-change:transform;backface-visibility:hidden;-webkit-transform:translateZ(0);">
+<video id="heroVideo" poster="images/img_000_poster.webp" muted loop playsinline disableRemotePlayback preload="metadata" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:0;transform:translateZ(0);will-change:transform;backface-visibility:hidden;-webkit-transform:translateZ(0);">
 <source src="images/img_000.mp4" type="video/mp4">
 </video>
 <script>
@@ -420,17 +440,17 @@ div[style*="minmax(240px"] a{font-size:0.65rem!important;padding:9px 6px!importa
 </style>
 <div class="craft-row">
 <div class="craft-track craft-track-l">
-<img loading="lazy" src="images/img_006.png" alt="Garment embellishment techniques - rhinestone hot drilling, reflective print, pearl beading, metal rivets and embroidered patches"><img loading="lazy" src="images/img_006.png" alt="Garment embellishment techniques - rhinestone hot drilling, reflective print, pearl beading, metal rivets and embroidered patches"><img loading="lazy" src="images/img_006.png" alt="Garment embellishment techniques - rhinestone hot drilling, reflective print, pearl beading, metal rivets and embroidered patches"><img loading="lazy" src="images/img_006.png" alt="Garment embellishment techniques - rhinestone hot drilling, reflective print, pearl beading, metal rivets and embroidered patches"><img loading="lazy" src="images/img_006.png" alt="Garment embellishment techniques - rhinestone hot drilling, reflective print, pearl beading, metal rivets and embroidered patches"><img loading="lazy" src="images/img_006.png" alt="Garment embellishment techniques - rhinestone hot drilling, reflective print, pearl beading, metal rivets and embroidered patches">
+<img loading="lazy" src="images/img_006.webp" alt="Garment embellishment techniques - rhinestone hot drilling, reflective print, pearl beading, metal rivets and embroidered patches"><img loading="lazy" src="images/img_006.webp" alt="Garment embellishment techniques - rhinestone hot drilling, reflective print, pearl beading, metal rivets and embroidered patches"><img loading="lazy" src="images/img_006.webp" alt="Garment embellishment techniques - rhinestone hot drilling, reflective print, pearl beading, metal rivets and embroidered patches"><img loading="lazy" src="images/img_006.webp" alt="Garment embellishment techniques - rhinestone hot drilling, reflective print, pearl beading, metal rivets and embroidered patches"><img loading="lazy" src="images/img_006.webp" alt="Garment embellishment techniques - rhinestone hot drilling, reflective print, pearl beading, metal rivets and embroidered patches"><img loading="lazy" src="images/img_006.webp" alt="Garment embellishment techniques - rhinestone hot drilling, reflective print, pearl beading, metal rivets and embroidered patches">
 </div>
 </div>
 <div class="craft-row">
 <div class="craft-track craft-track-r">
-<img loading="lazy" src="images/img_002.png" alt="Custom print and embroidery samples - DTG print, screen printing, reflective print, puff print and embroidery"><img loading="lazy" src="images/img_002.png" alt="Custom print and embroidery samples - DTG print, screen printing, reflective print, puff print and embroidery"><img loading="lazy" src="images/img_002.png" alt="Custom print and embroidery samples - DTG print, screen printing, reflective print, puff print and embroidery"><img loading="lazy" src="images/img_002.png" alt="Custom print and embroidery samples - DTG print, screen printing, reflective print, puff print and embroidery"><img loading="lazy" src="images/img_002.png" alt="Custom print and embroidery samples - DTG print, screen printing, reflective print, puff print and embroidery"><img loading="lazy" src="images/img_002.png" alt="Custom print and embroidery samples - DTG print, screen printing, reflective print, puff print and embroidery">
+<img loading="lazy" src="images/img_002.webp" alt="Custom print and embroidery samples - DTG print, screen printing, reflective print, puff print and embroidery"><img loading="lazy" src="images/img_002.webp" alt="Custom print and embroidery samples - DTG print, screen printing, reflective print, puff print and embroidery"><img loading="lazy" src="images/img_002.webp" alt="Custom print and embroidery samples - DTG print, screen printing, reflective print, puff print and embroidery"><img loading="lazy" src="images/img_002.webp" alt="Custom print and embroidery samples - DTG print, screen printing, reflective print, puff print and embroidery"><img loading="lazy" src="images/img_002.webp" alt="Custom print and embroidery samples - DTG print, screen printing, reflective print, puff print and embroidery"><img loading="lazy" src="images/img_002.webp" alt="Custom print and embroidery samples - DTG print, screen printing, reflective print, puff print and embroidery">
 </div>
 </div>
 <div class="craft-row">
 <div class="craft-track craft-track-l">
-<img loading="lazy" src="images/img_004.png" alt="Garment decoration details - 3D embroidery, flocking, 3D embossing, towel embroidery and acid wash"><img loading="lazy" src="images/img_004.png" alt="Garment decoration details - 3D embroidery, flocking, 3D embossing, towel embroidery and acid wash"><img loading="lazy" src="images/img_004.png" alt="Garment decoration details - 3D embroidery, flocking, 3D embossing, towel embroidery and acid wash"><img loading="lazy" src="images/img_004.png" alt="Garment decoration details - 3D embroidery, flocking, 3D embossing, towel embroidery and acid wash"><img loading="lazy" src="images/img_004.png" alt="Garment decoration details - 3D embroidery, flocking, 3D embossing, towel embroidery and acid wash"><img loading="lazy" src="images/img_004.png" alt="Garment decoration details - 3D embroidery, flocking, 3D embossing, towel embroidery and acid wash">
+<img loading="lazy" src="images/img_004.webp" alt="Garment decoration details - 3D embroidery, flocking, 3D embossing, towel embroidery and acid wash"><img loading="lazy" src="images/img_004.webp" alt="Garment decoration details - 3D embroidery, flocking, 3D embossing, towel embroidery and acid wash"><img loading="lazy" src="images/img_004.webp" alt="Garment decoration details - 3D embroidery, flocking, 3D embossing, towel embroidery and acid wash"><img loading="lazy" src="images/img_004.webp" alt="Garment decoration details - 3D embroidery, flocking, 3D embossing, towel embroidery and acid wash"><img loading="lazy" src="images/img_004.webp" alt="Garment decoration details - 3D embroidery, flocking, 3D embossing, towel embroidery and acid wash"><img loading="lazy" src="images/img_004.webp" alt="Garment decoration details - 3D embroidery, flocking, 3D embossing, towel embroidery and acid wash">
 </div>
 </div>
 </section>
@@ -452,11 +472,16 @@ div[style*="minmax(240px"] a{font-size:0.65rem!important;padding:9px 6px!importa
 </section>
 
 <style>
-#liveVideo{opacity:0;transition:opacity .8s ease}
+/* opacity is 1 from the very start so the poster is visible immediately
+   while the video buffers. This used to be opacity:0 until the 'canplay'
+   event, which left the hero as a plain black box until the video had
+   loaded - and it also made the poster unreachable, because a poster
+   paints INSIDE the video element and therefore inherited opacity:0. */
+#liveVideo{opacity:1;transition:opacity .8s ease}
 #liveVideo.playing{opacity:1}
 </style>
 <section style="position:relative;background:#0d0d0d;padding:110px 5%;font-family:var(--font-body);overflow:hidden;aspect-ratio:7/5;min-height:640px;display:flex;flex-direction:column;justify-content:center;">
-<video id="liveVideo" muted loop playsinline disableRemotePlayback preload="metadata" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:0;transform:translateZ(0);will-change:transform;backface-visibility:hidden;-webkit-transform:translateZ(0);">
+<video id="liveVideo" poster="images/img_015_poster.webp" muted loop playsinline disableRemotePlayback preload="metadata" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:0;transform:translateZ(0);will-change:transform;backface-visibility:hidden;-webkit-transform:translateZ(0);">
 <source src="images/img_015.mp4" type="video/mp4">
 </video>
 <script>

@@ -75,6 +75,34 @@
         .quote-icon { transition: 0.3s; }
         .quote-float:hover .quote-icon { transform: rotate(15deg) scale(1.2); }
     </style>
+<style>
+/* ===== MOBILE LAYOUT OVERRIDES (max-width 768px) - desktop rendering unchanged ===== */
+@media (max-width:768px){
+html,body{overflow-x:hidden}
+header>div{padding:10px 4%!important}
+header>div>div:first-child{font-size:1.08rem!important;letter-spacing:-0.3px!important}
+nav{gap:13px!important}
+nav>a{font-size:0.78rem!important}
+nav>a[style*="border-radius:4px"]{padding:7px 11px!important;font-size:0.7rem!important}
+section[style*="padding:60px 5% 100px"]{padding:40px 5% 64px!important}
+h1{font-size:1.95rem!important}
+h1[style*="2.8rem"]+p{margin-bottom:26px!important}
+.catalog-grid{gap:18px!important}
+footer{padding:42px 5% 24px!important}
+.wa-container{left:14px!important;bottom:16px!important;width:52px!important;height:48px!important}
+.whatsapp-float{width:48px!important;height:48px!important}
+.whatsapp-float svg{width:26px!important;height:26px!important}
+.quote-float{right:14px!important;bottom:16px!important;padding:11px 16px!important;font-size:0.8rem!important;gap:7px!important}
+.quote-float svg{width:17px!important;height:17px!important}
+/* Product catalog: repeat(auto-fit,minmax(280px,1fr)) resolved to ONE column on a phone -> 2 per row, matching the homepage */
+.catalog-grid{grid-template-columns:repeat(2,1fr)!important;gap:14px!important}
+.catalog-grid>div{min-width:0!important}
+.catalog-grid>div>div:last-child{padding:12px!important}
+.catalog-grid h3{font-size:0.92rem!important;margin-bottom:5px!important}
+.catalog-grid p{font-size:0.72rem!important;margin-bottom:10px!important;line-height:1.45!important}
+.catalog-grid a{font-size:0.65rem!important;padding:9px 6px!important;width:auto!important;letter-spacing:0!important}
+}
+</style>
     </head>
 <body>
     

@@ -457,6 +457,22 @@ footer{padding:42px 5% 24px!important}
  ]
 }
 </script>
+<!-- Google Analytics 4 (GA4) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BV7QRVB262"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-BV7QRVB262');
+</script>
+<!-- Microsoft Clarity -->
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "yxn9pgx92z");
+</script>
 </head>
 <body>
     
@@ -538,4 +554,37 @@ footer{padding:42px 5% 24px!important}
         <span>Get a Free Quote</span>
         <svg class="quote-icon" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12.893 2.13a2.998 2.998 0 0 0-1.846.81l-8.242 8.242a3 3 0 0 0 0 4.242l4.773 4.773a3 3 0 0 0 4.242 0l8.242-8.242c.45-.45.717-1.047.76-1.674l.173-2.61a5.006 5.006 0 0 0-4.664-5.328l-2.61-.173a3.036 3.036 0 0 0-.828 0ZM16 7a2 2 0 1 1 4 0 2 2 0 0 1-4 0Z"/></svg>
     </a>
-    </body></html>
+    <!-- Conversion events: quote form, WhatsApp, email, file download, form start -->
+<script>
+(function () {
+  function send(name, params) {
+    if (typeof window.gtag === 'function') { window.gtag('event', name, params); }
+    if (typeof window.clarity === 'function') { window.clarity('event', name); }
+  }
+  document.addEventListener('click', function (e) {
+    var el = e.target;
+    var a = (el && el.closest) ? el.closest('a[href]') : null;
+    if (!a) { return; }
+    var href = a.getAttribute('href') || '';
+    var label = (a.textContent || '').replace(/\s+/g, ' ').trim().slice(0, 100);
+    var page = location.pathname;
+    if (href.indexOf('forms.gle') !== -1) {
+      send('generate_lead', { form_destination: href, link_text: label, page_path: page, lead_source: 'quote_form' });
+    } else if (href.indexOf('api.whatsapp.com') !== -1 || href.indexOf('wa.me') !== -1 || href.indexOf('whatsapp://') !== -1) {
+      send('whatsapp_click', { link_url: href, page_path: page, contact_channel: 'whatsapp' });
+    } else if (href.indexOf('mailto:') === 0) {
+      send('email_click', { link_url: href, page_path: page, contact_channel: 'email' });
+    } else if (/\.(pdf|zip|xlsx?|docx?|csv)([?#].*)?$/i.test(href)) {
+      send('file_download', { file_url: href, page_path: page });
+    }
+  }, true);
+  document.addEventListener('focusin', function (e) {
+    var el = e.target;
+    if (el && el.form && !el.form.__gaFormStarted) {
+      el.form.__gaFormStarted = true;
+      send('form_start', { form_id: el.form.id || '(unnamed form)', page_path: location.pathname });
+    }
+  });
+})();
+</script>
+</body></html>

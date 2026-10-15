@@ -31,6 +31,22 @@ footer{border-top:1px solid rgba(0,0,0,.07);margin-top:20px}
 .fwrap a{color:rgba(17,17,17,.55);text-decoration:none}
 .fwrap a:hover{color:var(--gold)}
 </style>
+<!-- Google Analytics 4 (GA4) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BV7QRVB262"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-BV7QRVB262');
+</script>
+<!-- Microsoft Clarity -->
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "yxn9pgx92z");
+</script>
 </head>
 <body>
 <main>
@@ -38,7 +54,7 @@ footer{border-top:1px solid rgba(0,0,0,.07);margin-top:20px}
 <h1>Privacy Policy</h1>
 <p class="meta">Last updated: 15 October 2026</p>
 
-<p>This page explains what happens to the information you send us, and what this website stores in your browser. Short version: this website does not track you, and we only use what you send us to answer your enquiry.</p>
+<p>This page explains what happens to the information you send us, and what this website stores in your browser. Short version: we use two measurement tools &mdash; Google Analytics 4 and Microsoft Clarity &mdash; to see which pages and products attract genuine buyer interest. We only use what you send us to answer your enquiry, and we never sell it.</p>
 
 <h2>1. Who we are</h2>
 <p>JYG Garment is a custom apparel manufacturer based in Guangzhou, China. Our contact details are listed at the bottom of this page. This policy covers this website and the ways you can reach us from it.</p>
@@ -54,14 +70,24 @@ footer{border-top:1px solid rgba(0,0,0,.07);margin-top:20px}
 <p>To reply to your enquiry, prepare quotations and samples, and manage your order if you place one. That is all. We do not sell, rent or trade your information, and we do not use it for advertising.</p>
 
 <h2>4. Cookies and analytics</h2>
-<p>This website does not set cookies, and it does not run any analytics, tracking, advertising or session-recording scripts. Nothing is written to your browser's storage by this site, so there is nothing here to consent to. Our web fonts are served from this same domain rather than a third party.</p>
-<p>If we ever add an analytics or measurement tool, this section will be rewritten to name the tool and describe what it records <b>before</b> that tool goes live.</p>
+<p>This website sets cookies. It runs two measurement tools, and both are named here in full.</p>
+<ul>
+<li><b>Google Analytics 4</b> &mdash; measurement ID <code>G-BV7QRVB262</code>, operated by Google. Records which pages you view, how you arrived, an approximate location derived from your IP address, your device and browser type, and how long you stay. Sets first-party cookies named <code>_ga</code> and <code>_ga_BV7QRVB262</code>, kept for up to 13 months.</li>
+<li><b>Microsoft Clarity</b> &mdash; project ID <code>yxn9pgx92z</code>, operated by Microsoft. Records anonymised heatmaps and session replays: where you click and scroll, and a replay of the visit. Sets first-party cookies named <code>_clck</code> and <code>_clsk</code>, kept for up to 13 months. Text you type into form fields is masked by default.</li>
+</ul>
+<p>Both tools receive standard web request data &mdash; including your IP address and browser user-agent &mdash; as any request to any website does. Neither tool is given your name, email address, phone number or company name; nothing you enter in a form is passed to them.</p>
+<p>We use this data only to see which products and pages attract genuine buyer interest, and to find parts of the site that confuse visitors. It is not used for advertising, it is not sold, and it is not used to build a profile of you across other websites.</p>
+<p>Our web fonts are served from this same domain rather than a third party, so they create no additional tracking.</p>
+<p><b>How to opt out:</b> block or delete these cookies in your browser settings &mdash; the site works fine without them &mdash; or install Google's official <a href="https://tools.google.com/dlpage/gaoptout" rel="noopener">Analytics Opt-out Browser Add-on</a>. Microsoft explains its own controls in the <a href="https://privacy.microsoft.com/privacystatement" rel="noopener">Microsoft Privacy Statement</a>.</p>
+<p>If we add any further measurement, advertising or tracking tool, this section will name it here <b>before</b> that tool goes live.</p>
 
 <h2>5. Third-party services this site relies on</h2>
 <ul>
 <li><b>GitHub Pages</b> hosts the files for this website. Like any web host, it records standard server logs (which include your IP address) in order to deliver the pages and protect against abuse.</li>
 <li><b>Google Forms</b> processes the message you send through the &ldquo;Get a Free Quote&rdquo; button. That submission is handled under Google's own privacy policy.</li>
 <li><b>WhatsApp</b> (Meta) carries the messages you send us when you use the WhatsApp button.</li>
+<li><b>Google Analytics 4</b> (Google LLC) measures how this website is used. What it records, and how to opt out, is set out in section 4 above.</li>
+<li><b>Microsoft Clarity</b> (Microsoft Corporation) records anonymised heatmaps and session replays. What it records, and how to opt out, is set out in section 4 above.</li>
 </ul>
 
 <h2>6. How long we keep it</h2>
@@ -82,5 +108,38 @@ Email: <a href="mailto:jyggarment@foxmail.com">jyggarment@foxmail.com</a> &middo
 Copyright &copy; 2026 JYG Garment. All Rights Reserved. &middot; <a href="index.html">Home</a> &middot; <a href="catalog.html">Product Catalog</a>
 </div>
 </footer>
+<!-- Conversion events: quote form, WhatsApp, email, file download, form start -->
+<script>
+(function () {
+  function send(name, params) {
+    if (typeof window.gtag === 'function') { window.gtag('event', name, params); }
+    if (typeof window.clarity === 'function') { window.clarity('event', name); }
+  }
+  document.addEventListener('click', function (e) {
+    var el = e.target;
+    var a = (el && el.closest) ? el.closest('a[href]') : null;
+    if (!a) { return; }
+    var href = a.getAttribute('href') || '';
+    var label = (a.textContent || '').replace(/\s+/g, ' ').trim().slice(0, 100);
+    var page = location.pathname;
+    if (href.indexOf('forms.gle') !== -1) {
+      send('generate_lead', { form_destination: href, link_text: label, page_path: page, lead_source: 'quote_form' });
+    } else if (href.indexOf('api.whatsapp.com') !== -1 || href.indexOf('wa.me') !== -1 || href.indexOf('whatsapp://') !== -1) {
+      send('whatsapp_click', { link_url: href, page_path: page, contact_channel: 'whatsapp' });
+    } else if (href.indexOf('mailto:') === 0) {
+      send('email_click', { link_url: href, page_path: page, contact_channel: 'email' });
+    } else if (/\.(pdf|zip|xlsx?|docx?|csv)([?#].*)?$/i.test(href)) {
+      send('file_download', { file_url: href, page_path: page });
+    }
+  }, true);
+  document.addEventListener('focusin', function (e) {
+    var el = e.target;
+    if (el && el.form && !el.form.__gaFormStarted) {
+      el.form.__gaFormStarted = true;
+      send('form_start', { form_id: el.form.id || '(unnamed form)', page_path: location.pathname });
+    }
+  });
+})();
+</script>
 </body>
 </html>

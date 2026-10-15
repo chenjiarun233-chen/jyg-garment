@@ -1,5 +1,5 @@
 # robots.txt for JYG Garment
-# https://chenjiarun233-chen.github.io/jyg-garment/
+# https://jyggarment.com/
 
 User-agent: *
 Allow: /
@@ -59,4 +59,4 @@ Allow: /
 User-agent: YouBot
 Allow: /
 
-Sitemap: https://chenjiarun233-chen.github.io/jyg-garment/sitemap.xml
+Sitemap: https://jyggarment.com/sitemap.xml

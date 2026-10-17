@@ -14,6 +14,7 @@
 <style>body{margin:0;background:#ffffff;font-family:var(--font-body);font-weight:500}</style>
 <link rel="preload" href="fonts/playfairdisplay-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="images/img_000_poster.webp" as="image" fetchpriority="high">
 <style>
 @font-face{font-family:'Playfair Display';font-style:normal;font-weight:700;font-display:swap;src:url('fonts/playfairdisplay-latin.woff2') format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
 @font-face{font-family:'Playfair Display';font-style:normal;font-weight:800;font-display:swap;src:url('fonts/playfairdisplay-latin.woff2') format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
@@ -330,12 +331,19 @@ div[style*="minmax(240px"] a{font-size:0.65rem!important;padding:9px 6px!importa
 #heroVideo{opacity:1;transition:opacity .8s ease}
 #heroVideo.playing{opacity:1}
 </style>
-<section style="position:relative;padding:100px 5% 90px;font-family:var(--font-body);overflow:hidden;min-height:85vh;display:flex;align-items:center;background:#0a0a0a;">
+<section style="position:relative;padding:100px 5% 90px;font-family:var(--font-body);overflow:hidden;min-height:85vh;display:flex;align-items:center;background:#0a0a0a url(images/img_000_poster.webp) center/cover no-repeat;">
 <video aria-hidden="true" id="heroVideo" poster="images/img_000_poster.webp" muted loop playsinline disableRemotePlayback preload="none" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:0;transform:translateZ(0);will-change:transform;backface-visibility:hidden;-webkit-transform:translateZ(0);">
 <source src="images/img_000.mp4" type="video/mp4">
 </video>
 <script>
-(function(){var v=document.getElementById('heroVideo');if(!v)return;v.oncanplay=v.onplaying=function(){v.classList.add('playing')};function go(){if(v.preload==='none'){v.preload='auto'}var p=v.play();if(p&&p.catch){p.catch(function(){})}}if(!('IntersectionObserver' in window)){go();return}new IntersectionObserver(function(es){for(var i=0;i<es.length;i++){if(es[i].isIntersecting){go()}else{v.pause()}}},{rootMargin:'200px 0px'}).observe(v)})()
+(function(){var v=document.getElementById('heroVideo');if(!v)return;v.oncanplay=v.onplaying=function(){v.classList.add('playing')};function go(){if(v.preload==='none'){v.preload='auto'}var p=v.play();if(p&&p.catch){p.catch(function(){})}}
+/* 手机 / 省流模式：不下载 2.2 MB 的 hero 视频，只显示已预加载的 poster。
+   桌面端与 Wi-Fi 4G 以上保持原有自动播放。点一下 hero 可手动播放。 */
+var cn=navigator.connection||{};
+var light=window.matchMedia('(max-width:768px)').matches||cn.saveData===true||/(^|-)2g$/.test(cn.effectiveType||'');
+if(light){v.preload='none';v.pause();try{v.removeAttribute('autoplay')}catch(e){}
+v.addEventListener('click',function(){go()},{once:true});return}
+if(!('IntersectionObserver' in window)){go();return}new IntersectionObserver(function(es){for(var i=0;i<es.length;i++){if(es[i].isIntersecting){go()}else{v.pause()}}},{rootMargin:'200px 0px'}).observe(v)})()
 </script>
 <div style="position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg,rgba(0,0,0,.65) 0%,rgba(0,0,0,.4) 100%);z-index:1;"></div>
 <div style="position:relative;z-index:2;max-width:1200px;margin:0 auto;width:100%;">
@@ -692,7 +700,7 @@ div[style*="minmax(240px"] a{font-size:0.65rem!important;padding:9px 6px!importa
 (function(){
   function boost(sel){var r=document.querySelectorAll(sel);for(var i=0;i<r.length;i++){var a=r[i].querySelectorAll("img");for(var j=0;j<a.length;j++){if(a[j].loading!=="eager")a[j].loading="eager";}}}
   function go(){
-    boost(".fab-row");boost(".craft-row");boost(".pk-row");
+    boost(".fab-row");boost(".craft-row");boost(".pk-row");var P=document.querySelectorAll('img[src*="images/p"]');for(var k=0;k<6&&k<P.length;k++){P[k].loading="eager";}
     var e=document.querySelector('img[src="images/img_008.jpg"]');
     if(e&&e.loading!=="eager")e.loading="eager";
   }

@@ -734,19 +734,58 @@ div[style*="minmax(240px"] a{font-size:0.65rem!important;padding:9px 6px!importa
 <script>
 /* Marquee images: a browser will not lazy-load an <img> that is clipped by an
    overflow:hidden track and only enters view through a CSS transform animation,
-   so every item past the visible width stays blank forever. Wake the whole
-   track as soon as its row is near the viewport. */
+   so every item past the visible width stays blank forever.
+
+   Waking the WHOLE track at once made the first three rows (mq 32 + ml 43 + dt 29
+   unique files, ~690 KiB) own the pipe, and every later row - Custom Packaging,
+   Customize Craftsmanship - queued behind them for 10+ seconds on a slow phone.
+
+   Instead: keep a per-row cursor and only wake the tags that are actually about
+   to be on screen, plus 520px of run-up. The cursor only moves forward, so the
+   cost per tick is a handful of rect reads. Everything ahead is still woken
+   eventually as the marquee advances - the images are identical, they just stop
+   competing with the sections below. */
 (function(){
-  var rows=document.querySelectorAll(".mq-row,.ml-row,.dt-row,.fab-row,.pk-row,.craft-row");
-  function wake(r){var a=r.querySelectorAll("img");for(var i=0;i<a.length;i++){a[i].loading="eager";}}
+  var rows=[].slice.call(document.querySelectorAll(".mq-row,.ml-row,.dt-row,.fab-row,.pk-row,.craft-row"));
   if(!rows.length)return;
-  if(!("IntersectionObserver" in window)){for(var j=0;j<rows.length;j++)wake(rows[j]);return;}
-  var io=new IntersectionObserver(function(es){
-    for(var i=0;i<es.length;i++){
-      if(es[i].isIntersecting){wake(es[i].target);io.unobserve(es[i].target);}
+  var RUN=520, TICK=180, MAX=1e9;
+  var st=rows.map(function(r){return {i:0,im:r.querySelectorAll("img")};});
+
+  function vp(){
+    return {
+      w: window.innerWidth||document.documentElement.clientWidth,
+      h: window.innerHeight||document.documentElement.clientHeight
+    };
+  }
+
+  function sweep(){
+    var v=vp();
+    for(var r=0;r<rows.length;r++){
+      var s=st[r];
+      if(s.i>=s.im.length)continue;
+      var rr=rows[r].getBoundingClientRect();
+      if(rr.bottom<-RUN||rr.top>v.h+RUN)continue;      /* row far away: skip cheaply */
+      while(s.i<s.im.length){
+        var e=s.im[s.i];
+        if(e.loading!=="eager"){
+          var b=e.getBoundingClientRect();
+          if(b.left>v.w+RUN)break;                      /* not needed yet */
+          e.loading="eager";
+        }
+        s.i++;
+      }
     }
-  },{rootMargin:"800px 0px"});
-  for(var k=0;k<rows.length;k++)io.observe(rows[k]);
+  }
+
+  var timer=0;
+  function loop(){
+    timer=0;
+    sweep();
+    for(var r=0;r<st.length;r++){if(st[r].i<st[r].im.length){timer=setTimeout(loop,TICK);return;}}
+  }
+  loop();
+  window.addEventListener("scroll",function(){if(!timer)timer=setTimeout(loop,TICK);},{passive:true});
+  window.addEventListener("resize",function(){if(!timer)timer=setTimeout(loop,TICK);},{passive:true});
 })();
 </script>
 </body>

@@ -179,9 +179,11 @@ div[style*="minmax(240px"] a{font-size:0.65rem!important;padding:9px 6px!importa
 #mfg-cards h3{font-size:0.7rem!important;margin-bottom:6px!important}
 #mfg-cards li{font-size:0.62rem!important;line-height:1.4!important}
 }
-/* Touch: tap equivalent for the hover-only marquee pause */
+/* Touch screens: a tap latches :hover onto the row, which would freeze the
+   marquees on phones. There is no real hover there, so keep them running.
+   Desktop hover-to-pause is untouched. */
 @media (hover:none){
-.mq-row:active .mq-track,.ml-row:active .ml-track,.dt-row:active .dt-track,.fab-row:active .fab-track,.craft-row:active .craft-track,.pk-row:active .pk-track{animation-play-state:paused!important}
+.mq-row .mq-track,.ml-row .ml-track,.dt-row .dt-track,.fab-row .fab-track,.craft-row .craft-track,.pk-row .pk-track{animation-play-state:running!important}
 }
 </style>
     <script type="application/ld+json">

@@ -341,8 +341,23 @@ div[style*="minmax(240px"] a{font-size:0.65rem!important;padding:9px 6px!importa
    桌面端与 Wi-Fi 4G 以上保持原有自动播放。点一下 hero 可手动播放。 */
 var cn=navigator.connection||{};
 var light=window.matchMedia('(max-width:768px)').matches||cn.saveData===true||/(^|-)2g$/.test(cn.effectiveType||'');
-if(light){v.preload='none';v.pause();try{v.removeAttribute('autoplay')}catch(e){}
-v.addEventListener('click',function(){go()},{once:true});return}
+if(light){
+  /* 手机：改用 503 KB 的移动版视频，而不是 2.2 MB 的桌面版。
+     先让首屏商品卡片出图，再开始播，避免又把首屏挤住。
+     省流(saveData) 或 2G 仍然只显示 poster。 */
+  var s=v.querySelector('source');
+  if(s&&s.src.indexOf('img_000_mobile')<0){s.src='images/img_000_mobile.mp4';try{v.load()}catch(e){}}
+  v.preload='none';
+  var save=cn.saveData===true||/(^|-)2g$/.test(cn.effectiveType||'');
+  if(save){v.pause();v.addEventListener('click',function(){go()},{once:true});return}
+  var started=false;function kick(){if(!started){started=true;go()}}
+  var cd=document.querySelectorAll('img[src*="images/p"]'),n=Math.min(6,cd.length),t0=Date.now();
+  (function waitFirst(){
+    var ok=0;for(var i=0;i<n;i++){if(cd[i].naturalWidth>0){ok++}}
+    if(ok>=n||Date.now()-t0>4000){kick();return}
+    setTimeout(waitFirst,200);
+  })();
+  return}
 if(!('IntersectionObserver' in window)){go();return}new IntersectionObserver(function(es){for(var i=0;i<es.length;i++){if(es[i].isIntersecting){go()}else{v.pause()}}},{rootMargin:'200px 0px'}).observe(v)})()
 </script>
 <div style="position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg,rgba(0,0,0,.65) 0%,rgba(0,0,0,.4) 100%);z-index:1;"></div>
@@ -700,7 +715,13 @@ if(!('IntersectionObserver' in window)){go();return}new IntersectionObserver(fun
 (function(){
   function boost(sel){var r=document.querySelectorAll(sel);for(var i=0;i<r.length;i++){var a=r[i].querySelectorAll("img");for(var j=0;j<a.length;j++){if(a[j].loading!=="eager")a[j].loading="eager";}}}
   function go(){
-    boost(".fab-row");boost(".craft-row");boost(".pk-row");var P=document.querySelectorAll('img[src*="images/p"]');for(var k=0;k<6&&k<P.length;k++){P[k].loading="eager";}
+    /* 首屏永远优先：前 6 张商品卡片 */
+    var P=document.querySelectorAll('img[src*="images/p"]');
+    for(var k=0;k<6&&k<P.length;k++){P[k].loading="eager";}
+    /* 手机屏只看得到首屏；下面的 fab/craft/pk 与 End-to-End 大图
+       离首屏有 5000px 以上，保持 lazy，否则会反过来抢首屏带宽。 */
+    if(window.matchMedia('(max-width:768px)').matches)return;
+    boost(".fab-row");boost(".craft-row");boost(".pk-row");
     var e=document.querySelector('img[src="images/img_008.jpg"]');
     if(e&&e.loading!=="eager")e.loading="eager";
   }

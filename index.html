@@ -731,5 +731,23 @@ div[style*="minmax(240px"] a{font-size:0.65rem!important;padding:9px 6px!importa
   });
 })();
 </script>
+<script>
+/* Marquee images: a browser will not lazy-load an <img> that is clipped by an
+   overflow:hidden track and only enters view through a CSS transform animation,
+   so every item past the visible width stays blank forever. Wake the whole
+   track as soon as its row is near the viewport. */
+(function(){
+  var rows=document.querySelectorAll(".mq-row,.ml-row,.dt-row,.fab-row,.pk-row,.craft-row");
+  function wake(r){var a=r.querySelectorAll("img");for(var i=0;i<a.length;i++){a[i].loading="eager";}}
+  if(!rows.length)return;
+  if(!("IntersectionObserver" in window)){for(var j=0;j<rows.length;j++)wake(rows[j]);return;}
+  var io=new IntersectionObserver(function(es){
+    for(var i=0;i<es.length;i++){
+      if(es[i].isIntersecting){wake(es[i].target);io.unobserve(es[i].target);}
+    }
+  },{rootMargin:"800px 0px"});
+  for(var k=0;k<rows.length;k++)io.observe(rows[k]);
+})();
+</script>
 </body>
 </html>

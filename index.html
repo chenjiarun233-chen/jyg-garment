@@ -488,7 +488,7 @@ if(!('IntersectionObserver' in window)){go();return}new IntersectionObserver(fun
 @keyframes fabScrollL{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 @keyframes fabScrollR{0%{transform:translateX(-50%)}100%{transform:translateX(0)}}
 .fab-track{display:flex;width:max-content}
-.fab-track-l{animation:fabScrollL 80s linear infinite}
+.fab-track-l{animation:fabScrollL 35.61s linear infinite}
 .fab-track-r{animation:fabScrollR 80s linear infinite}
 .fab-track img{height:330px;width:220px;object-fit:cover;border-radius:4px;flex-shrink:0;margin-right:12px}
 .fab-row{overflow:hidden;margin-bottom:12px}
@@ -506,13 +506,18 @@ if(!('IntersectionObserver' in window)){go();return}new IntersectionObserver(fun
 @keyframes craftScrollL{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 @keyframes craftScrollR{0%{transform:translateX(-50%)}100%{transform:translateX(0)}}
 .craft-track{display:flex;gap:12px;width:max-content;align-items:center}
-.craft-track-l{animation:craftScrollL 46s linear infinite}
-.craft-track-r{animation:craftScrollR 46s linear infinite}
+.craft-track-l{animation:craftScrollL 35s linear infinite}
+.craft-track-r{animation:craftScrollR 35s linear infinite}
 .craft-tile{flex-shrink:0;display:block;line-height:0;border-radius:4px;transition:transform .25s ease,box-shadow .25s ease}
 .craft-tile:hover,.craft-tile:focus-visible{transform:translateY(-3px);box-shadow:0 8px 20px rgba(0,0,0,.18)}
 .craft-tile img{height:220px;width:auto;border-radius:4px;display:block}
 .craft-row{overflow:hidden;padding:4px 0;margin-bottom:8px}
 .craft-row:hover .craft-track{animation-play-state:paused}
+/* Craft rows: each row has its own width, so each gets its own duration to
+   hold the same 78.17 px/s as the street marquee. */
+#craftsmanship>.craft-row:nth-child(3) .craft-track{animation-duration:35.44s}
+#craftsmanship>.craft-row:nth-child(4) .craft-track{animation-duration:34.92s}
+#craftsmanship>.craft-row:nth-child(5) .craft-track{animation-duration:34.67s}
 @media (max-width:768px){
  .craft-track{gap:9px}
  .craft-tile img{height:150px}
@@ -601,7 +606,7 @@ if(!('IntersectionObserver' in window)){go();return}new IntersectionObserver(fun
 <style>
 @keyframes pkScrollL{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 .pk-track{display:flex;width:max-content}
-.pk-track-l{animation:pkScrollL 80s linear infinite}
+.pk-track-l{animation:pkScrollL 51.27s linear infinite}
 .pk-track img{height:330px;width:auto;border-radius:4px;flex-shrink:0;margin-right:12px}
 .pk-row{overflow:hidden}
 .pk-row:hover .pk-track{animation-play-state:paused}
@@ -691,10 +696,22 @@ if(!('IntersectionObserver' in window)){go();return}new IntersectionObserver(fun
 <style>
 @keyframes dtScrollL{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 .dt-track{display:flex;width:max-content}
-.dt-track-l{animation:dtScrollL 81.1s linear infinite}
+.dt-track-l{animation:dtScrollL 96.26s linear infinite}
 .dt-track img{height:330px;width:auto;border-radius:4px;flex-shrink:0;margin-right:12px}
 .dt-row{overflow:hidden;margin-top:12px;margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw)}
 .dt-row:hover .dt-track{animation-play-state:paused}
+/* Marquee speeds on phones: the strips shrink at <=768px, so durations are
+   restated here to hold the same px/s as the street marquee (40.69 px/s). */
+@media (max-width:768px){
+ .fab-track-l{animation-duration:35.69s}
+ .pk-track-l{animation-duration:50.93s}
+ .dt-track-l{animation-duration:96.58s}
+ /* Craft rows on phones: same per-row treatment at 40.69 px/s. */
+ #craftsmanship>.craft-row:nth-child(3) .craft-track{animation-duration:37.11s}
+ #craftsmanship>.craft-row:nth-child(4) .craft-track{animation-duration:36.58s}
+ #craftsmanship>.craft-row:nth-child(5) .craft-track{animation-duration:36.32s}
+}
+
 </style>
 <div class="dt-row"><div class="dt-track dt-track-l"><img loading="lazy" src="images/dt01.webp" alt="Garment detail" decoding="async"><img loading="lazy" src="images/dt02.webp" alt="Garment detail" decoding="async"><img loading="lazy" src="images/dt03.webp" alt="Garment detail" decoding="async"><img loading="lazy" src="images/dt04.webp" alt="Garment detail" decoding="async"><img loading="lazy" src="images/dt05.webp" alt="Garment detail" decoding="async"><img loading="lazy" src="images/dt06.webp" alt="Garment detail" decoding="async"><img loading="lazy" src="images/dt07.webp" alt="Garment detail" decoding="async"><img loading="lazy" src="images/dt08.webp" alt="Garment detail" decoding="async"><img loading="lazy" src="images/dt09.webp" alt="Garment detail" decoding="async"><img loading="lazy" src="images/dt10.webp" alt="Garment detail" decoding="async"><img loading="lazy" src="images/dt11.webp" alt="Garment detail" decoding="async"><img loading="lazy" src="images/dt12.webp" alt="Garment detail" decoding="async"><img loading="lazy" src="images/dt13.webp" alt="Garment detail" decoding="async"><img loading="lazy" src="images/dt14.webp" alt="Garment detail" decoding="async"><img loading="lazy" src="images/dt15.webp" alt="Garment detail" decoding="async"><img loading="lazy" src="images/dt16.webp" alt="Garment detail" decoding="async"><img loading="lazy" src="images/dt17.webp" alt="Garment detail" decoding="async"><img loading="lazy" src="images/dt18.webp" alt="Garment detail" decoding="async"><img loading="lazy" src="images/dt19.webp" alt="Garment detail" decoding="async"><img loading="lazy" src="images/dt20.webp" alt="Garment detail" decoding="async"><img loading="lazy" src="images/dt21.webp" alt="Garment detail" decoding="async"><img loading="lazy" src="images/dt22.webp" alt="Garment detail" decoding="async"><img loading="lazy" src="images/dt23.webp" alt="Garment detail" decoding="async"><img loading="lazy" src="images/dt24.webp" alt="Garment detail" decoding="async"><img loading="lazy" src="images/dt25.webp" alt="Garment detail" decoding="async"><img loading="lazy" src="images/dt26.webp" alt="Garment detail" decoding="async"><img loading="lazy" src="images/dt27.webp" alt="Garment detail" decoding="async"><img loading="lazy" src="images/dt28.webp" alt="Garment detail" decoding="async"><img loading="lazy" src="images/dt29.webp" alt="Garment detail" decoding="async"><img loading="lazy" src="images/dt01.webp" alt="Garment detail" decoding="async"><img loading="lazy" src="images/dt02.webp" alt="Garment detail" decoding="async"><img loading="lazy" src="images/dt03.webp" alt="Garment detail" decoding="async"><img loading="lazy" src="images/dt04.webp" alt="Garment detail" decoding="async"><img loading="lazy" src="images/dt05.webp" alt="Garment detail" decoding="async"><img loading="lazy" src="images/dt06.webp" alt="Garment detail" decoding="async"><img loading="lazy" src="images/dt07.webp" alt="Garment detail" decoding="async"><img loading="lazy" src="images/dt08.webp" alt="Garment detail" decoding="async"><img loading="lazy" src="images/dt09.webp" alt="Garment detail" decoding="async"><img loading="lazy" src="images/dt10.webp" alt="Garment detail" decoding="async"><img loading="lazy" src="images/dt11.webp" alt="Garment detail" decoding="async"><img loading="lazy" src="images/dt12.webp" alt="Garment detail" decoding="async"><img loading="lazy" src="images/dt13.webp" alt="Garment detail" decoding="async"><img loading="lazy" src="images/dt14.webp" alt="Garment detail" decoding="async"><img loading="lazy" src="images/dt15.webp" alt="Garment detail" decoding="async"><img loading="lazy" src="images/dt16.webp" alt="Garment detail" decoding="async"><img loading="lazy" src="images/dt17.webp" alt="Garment detail" decoding="async"><img loading="lazy" src="images/dt18.webp" alt="Garment detail" decoding="async"><img loading="lazy" src="images/dt19.webp" alt="Garment detail" decoding="async"><img loading="lazy" src="images/dt20.webp" alt="Garment detail" decoding="async"><img loading="lazy" src="images/dt21.webp" alt="Garment detail" decoding="async"><img loading="lazy" src="images/dt22.webp" alt="Garment detail" decoding="async"><img loading="lazy" src="images/dt23.webp" alt="Garment detail" decoding="async"><img loading="lazy" src="images/dt24.webp" alt="Garment detail" decoding="async"><img loading="lazy" src="images/dt25.webp" alt="Garment detail" decoding="async"><img loading="lazy" src="images/dt26.webp" alt="Garment detail" decoding="async"><img loading="lazy" src="images/dt27.webp" alt="Garment detail" decoding="async"><img loading="lazy" src="images/dt28.webp" alt="Garment detail" decoding="async"><img loading="lazy" src="images/dt29.webp" alt="Garment detail" decoding="async"></div></div>
 </div>

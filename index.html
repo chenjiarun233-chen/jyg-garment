@@ -331,36 +331,42 @@ div[style*="minmax(240px"] a{font-size:0.65rem!important;padding:9px 6px!importa
    event, which left the hero as a plain black box until the video had
    loaded - and it also made the poster unreachable, because a poster
    paints INSIDE the video element and therefore inherited opacity:0. */
-#heroVideo{opacity:1;transition:opacity .8s ease}
-#heroVideo.playing{opacity:1}
-</style>
-<section style="position:relative;padding:100px 5% 90px;font-family:var(--font-body);overflow:hidden;min-height:85vh;display:flex;align-items:center;background:#0a0a0a url(images/img_000_poster.webp) center/cover no-repeat;">
+ #heroVideo{opacity:1;transition:opacity .8s ease}
+ #heroVideo.playing{opacity:1}
+
+ /* ---------- MOBILE ONLY (<= 768px) ---------- */
+ @media (max-width:768px){
+   /* 1. Hero banner: use a still frame instead of the looping video.
+         The <video> is removed from layout AND from the network (the
+         script below drops its <source>), so phones never download it. */
+   #hero{background:#0a0a0a url(images/hero-mobile-still.webp) center center/cover no-repeat!important}
+   #heroVideo{display:none!important}
+
+   /* 2. Manufacturing Process: hide the heading, intro copy, the 10 cards
+         and the lead-time block — the street marquee below it stays. */
+   .mfg-block{display:none!important}
+
+   /* small breathing gap so the marquee does not butt straight into the hero */
+   #street-marquee{padding:18px 0!important}
+ }
+ </style>
+ <section id="hero" style="position:relative;padding:100px 5% 90px;font-family:var(--font-body);overflow:hidden;min-height:85vh;display:flex;align-items:center;background:#0a0a0a url(images/img_000_poster.webp) center/cover no-repeat;">
 <video aria-hidden="true" id="heroVideo" poster="images/img_000_poster.webp" muted loop playsinline disableRemotePlayback preload="none" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:0;transform:translateZ(0);will-change:transform;backface-visibility:hidden;-webkit-transform:translateZ(0);">
 <source src="images/img_000.mp4" type="video/mp4">
 </video>
 <script>
 (function(){var v=document.getElementById('heroVideo');if(!v)return;v.oncanplay=v.onplaying=function(){v.classList.add('playing')};function go(){if(v.preload==='none'){v.preload='auto'}var p=v.play();if(p&&p.catch){p.catch(function(){})}}
-/* 手机 / 省流模式：不下载 2.2 MB 的 hero 视频，只显示已预加载的 poster。
-   桌面端与 Wi-Fi 4G 以上保持原有自动播放。点一下 hero 可手动播放。 */
-var cn=navigator.connection||{};
-var light=window.matchMedia('(max-width:768px)').matches||cn.saveData===true||/(^|-)2g$/.test(cn.effectiveType||'');
-if(light){
-  /* 手机：改用 503 KB 的移动版视频，而不是 2.2 MB 的桌面版。
-     先让首屏商品卡片出图，再开始播，避免又把首屏挤住。
-     省流(saveData) 或 2G 仍然只显示 poster。 */
-  var s=v.querySelector('source');
-  if(s&&s.src.indexOf('img_000_mobile')<0){s.src='images/img_000_mobile.mp4';try{v.load()}catch(e){}}
-  v.preload='none';
-  var save=cn.saveData===true||/(^|-)2g$/.test(cn.effectiveType||'');
-  if(save){v.pause();v.addEventListener('click',function(){go()},{once:true});return}
-  var started=false;function kick(){if(!started){started=true;go()}}
-  var cd=document.querySelectorAll('img[src*="images/p"]'),n=Math.min(6,cd.length),t0=Date.now();
-  (function waitFirst(){
-    var ok=0;for(var i=0;i<n;i++){if(cd[i].naturalWidth>0){ok++}}
-    if(ok>=n||Date.now()-t0>4000){kick();return}
-    setTimeout(waitFirst,200);
-  })();
+/* 手机端：hero 背景已改用静态图（CSS 里 #heroVideo 被 display:none）。
+   这里把 <source> 直接摘掉，确保手机不会下载任何 hero 视频字节。
+   桌面端保持原来的自动播放。 */
+if(window.matchMedia('(max-width:768px)').matches){
+  var ss=v.querySelectorAll('source');
+  for(var i=0;i<ss.length;i++){ss[i].parentNode.removeChild(ss[i])}
+  v.preload='none';v.pause();
   return}
+/* 桌面省流模式 / 2G：只显示 poster，点一下才播放 */
+var cn=navigator.connection||{};
+if(cn.saveData===true||/(^|-)2g$/.test(cn.effectiveType||'')){v.preload='none';v.pause();v.addEventListener('click',function(){go()},{once:true});return}
 if(!('IntersectionObserver' in window)){go();return}new IntersectionObserver(function(es){for(var i=0;i<es.length;i++){if(es[i].isIntersecting){go()}else{v.pause()}}},{rootMargin:'200px 0px'}).observe(v)})()
 </script>
 <div style="position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg,rgba(0,0,0,.65) 0%,rgba(0,0,0,.4) 100%);z-index:1;"></div>
@@ -377,7 +383,7 @@ if(!('IntersectionObserver' in window)){go();return}new IntersectionObserver(fun
 </div>
 </section>
 
-<section style="background:#f7f7f7;padding:80px 5%;font-family:var(--font-body);">
+<section class="mfg-block" style="background:#f7f7f7;padding:80px 5%;font-family:var(--font-body);">
 <div style="max-width:1200px;margin:0 auto;">
 <h2 style="font-size:clamp(1.6rem,3vw,2.2rem);font-weight:900;color:#111;text-align:center;margin-bottom:8px;">Manufacturing Process</h2>
 <p style="color:rgba(17,17,17,.6);font-size:1.05rem;text-align:center;margin-bottom:40px;max-width:600px;margin-left:auto;margin-right:auto;">Weekly progress updates, with additional notes provided at key milestones.</p>
@@ -448,7 +454,7 @@ if(!('IntersectionObserver' in window)){go();return}new IntersectionObserver(fun
 </div>
 </section>
 
-<section style="background:#f7f7f7;padding:0;font-family:var(--font-body);overflow:hidden;">
+<section id="street-marquee" style="background:#f7f7f7;padding:0;font-family:var(--font-body);overflow:hidden;">
 <style>
 @keyframes streetScrollL{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 .street-track{display:flex;width:max-content}
@@ -494,7 +500,7 @@ if(!('IntersectionObserver' in window)){go();return}new IntersectionObserver(fun
 <section id="craftsmanship" style="background:#f7f7f7;padding:60px 0 80px;font-family:var(--font-body);overflow:hidden;scroll-margin-top:80px;">
 <div style="max-width:1200px;margin:0 auto 34px;padding:0 5%;">
 <h2 style="font-size:clamp(1.6rem,3vw,2.2rem);font-weight:900;color:#111;text-align:center;margin-bottom:8px;">Customize Craftsmanship</h2>
-<p style="color:rgba(17,17,17,.6);font-size:1.05rem;text-align:center;">点击图片了解工艺。</p>
+<p style="color:rgba(17,17,17,.6);font-size:1.05rem;text-align:center;">Refine every detail with bespoke garment techniques. Click pictures to check more info.</p>
 </div>
 <style>
 @keyframes craftScrollL{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}

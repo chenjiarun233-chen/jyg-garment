@@ -756,13 +756,37 @@ if(!('IntersectionObserver' in window)){go();return}new IntersectionObserver(fun
 </div>
 </section>
 
-<section style="background:#f7f7f7;padding:80px 5%;font-family:var(--font-body);">
-<div style="max-width:880px;margin:0 auto;text-align:center;">
-<h2 style="font-size:clamp(1.6rem,3vw,2.2rem);font-weight:900;color:#111;text-align:center;margin-bottom:40px;">Our Story</h2>
-<div style="color:rgba(17,17,17,.85);font-size:1.05rem;line-height:1.85;">
+<style>
+/* ===== Our Story：桌面端暗色九宫格背景（<1025px 完全不生效、不下载图）===== */
+@media (min-width:1025px){
+ .our-story{background:#0b0b0b !important;padding:0 !important;--ov:.72;--rg:.26;}
+ .our-story .story-stage{
+  position:relative;max-width:none !important;width:100%;overflow:hidden;
+  min-height:clamp(560px,50vw,900px);display:flex;align-items:center;
+  background:#141414 url("images/bg-our-story-grid-dark.webp") center center/cover no-repeat;
+ }
+ .our-story .story-stage::before{
+  content:"";position:absolute;inset:0;pointer-events:none;background:rgba(0,0,0,var(--ov));
+ }
+ .our-story .story-stage::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse 64% 60% at 50% 50%,rgba(0,0,0,var(--rg)) 0%,rgba(0,0,0,0) 100%);
+ }
+ .our-story .story-ink{position:relative;z-index:1;width:100%;padding:64px 72px;}
+ .our-story .story-ink .story-title{color:#fff !important;font-size:clamp(1.9rem,3.4vw,2.8rem) !important;letter-spacing:.01em;}
+ .our-story .story-ink .story-body{max-width:min(760px,70%);margin:0 auto;color:rgba(255,255,255,.93) !important;text-shadow:0 1px 3px rgba(0,0,0,.55);}
+ .our-story .story-ink .story-body strong{color:#D9AE54 !important;text-shadow:none;}
+}
+</style>
+<section class="our-story" style="background:#f7f7f7;padding:80px 5%;font-family:var(--font-body);">
+<div class="story-stage" style="max-width:880px;margin:0 auto;text-align:center;">
+<div class="story-ink">
+<h2 class="story-title" style="font-size:clamp(1.6rem,3vw,2.2rem);font-weight:900;color:#111;text-align:center;margin-bottom:40px;">Our Story</h2>
+<div class="story-body" style="color:rgba(17,17,17,.85);font-size:1.05rem;line-height:1.85;">
 <p style="margin:0 0 20px;">As a 3rd-gen merchant family, we know what it takes to build a brand that lasts — just like my grandpa did when he opened his shop in 1973. Ming Lang Ge (MLG) was established in 1998 by my father. We have been around the garment industry for about 30 yrs.</p>
 <p style="margin:0 0 20px;"><strong style="color:#8A6410;font-weight:900;font-size:1.5rem;letter-spacing:3px;">JYG</strong></p>
 <p style="margin:0;">The year was 2025. We had a bold thought: What if we keep luxury-level quality for that premium vibe, but price is something all entrepreneurs with passion and bold ideas can afford? So they can easily build their own shops with their brand, no more dealing with unclear pricing and professional photography? That's how our international branch <strong style="color:#8A6410;">JYG</strong> began.</p>
+</div>
 </div>
 </div>
 </section>

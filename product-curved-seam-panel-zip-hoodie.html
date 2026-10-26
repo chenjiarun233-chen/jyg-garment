@@ -264,5 +264,38 @@ table.size tbody tr:nth-child(even){background:#fafafa}
         <svg width="34" height="34" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.347-.883-.786-1.48-1.756-1.653-2.053-.174-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.136 1.36.117 1.871.05.57-.075 1.758-.716 2.003-1.408.245-.693.245-1.287.172-1.407-.073-.075-.27-.149-.567-.298zM12.01 21.496c-1.933 0-3.822-.519-5.484-1.499l-.393-.231-4.077 1.07 1.088-3.978-.253-.403C1.845 14.905 1.3 12.993 1.3 11.003c0-5.913 4.808-10.72 10.727-10.72 2.868 0 5.561 1.117 7.59 3.145 2.028 2.028 3.144 4.721 3.144 7.583 0 5.913-4.808 10.722-10.721 10.722z"/></svg>
     </a>
 </div>
+<!-- Conversion events: quote form, WhatsApp, email, file download, form start -->
+<script>
+(function () {
+  function send(name, params) {
+    if (typeof window.gtag === 'function') { window.gtag('event', name, params); }
+    if (typeof window.clarity === 'function') { window.clarity('event', name); }
+  }
+  document.addEventListener('click', function (e) {
+    var el = e.target;
+    var a = (el && el.closest) ? el.closest('a[href]') : null;
+    if (!a) { return; }
+    var href = a.getAttribute('href') || '';
+    var label = (a.textContent || '').replace(/\s+/g, ' ').trim().slice(0, 100);
+    var page = location.pathname;
+    if (href.indexOf('forms.gle') !== -1) {
+      send('generate_lead', { form_destination: href, link_text: label, page_path: page, lead_source: 'quote_form' });
+    } else if (href.indexOf('api.whatsapp.com') !== -1 || href.indexOf('wa.me') !== -1 || href.indexOf('whatsapp://') !== -1) {
+      send('whatsapp_click', { link_url: href, page_path: page, contact_channel: 'whatsapp' });
+    } else if (href.indexOf('mailto:') === 0) {
+      send('email_click', { link_url: href, page_path: page, contact_channel: 'email' });
+    } else if (/\.(pdf|zip|xlsx?|docx?|csv)([?#].*)?$/i.test(href)) {
+      send('file_download', { file_url: href, page_path: page });
+    }
+  }, true);
+  document.addEventListener('focusin', function (e) {
+    var el = e.target;
+    if (el && el.form && !el.form.__gaFormStarted) {
+      el.form.__gaFormStarted = true;
+      send('form_start', { form_id: el.form.id || '(unnamed form)', page_path: location.pathname });
+    }
+  });
+})();
+</script>
 </body>
 </html>

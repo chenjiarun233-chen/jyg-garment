@@ -49,6 +49,7 @@ h1{font-family:var(--font-heading);font-weight:900}
 .pd-quick strong{color:#111;font-weight:800}
 .eyebrow{margin:0 0 10px;font-size:.78rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#8A6410}
 .pd-info h1{font-size:clamp(1.9rem,3.6vw,2.7rem);line-height:1.12;margin:0 0 18px;letter-spacing:-.01em}
+.price{display:inline-block;font-family:var(--font-heading);font-size:1.05rem;letter-spacing:.02em;color:#111;background:rgba(212,168,67,.10);border-left:3px solid #D4A843;padding:8px 14px;margin:0 0 18px}
 .lede{font-size:1.12rem;line-height:1.65;color:#222;margin:0 0 20px;font-weight:500}
 .body p{font-size:1rem;line-height:1.8;color:#333;margin:0 0 16px}
 .facts{margin:26px 0 34px;border-top:1px solid rgba(0,0,0,.1)}
@@ -156,6 +157,7 @@ table.size tbody tr:nth-child(even){background:#fafafa}
   <p class="eyebrow">Custom Products</p>
   <h1>Contrast Piping Mock Neck Jacket</h1>
   <p class="lede">A stand-collar zip jacket on a 380 gsm cotton-poly, traced with a single line of contrast piping from the collar to the cuff.</p>
+  <p class="price">Wholesale US$12.80 / pc &middot; MOQ 100 pcs</p>
   <div class="body">
     <p>Clean and slightly retro: a stand collar that holds its shape, a full-length zip in a contrasting tape, two vertical welt pockets set into the front panel, and rib cuffs and hem band closing the ends. The piping starts at the collar, follows the curved shoulder seam down the sleeve and stops at the cuff &mdash; one unbroken line per side, which is what gives the jacket its outline.</p>
     <p>The shell is a 380 gsm cotton-poly &mdash; 61% cotton, 39% polyester &mdash; bonded to a 100% polyester lining, so the outside keeps a dry cotton hand while the jacket slides on easily over a tee. Five stock colours, including a cream that reads almost white against the black piping.</p>
@@ -245,15 +247,43 @@ table.size tbody tr:nth-child(even){background:#fafafa}
 </script>
 <script type="application/ld+json">
 {
- "@context":"https://schema.org",
- "@type":"Product",
- "name":"Contrast Piping Mock Neck Jacket",
- "description":"380 gsm cotton-poly mock neck jacket with contrast piping along the shoulder seams. Made to your design, MOQ 100 pieces.",
- "image":["https://jyggarment.com/images/products/contrast-piping-mock-neck-jacket-f.webp","https://jyggarment.com/images/products/contrast-piping-mock-neck-jacket-b.webp"],
- "material":"61% cotton, 39% polyester; 100% polyester lining",
- "color":"Cream Apricot, Heather Grey, Sky Blue, Navy, Black",
- "brand":{"@type":"Brand","name":"JYG Garment"},
- "manufacturer":{"@type":"Organization","name":"Guangzhou Jianyigou International Clothing Co., Ltd.","url":"https://jyggarment.com/"}
+ "@context": "https://schema.org",
+ "@type": "Product",
+ "name": "Contrast Piping Mock Neck Jacket",
+ "description": "380 gsm cotton-poly mock neck jacket with contrast piping along the shoulder seams. Made to your design, MOQ 100 pieces.",
+ "image": [
+  "https://jyggarment.com/images/products/contrast-piping-mock-neck-jacket-f.webp",
+  "https://jyggarment.com/images/products/contrast-piping-mock-neck-jacket-b.webp"
+ ],
+ "material": "61% cotton, 39% polyester; 100% polyester lining",
+ "color": "Cream Apricot, Heather Grey, Sky Blue, Navy, Black",
+ "brand": {
+  "@type": "Brand",
+  "name": "JYG Garment"
+ },
+ "manufacturer": {
+  "@type": "Organization",
+  "name": "Guangzhou Jianyigou International Clothing Co., Ltd.",
+  "url": "https://jyggarment.com/"
+ },
+ "offers": {
+  "@type": "Offer",
+  "url": "https://jyggarment.com/product-contrast-piping-mock-neck-jacket.html",
+  "priceCurrency": "USD",
+  "price": "12.80",
+  "availability": "https://schema.org/InStock",
+  "itemCondition": "https://schema.org/NewCondition",
+  "eligibleQuantity": {
+   "@type": "QuantitativeValue",
+   "minValue": 100,
+   "unitText": "pieces"
+  },
+  "seller": {
+   "@type": "Organization",
+   "name": "Guangzhou Jianyigou International Clothing Co., Ltd.",
+   "url": "https://jyggarment.com/"
+  }
+ }
 }
 </script>
 <div class="wa-container">

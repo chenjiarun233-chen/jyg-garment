@@ -49,6 +49,7 @@ h1{font-family:var(--font-heading);font-weight:900}
 .pd-quick strong{color:#111;font-weight:800}
 .eyebrow{margin:0 0 10px;font-size:.78rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#8A6410}
 .pd-info h1{font-size:clamp(1.9rem,3.6vw,2.7rem);line-height:1.12;margin:0 0 18px;letter-spacing:-.01em}
+.price{display:inline-block;font-family:var(--font-heading);font-size:1.05rem;letter-spacing:.02em;color:#111;background:rgba(212,168,67,.10);border-left:3px solid #D4A843;padding:8px 14px;margin:0 0 18px}
 .lede{font-size:1.12rem;line-height:1.65;color:#222;margin:0 0 20px;font-weight:500}
 .body p{font-size:1rem;line-height:1.8;color:#333;margin:0 0 16px}
 .facts{margin:26px 0 34px;border-top:1px solid rgba(0,0,0,.1)}
@@ -156,6 +157,7 @@ table.size tbody tr:nth-child(even){background:#fafafa}
   <p class="eyebrow">Custom Products</p>
   <h1>Sleeveless Boxy Tee</h1>
   <p class="lede">A sleeveless tee cut square through the body on a 250 gsm cotton, with a wide armhole and a snow-washed finish.</p>
+  <p class="price">Wholesale US$8.80 / pc &middot; MOQ 100 pcs</p>
   <div class="body">
     <p>The shape is a vest built like a tee: a rib crew neck, a shoulder seam that sits off the point, a deep armhole cut almost straight down from the shoulder, and a body that falls square to a plain hem. There is a centre seam down the back, which is what stops the body twisting when the armhole is this open.</p>
     <p>The base is a 250 gsm 100% cotton, light enough to layer but dense enough that the armhole edge holds. Both stock colours are snow-washed, which is a heavy garment wash that pulls the dye back unevenly and leaves the seams and edges paler &mdash; no two pieces read exactly the same.</p>
@@ -245,15 +247,43 @@ table.size tbody tr:nth-child(even){background:#fafafa}
 </script>
 <script type="application/ld+json">
 {
- "@context":"https://schema.org",
- "@type":"Product",
- "name":"Sleeveless Boxy Tee",
- "description":"250 gsm snow-washed cotton sleeveless boxy tee with a wide armhole. Made to your design, MOQ 100 pieces.",
- "image":["https://jyggarment.com/images/products/sleeveless-boxy-tee-f.webp","https://jyggarment.com/images/products/sleeveless-boxy-tee-b.webp"],
- "material":"100% cotton",
- "color":"Snow-washed Black, Snow-washed Grey",
- "brand":{"@type":"Brand","name":"JYG Garment"},
- "manufacturer":{"@type":"Organization","name":"Guangzhou Jianyigou International Clothing Co., Ltd.","url":"https://jyggarment.com/"}
+ "@context": "https://schema.org",
+ "@type": "Product",
+ "name": "Sleeveless Boxy Tee",
+ "description": "250 gsm snow-washed cotton sleeveless boxy tee with a wide armhole. Made to your design, MOQ 100 pieces.",
+ "image": [
+  "https://jyggarment.com/images/products/sleeveless-boxy-tee-f.webp",
+  "https://jyggarment.com/images/products/sleeveless-boxy-tee-b.webp"
+ ],
+ "material": "100% cotton",
+ "color": "Snow-washed Black, Snow-washed Grey",
+ "brand": {
+  "@type": "Brand",
+  "name": "JYG Garment"
+ },
+ "manufacturer": {
+  "@type": "Organization",
+  "name": "Guangzhou Jianyigou International Clothing Co., Ltd.",
+  "url": "https://jyggarment.com/"
+ },
+ "offers": {
+  "@type": "Offer",
+  "url": "https://jyggarment.com/product-sleeveless-boxy-tee.html",
+  "priceCurrency": "USD",
+  "price": "8.80",
+  "availability": "https://schema.org/InStock",
+  "itemCondition": "https://schema.org/NewCondition",
+  "eligibleQuantity": {
+   "@type": "QuantitativeValue",
+   "minValue": 100,
+   "unitText": "pieces"
+  },
+  "seller": {
+   "@type": "Organization",
+   "name": "Guangzhou Jianyigou International Clothing Co., Ltd.",
+   "url": "https://jyggarment.com/"
+  }
+ }
 }
 </script>
 <div class="wa-container">

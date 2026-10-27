@@ -49,6 +49,7 @@ h1{font-family:var(--font-heading);font-weight:900}
 .pd-quick strong{color:#111;font-weight:800}
 .eyebrow{margin:0 0 10px;font-size:.78rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#8A6410}
 .pd-info h1{font-size:clamp(1.9rem,3.6vw,2.7rem);line-height:1.12;margin:0 0 18px;letter-spacing:-.01em}
+.price{display:inline-block;font-family:var(--font-heading);font-size:1.05rem;letter-spacing:.02em;color:#111;background:rgba(212,168,67,.10);border-left:3px solid #D4A843;padding:8px 14px;margin:0 0 18px}
 .lede{font-size:1.12rem;line-height:1.65;color:#222;margin:0 0 20px;font-weight:500}
 .body p{font-size:1rem;line-height:1.8;color:#333;margin:0 0 16px}
 .facts{margin:26px 0 34px;border-top:1px solid rgba(0,0,0,.1)}
@@ -156,6 +157,7 @@ table.size tbody tr:nth-child(even){background:#fafafa}
   <p class="eyebrow">Custom Products</p>
   <h1>Cropped Boxy Tee</h1>
   <p class="lede">A tee cut off at the waist on a 275 gsm double-yarn cotton, boxy through the body with a wide, short sleeve.</p>
+  <p class="price">Wholesale US$7.70 / pc &middot; MOQ 100 pcs</p>
   <div class="body">
     <p>The length does the work here: the body stops just below the ribs, so the hem sits at the waistband rather than over it. Above that it stays square &mdash; a narrow rib crew neck, a shoulder seam dropped past the shoulder point, and a sleeve set wide and short so the whole piece reads as a box, not a fitted tee. The hem is finished flat, with a single row of topstitching holding it down.</p>
     <p>The cloth is a 275 gsm 32s double-yarn cotton &mdash; two yarns twisted together before knitting, which gives a cleaner surface and less torque than a standard single jersey at this weight. The sample shown is an acid-washed black; the same base takes piece-dye, garment wash or an all-over print, and it is quoted in four stock colours.</p>
@@ -245,15 +247,43 @@ table.size tbody tr:nth-child(even){background:#fafafa}
 </script>
 <script type="application/ld+json">
 {
- "@context":"https://schema.org",
- "@type":"Product",
- "name":"Cropped Boxy Tee",
- "description":"275 gsm double-yarn cotton cropped tee with a boxy body and wide short sleeve. Made to your design, MOQ 100 pieces.",
- "image":["https://jyggarment.com/images/products/cropped-boxy-tee-f.webp","https://jyggarment.com/images/products/cropped-boxy-tee-b.webp"],
- "material":"100% cotton",
- "color":"Black, Light Apricot, Sky Blue, Pink",
- "brand":{"@type":"Brand","name":"JYG Garment"},
- "manufacturer":{"@type":"Organization","name":"Guangzhou Jianyigou International Clothing Co., Ltd.","url":"https://jyggarment.com/"}
+ "@context": "https://schema.org",
+ "@type": "Product",
+ "name": "Cropped Boxy Tee",
+ "description": "275 gsm double-yarn cotton cropped tee with a boxy body and wide short sleeve. Made to your design, MOQ 100 pieces.",
+ "image": [
+  "https://jyggarment.com/images/products/cropped-boxy-tee-f.webp",
+  "https://jyggarment.com/images/products/cropped-boxy-tee-b.webp"
+ ],
+ "material": "100% cotton",
+ "color": "Black, Light Apricot, Sky Blue, Pink",
+ "brand": {
+  "@type": "Brand",
+  "name": "JYG Garment"
+ },
+ "manufacturer": {
+  "@type": "Organization",
+  "name": "Guangzhou Jianyigou International Clothing Co., Ltd.",
+  "url": "https://jyggarment.com/"
+ },
+ "offers": {
+  "@type": "Offer",
+  "url": "https://jyggarment.com/product-cropped-boxy-tee.html",
+  "priceCurrency": "USD",
+  "price": "7.70",
+  "availability": "https://schema.org/InStock",
+  "itemCondition": "https://schema.org/NewCondition",
+  "eligibleQuantity": {
+   "@type": "QuantitativeValue",
+   "minValue": 100,
+   "unitText": "pieces"
+  },
+  "seller": {
+   "@type": "Organization",
+   "name": "Guangzhou Jianyigou International Clothing Co., Ltd.",
+   "url": "https://jyggarment.com/"
+  }
+ }
 }
 </script>
 <div class="wa-container">

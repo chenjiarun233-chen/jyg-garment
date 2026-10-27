@@ -49,6 +49,7 @@ h1{font-family:var(--font-heading);font-weight:900}
 .pd-quick strong{color:#111;font-weight:800}
 .eyebrow{margin:0 0 10px;font-size:.78rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#8A6410}
 .pd-info h1{font-size:clamp(1.9rem,3.6vw,2.7rem);line-height:1.12;margin:0 0 18px;letter-spacing:-.01em}
+.price{display:inline-block;font-family:var(--font-heading);font-size:1.05rem;letter-spacing:.02em;color:#111;background:rgba(212,168,67,.10);border-left:3px solid #D4A843;padding:8px 14px;margin:0 0 18px}
 .lede{font-size:1.12rem;line-height:1.65;color:#222;margin:0 0 20px;font-weight:500}
 .body p{font-size:1rem;line-height:1.8;color:#333;margin:0 0 16px}
 .facts{margin:26px 0 34px;border-top:1px solid rgba(0,0,0,.1)}
@@ -156,6 +157,7 @@ table.size tbody tr:nth-child(even){background:#fafafa}
   <p class="eyebrow">Custom Products</p>
   <h1>Drop-Shoulder SS Tee</h1>
   <p class="lede">A long-bodied tee with the shoulder dropped wide, finished with a hand-distressed raw hem that leaves the weft showing.</p>
+  <p class="price">Wholesale US$9.00 / pc &middot; MOQ 100 pcs</p>
   <div class="body">
     <p>The cut runs long and square: a rib crew neck, a shoulder seam dropped well past the shoulder point, and a wide sleeve that hangs straight rather than tapering. The hem is the detail that carries it &mdash; cut raw and then distressed at two points, so the weft shows through as loose threads and the edge sits uneven.</p>
     <p>The base is a 275 gsm 100% cotton &mdash; a mid-weight single knit with enough substance that the raw hem holds its shape instead of curling. The sample is a garment-washed pinkish black, which is a warm charcoal rather than a true black. Single stock colour; other shades dyed to your Pantone.</p>
@@ -245,15 +247,43 @@ table.size tbody tr:nth-child(even){background:#fafafa}
 </script>
 <script type="application/ld+json">
 {
- "@context":"https://schema.org",
- "@type":"Product",
- "name":"Drop-Shoulder SS Tee",
- "description":"275 gsm cotton drop-shoulder tee with a distressed raw hem. Made to your design, MOQ 100 pieces.",
- "image":["https://jyggarment.com/images/products/drop-shoulder-ss-tee-f.webp","https://jyggarment.com/images/products/drop-shoulder-ss-tee-b.webp"],
- "material":"100% cotton",
- "color":"Pinkish Black",
- "brand":{"@type":"Brand","name":"JYG Garment"},
- "manufacturer":{"@type":"Organization","name":"Guangzhou Jianyigou International Clothing Co., Ltd.","url":"https://jyggarment.com/"}
+ "@context": "https://schema.org",
+ "@type": "Product",
+ "name": "Drop-Shoulder SS Tee",
+ "description": "275 gsm cotton drop-shoulder tee with a distressed raw hem. Made to your design, MOQ 100 pieces.",
+ "image": [
+  "https://jyggarment.com/images/products/drop-shoulder-ss-tee-f.webp",
+  "https://jyggarment.com/images/products/drop-shoulder-ss-tee-b.webp"
+ ],
+ "material": "100% cotton",
+ "color": "Pinkish Black",
+ "brand": {
+  "@type": "Brand",
+  "name": "JYG Garment"
+ },
+ "manufacturer": {
+  "@type": "Organization",
+  "name": "Guangzhou Jianyigou International Clothing Co., Ltd.",
+  "url": "https://jyggarment.com/"
+ },
+ "offers": {
+  "@type": "Offer",
+  "url": "https://jyggarment.com/product-drop-shoulder-ss-tee.html",
+  "priceCurrency": "USD",
+  "price": "9.00",
+  "availability": "https://schema.org/InStock",
+  "itemCondition": "https://schema.org/NewCondition",
+  "eligibleQuantity": {
+   "@type": "QuantitativeValue",
+   "minValue": 100,
+   "unitText": "pieces"
+  },
+  "seller": {
+   "@type": "Organization",
+   "name": "Guangzhou Jianyigou International Clothing Co., Ltd.",
+   "url": "https://jyggarment.com/"
+  }
+ }
 }
 </script>
 <div class="wa-container">

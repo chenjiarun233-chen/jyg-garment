@@ -49,6 +49,7 @@ h1{font-family:var(--font-heading);font-weight:900}
 .pd-quick strong{color:#111;font-weight:800}
 .eyebrow{margin:0 0 10px;font-size:.78rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#8A6410}
 .pd-info h1{font-size:clamp(1.9rem,3.6vw,2.7rem);line-height:1.12;margin:0 0 18px;letter-spacing:-.01em}
+.price{display:inline-block;font-family:var(--font-heading);font-size:1.05rem;letter-spacing:.02em;color:#111;background:rgba(212,168,67,.10);border-left:3px solid #D4A843;padding:8px 14px;margin:0 0 18px}
 .lede{font-size:1.12rem;line-height:1.65;color:#222;margin:0 0 20px;font-weight:500}
 .body p{font-size:1rem;line-height:1.8;color:#333;margin:0 0 16px}
 .facts{margin:26px 0 34px;border-top:1px solid rgba(0,0,0,.1)}
@@ -156,6 +157,7 @@ table.size tbody tr:nth-child(even){background:#fafafa}
   <p class="eyebrow">Custom Products</p>
   <h1>Cropped Hoodie</h1>
   <p class="lede">A cropped pullover hoodie on a 400 gsm cotton fleece, cut short at the waist with a rib band closing the hem.</p>
+  <p class="price">Wholesale US$16.70 / pc &middot; MOQ 100 pcs</p>
   <div class="body">
     <p>The body is cut to sit at the waistband, ended with a deep rib band rather than a plain hem &mdash; that band is what keeps the crop from riding up when you move. The hood is a clean two-panel shape with a centre seam and no drawcord, so the neckline stays flat under a jacket, and the shoulder is dropped for a relaxed line through the chest. Rib cuffs close the sleeve.</p>
     <p>The cloth is a 400 gsm 100% cotton fleece with a brushed back, heavy enough to hold the cropped shape without collapsing. The sample shown is an acid-washed black; the base also takes piece-dye and pigment wash, and it is quoted in four stock colours plus your own Pantone.</p>
@@ -245,15 +247,43 @@ table.size tbody tr:nth-child(even){background:#fafafa}
 </script>
 <script type="application/ld+json">
 {
- "@context":"https://schema.org",
- "@type":"Product",
- "name":"Cropped Hoodie",
- "description":"400 gsm cotton fleece cropped hoodie with a dropped shoulder and rib hem band. Made to your design, MOQ 100 pieces.",
- "image":["https://jyggarment.com/images/products/cropped-hoodie-f.webp","https://jyggarment.com/images/products/cropped-hoodie-b.webp"],
- "material":"100% cotton",
- "color":"Black, Light Apricot, Midnight Blue, Magenta",
- "brand":{"@type":"Brand","name":"JYG Garment"},
- "manufacturer":{"@type":"Organization","name":"Guangzhou Jianyigou International Clothing Co., Ltd.","url":"https://jyggarment.com/"}
+ "@context": "https://schema.org",
+ "@type": "Product",
+ "name": "Cropped Hoodie",
+ "description": "400 gsm cotton fleece cropped hoodie with a dropped shoulder and rib hem band. Made to your design, MOQ 100 pieces.",
+ "image": [
+  "https://jyggarment.com/images/products/cropped-hoodie-f.webp",
+  "https://jyggarment.com/images/products/cropped-hoodie-b.webp"
+ ],
+ "material": "100% cotton",
+ "color": "Black, Light Apricot, Midnight Blue, Magenta",
+ "brand": {
+  "@type": "Brand",
+  "name": "JYG Garment"
+ },
+ "manufacturer": {
+  "@type": "Organization",
+  "name": "Guangzhou Jianyigou International Clothing Co., Ltd.",
+  "url": "https://jyggarment.com/"
+ },
+ "offers": {
+  "@type": "Offer",
+  "url": "https://jyggarment.com/product-cropped-hoodie.html",
+  "priceCurrency": "USD",
+  "price": "16.70",
+  "availability": "https://schema.org/InStock",
+  "itemCondition": "https://schema.org/NewCondition",
+  "eligibleQuantity": {
+   "@type": "QuantitativeValue",
+   "minValue": 100,
+   "unitText": "pieces"
+  },
+  "seller": {
+   "@type": "Organization",
+   "name": "Guangzhou Jianyigou International Clothing Co., Ltd.",
+   "url": "https://jyggarment.com/"
+  }
+ }
 }
 </script>
 <div class="wa-container">

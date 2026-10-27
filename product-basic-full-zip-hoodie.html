@@ -49,6 +49,7 @@ h1{font-family:var(--font-heading);font-weight:900}
 .pd-quick strong{color:#111;font-weight:800}
 .eyebrow{margin:0 0 10px;font-size:.78rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#8A6410}
 .pd-info h1{font-size:clamp(1.9rem,3.6vw,2.7rem);line-height:1.12;margin:0 0 18px;letter-spacing:-.01em}
+.price{display:inline-block;font-family:var(--font-heading);font-size:1.05rem;letter-spacing:.02em;color:#111;background:rgba(212,168,67,.10);border-left:3px solid #D4A843;padding:8px 14px;margin:0 0 18px}
 .lede{font-size:1.12rem;line-height:1.65;color:#222;margin:0 0 20px;font-weight:500}
 .body p{font-size:1rem;line-height:1.8;color:#333;margin:0 0 16px}
 .facts{margin:26px 0 34px;border-top:1px solid rgba(0,0,0,.1)}
@@ -156,6 +157,7 @@ table.size tbody tr:nth-child(even){background:#fafafa}
   <p class="eyebrow">Custom Products</p>
   <h1>Basic Full-Zip Hoodie</h1>
   <p class="lede">A plain full-zip hoodie on a 400 gsm cotton-blend fleece, cut loose with a dropped shoulder and a deep three-panel hood.</p>
+  <p class="price">Wholesale US$11.10 / pc &middot; MOQ 100 pcs</p>
   <div class="body">
     <p>Straightforward by design: a three-panel hood that stands up instead of collapsing, flat drawcords with metal tips, a full-length metal zip, and one wide kangaroo pocket with angled hand openings. Rib cuffs and a rib hem close the bottom, and the shoulder is dropped for a relaxed line rather than a fitted one.</p>
     <p>The cloth is a 400 gsm cotton-blend fleece &mdash; 56.1% cotton / 43.9% polyester on the face, bonded to a 94.2% polyester / 5.8% spandex fleece back &mdash; so the outside keeps a dry cotton hand while the inside stays soft and holds its loft after washing. Seven stock colours, supplied blank.</p>
@@ -248,15 +250,43 @@ table.size tbody tr:nth-child(even){background:#fafafa}
 </script>
 <script type="application/ld+json">
 {
- "@context":"https://schema.org",
- "@type":"Product",
- "name":"Basic Full-Zip Hoodie",
- "description":"400 gsm fleece-lined full-zip hoodie with a three-panel hood and metal zip. Made to your design, MOQ 100 pieces.",
- "image":["https://jyggarment.com/images/products/basic-full-zip-hoodie-f.webp","https://jyggarment.com/images/products/basic-full-zip-hoodie-b.webp"],
- "material":"56.1% cotton, 43.9% polyester face; 94.2% polyester, 5.8% spandex fleece back",
- "color":"Heather Grey, Black, Iron Grey, Navy, Light Beige, Melange Grey, Wine Red",
- "brand":{"@type":"Brand","name":"JYG Garment"},
- "manufacturer":{"@type":"Organization","name":"Guangzhou Jianyigou International Clothing Co., Ltd.","url":"https://jyggarment.com/"}
+ "@context": "https://schema.org",
+ "@type": "Product",
+ "name": "Basic Full-Zip Hoodie",
+ "description": "400 gsm fleece-lined full-zip hoodie with a three-panel hood and metal zip. Made to your design, MOQ 100 pieces.",
+ "image": [
+  "https://jyggarment.com/images/products/basic-full-zip-hoodie-f.webp",
+  "https://jyggarment.com/images/products/basic-full-zip-hoodie-b.webp"
+ ],
+ "material": "56.1% cotton, 43.9% polyester face; 94.2% polyester, 5.8% spandex fleece back",
+ "color": "Heather Grey, Black, Iron Grey, Navy, Light Beige, Melange Grey, Wine Red",
+ "brand": {
+  "@type": "Brand",
+  "name": "JYG Garment"
+ },
+ "manufacturer": {
+  "@type": "Organization",
+  "name": "Guangzhou Jianyigou International Clothing Co., Ltd.",
+  "url": "https://jyggarment.com/"
+ },
+ "offers": {
+  "@type": "Offer",
+  "url": "https://jyggarment.com/product-basic-full-zip-hoodie.html",
+  "priceCurrency": "USD",
+  "price": "11.10",
+  "availability": "https://schema.org/InStock",
+  "itemCondition": "https://schema.org/NewCondition",
+  "eligibleQuantity": {
+   "@type": "QuantitativeValue",
+   "minValue": 100,
+   "unitText": "pieces"
+  },
+  "seller": {
+   "@type": "Organization",
+   "name": "Guangzhou Jianyigou International Clothing Co., Ltd.",
+   "url": "https://jyggarment.com/"
+  }
+ }
 }
 </script>
 <div class="wa-container">

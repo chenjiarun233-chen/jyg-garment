@@ -49,6 +49,7 @@ h1{font-family:var(--font-heading);font-weight:900}
 .pd-quick strong{color:#111;font-weight:800}
 .eyebrow{margin:0 0 10px;font-size:.78rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#8A6410}
 .pd-info h1{font-size:clamp(1.9rem,3.6vw,2.7rem);line-height:1.12;margin:0 0 18px;letter-spacing:-.01em}
+.price{display:inline-block;font-family:var(--font-heading);font-size:1.05rem;letter-spacing:.02em;color:#111;background:rgba(212,168,67,.10);border-left:3px solid #D4A843;padding:8px 14px;margin:0 0 18px}
 .lede{font-size:1.12rem;line-height:1.65;color:#222;margin:0 0 20px;font-weight:500}
 .body p{font-size:1rem;line-height:1.8;color:#333;margin:0 0 16px}
 .facts{margin:26px 0 34px;border-top:1px solid rgba(0,0,0,.1)}
@@ -156,6 +157,7 @@ table.size tbody tr:nth-child(even){background:#fafafa}
   <p class="eyebrow">Custom Products</p>
   <h1>Minimalist Full-Zip Hoodie</h1>
   <p class="lede">A stripped-back zip hoodie on a 440 gsm cotton-poly, with nothing on the body but the zip and a contrast lining inside the hood.</p>
+  <p class="price">Wholesale US$11.10 / pc &middot; MOQ 100 pcs</p>
   <div class="body">
     <p>Everything that usually sits on a hoodie has been taken off: no kangaroo pocket, no drawcord, no chest seam. What is left is a clean two-panel hood, a full-length zip on a self-fabric tape, rib cuffs and a rib hem band. The one accent is inside &mdash; the hood is lined in a contrasting colour that shows when the hood is down.</p>
     <p>The shell is a 440 gsm 65% cotton / 35% polyester with a bonded 100% polyester lining, which is a heavy, dense cloth; it hangs straight rather than clinging. Because the body is unbroken, this is the easiest of our hoodies to put a large back print or embroidery on. Three shell-and-lining combinations are stocked.</p>
@@ -245,15 +247,43 @@ table.size tbody tr:nth-child(even){background:#fafafa}
 </script>
 <script type="application/ld+json">
 {
- "@context":"https://schema.org",
- "@type":"Product",
- "name":"Minimalist Full-Zip Hoodie",
- "description":"440 gsm cotton-poly minimal zip hoodie with contrast hood lining. Made to your design, MOQ 100 pieces.",
- "image":["https://jyggarment.com/images/products/minimalist-full-zip-hoodie-f.webp","https://jyggarment.com/images/products/minimalist-full-zip-hoodie-b.webp"],
- "material":"65% cotton, 35% polyester; 100% polyester lining",
- "color":"Heather Grey with navy lining, Dark Grey with heather grey lining, Black with wine red lining",
- "brand":{"@type":"Brand","name":"JYG Garment"},
- "manufacturer":{"@type":"Organization","name":"Guangzhou Jianyigou International Clothing Co., Ltd.","url":"https://jyggarment.com/"}
+ "@context": "https://schema.org",
+ "@type": "Product",
+ "name": "Minimalist Full-Zip Hoodie",
+ "description": "440 gsm cotton-poly minimal zip hoodie with contrast hood lining. Made to your design, MOQ 100 pieces.",
+ "image": [
+  "https://jyggarment.com/images/products/minimalist-full-zip-hoodie-f.webp",
+  "https://jyggarment.com/images/products/minimalist-full-zip-hoodie-b.webp"
+ ],
+ "material": "65% cotton, 35% polyester; 100% polyester lining",
+ "color": "Heather Grey with navy lining, Dark Grey with heather grey lining, Black with wine red lining",
+ "brand": {
+  "@type": "Brand",
+  "name": "JYG Garment"
+ },
+ "manufacturer": {
+  "@type": "Organization",
+  "name": "Guangzhou Jianyigou International Clothing Co., Ltd.",
+  "url": "https://jyggarment.com/"
+ },
+ "offers": {
+  "@type": "Offer",
+  "url": "https://jyggarment.com/product-minimalist-full-zip-hoodie.html",
+  "priceCurrency": "USD",
+  "price": "11.10",
+  "availability": "https://schema.org/InStock",
+  "itemCondition": "https://schema.org/NewCondition",
+  "eligibleQuantity": {
+   "@type": "QuantitativeValue",
+   "minValue": 100,
+   "unitText": "pieces"
+  },
+  "seller": {
+   "@type": "Organization",
+   "name": "Guangzhou Jianyigou International Clothing Co., Ltd.",
+   "url": "https://jyggarment.com/"
+  }
+ }
 }
 </script>
 <div class="wa-container">

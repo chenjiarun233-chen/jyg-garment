@@ -49,6 +49,7 @@ h1{font-family:var(--font-heading);font-weight:900}
 .pd-quick strong{color:#111;font-weight:800}
 .eyebrow{margin:0 0 10px;font-size:.78rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#8A6410}
 .pd-info h1{font-size:clamp(1.9rem,3.6vw,2.7rem);line-height:1.12;margin:0 0 18px;letter-spacing:-.01em}
+.price{display:inline-block;font-family:var(--font-heading);font-size:1.05rem;letter-spacing:.02em;color:#111;background:rgba(212,168,67,.10);border-left:3px solid #D4A843;padding:8px 14px;margin:0 0 18px}
 .lede{font-size:1.12rem;line-height:1.65;color:#222;margin:0 0 20px;font-weight:500}
 .body p{font-size:1rem;line-height:1.8;color:#333;margin:0 0 16px}
 .facts{margin:26px 0 34px;border-top:1px solid rgba(0,0,0,.1)}
@@ -156,6 +157,7 @@ table.size tbody tr:nth-child(even){background:#fafafa}
   <p class="eyebrow">Custom Products</p>
   <h1>Layered Sleeve Tee</h1>
   <p class="lede">A long-sleeve tee built with a second, shorter sleeve layered over the first, so the look is two pieces without the bulk.</p>
+  <p class="price">Wholesale US$13.90 / pc &middot; MOQ 100 pcs</p>
   <div class="body">
     <p>The sleeve is the whole construction: a full-length sleeve is set into the armhole, then a second short sleeve is attached over it at the same seam and left to hang free at mid-forearm. That reads as a tee worn over a long-sleeve without the double-collar problem. The shoulder carries a small eyelet pattern as a break in the otherwise plain body, and the hem is cut raw.</p>
     <p>The cloth is a 275 gsm 32s double-yarn cotton &mdash; two yarns plied before knitting, so the surface stays flat and the raw hem frays in a controlled way. The sample is a garment-washed black with a faded centre. Single stock colour; the wash level can be dialled up or down at sampling.</p>
@@ -245,15 +247,43 @@ table.size tbody tr:nth-child(even){background:#fafafa}
 </script>
 <script type="application/ld+json">
 {
- "@context":"https://schema.org",
- "@type":"Product",
- "name":"Layered Sleeve Tee",
- "description":"275 gsm double-yarn cotton tee with a layered double-sleeve construction. Made to your design, MOQ 100 pieces.",
- "image":["https://jyggarment.com/images/products/layered-sleeve-tee-f.webp","https://jyggarment.com/images/products/layered-sleeve-tee-b.webp"],
- "material":"100% cotton",
- "color":"Black",
- "brand":{"@type":"Brand","name":"JYG Garment"},
- "manufacturer":{"@type":"Organization","name":"Guangzhou Jianyigou International Clothing Co., Ltd.","url":"https://jyggarment.com/"}
+ "@context": "https://schema.org",
+ "@type": "Product",
+ "name": "Layered Sleeve Tee",
+ "description": "275 gsm double-yarn cotton tee with a layered double-sleeve construction. Made to your design, MOQ 100 pieces.",
+ "image": [
+  "https://jyggarment.com/images/products/layered-sleeve-tee-f.webp",
+  "https://jyggarment.com/images/products/layered-sleeve-tee-b.webp"
+ ],
+ "material": "100% cotton",
+ "color": "Black",
+ "brand": {
+  "@type": "Brand",
+  "name": "JYG Garment"
+ },
+ "manufacturer": {
+  "@type": "Organization",
+  "name": "Guangzhou Jianyigou International Clothing Co., Ltd.",
+  "url": "https://jyggarment.com/"
+ },
+ "offers": {
+  "@type": "Offer",
+  "url": "https://jyggarment.com/product-layered-sleeve-tee.html",
+  "priceCurrency": "USD",
+  "price": "13.90",
+  "availability": "https://schema.org/InStock",
+  "itemCondition": "https://schema.org/NewCondition",
+  "eligibleQuantity": {
+   "@type": "QuantitativeValue",
+   "minValue": 100,
+   "unitText": "pieces"
+  },
+  "seller": {
+   "@type": "Organization",
+   "name": "Guangzhou Jianyigou International Clothing Co., Ltd.",
+   "url": "https://jyggarment.com/"
+  }
+ }
 }
 </script>
 <div class="wa-container">

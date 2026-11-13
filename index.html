@@ -356,10 +356,10 @@ div[style*="minmax(240px"] .pg-cta{font-size:0.65rem!important;padding:9px 6px!i
    #heroVideo{display:none!important}
 
    /* 2. Manufacturing Process: hide the heading, intro copy, the 10 cards
-         and the lead-time block — the street marquee below it stays. */
+         and the lead-time block (desktop only). */
    .mfg-block{display:none!important}
 
-   /* small breathing gap so the marquee does not butt straight into the hero */
+   /* small breathing gap above and below the street marquee */
    #street-marquee{padding:18px 0!important}
  }
  </style>
@@ -395,94 +395,6 @@ if(!('IntersectionObserver' in window)){go();return}new IntersectionObserver(fun
 <div style="display:flex;flex-wrap:wrap;gap:14px;"><a href="https://forms.gle/3CfexRc11pb5HynY6" target="_blank" rel="noopener" style="display:inline-block;background:#D4A843;color:#000;padding:16px 36px;font-weight:800;text-decoration:none;text-transform:uppercase;font-size:0.92rem;">Start Your Project</a></div>
 </div>
 </section>
-
-<section class="mfg-block" style="background:#f7f7f7;padding:80px 5%;font-family:var(--font-body);">
-<div style="max-width:1200px;margin:0 auto;">
-<h2 style="font-size:clamp(1.6rem,3vw,2.2rem);font-weight:900;color:#111;text-align:center;margin-bottom:8px;">Manufacturing Process</h2>
-<p style="color:rgba(17,17,17,.6);font-size:1.05rem;text-align:center;margin-bottom:40px;max-width:600px;margin-left:auto;margin-right:auto;">Weekly progress updates, with additional notes provided at key milestones.</p>
-<div id="mfg-cards" style="display:grid;grid-template-columns:repeat(5,1fr);gap:18px;">
-<div style="background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:6px;overflow:hidden;display:flex;flex-direction:column;"><div class="mfg-body" style="padding:18px 16px 14px;"><div style="color:#8A6410;font-size:0.78rem;font-weight:900;letter-spacing:2px;margin-bottom:5px;">01</div><h3 style="color:#111;font-size:0.85rem;font-weight:800;margin:0 0 9px;text-transform:uppercase;letter-spacing:0.4px;line-height:1.25;">Consulting</h3><ul style="list-style:none;margin:0;padding:0;"><li style="color:rgba(17,17,17,.65);font-size:0.72rem;line-height:1.5;margin-bottom:3px;display:flex;gap:5px;"><span style="color:#8A6410;">&bull;</span><span>Style</span></li><li style="color:rgba(17,17,17,.65);font-size:0.72rem;line-height:1.5;margin-bottom:3px;display:flex;gap:5px;"><span style="color:#8A6410;">&bull;</span><span>Previous Work Sharing</span></li><li style="color:rgba(17,17,17,.65);font-size:0.72rem;line-height:1.5;margin-bottom:3px;display:flex;gap:5px;"><span style="color:#8A6410;">&bull;</span><span>Tech Pack</span></li><li style="color:rgba(17,17,17,.65);font-size:0.72rem;line-height:1.5;margin-bottom:3px;display:flex;gap:5px;"><span style="color:#8A6410;">&bull;</span><span>Fabric &amp; Techniques</span></li></ul></div></div>
-<div style="background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:6px;overflow:hidden;display:flex;flex-direction:column;"><div class="mfg-body" style="padding:18px 16px 14px;"><div style="color:#8A6410;font-size:0.78rem;font-weight:900;letter-spacing:2px;margin-bottom:5px;">02</div><h3 style="color:#111;font-size:0.85rem;font-weight:800;margin:0 0 9px;text-transform:uppercase;letter-spacing:0.4px;line-height:1.25;">Documentation</h3><ul style="list-style:none;margin:0;padding:0;"><li style="color:rgba(17,17,17,.65);font-size:0.72rem;line-height:1.5;margin-bottom:3px;display:flex;gap:5px;"><span style="color:#8A6410;">&bull;</span><span>Pre-Production File</span></li><li style="color:rgba(17,17,17,.65);font-size:0.72rem;line-height:1.5;margin-bottom:3px;display:flex;gap:5px;"><span style="color:#8A6410;">&bull;</span><span><a href="https://api.whatsapp.com/send/?phone=8613922181466&text=Hi%20JYG%2C%20I%27d%20like%20to%20know%20more%20about%20your%20manufacturing%20process%20%28from%20jyggarment.com%29" target="_blank" rel="noopener" style="color:#8A6410;font-weight:800;text-decoration:underline;text-underline-offset:2px;">Comment &ldquo;Tech Pack&rdquo; to Get Template</a></span></li></ul></div></div>
-<div style="background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:6px;overflow:hidden;display:flex;flex-direction:column;"><div class="mfg-body" style="padding:18px 16px 14px;"><div style="color:#8A6410;font-size:0.78rem;font-weight:900;letter-spacing:2px;margin-bottom:5px;">03</div><h3 style="color:#111;font-size:0.85rem;font-weight:800;margin:0 0 9px;text-transform:uppercase;letter-spacing:0.4px;line-height:1.25;">Sampling Terms</h3><ul style="list-style:none;margin:0;padding:0;"><li style="color:rgba(17,17,17,.65);font-size:0.72rem;line-height:1.5;margin-bottom:3px;display:flex;gap:5px;"><span style="color:#8A6410;">&bull;</span><span>Sample Cost</span></li><li style="color:rgba(17,17,17,.65);font-size:0.72rem;line-height:1.5;margin-bottom:3px;display:flex;gap:5px;"><span style="color:#8A6410;">&bull;</span><span>Estimated Bulk Price</span></li><li style="color:rgba(17,17,17,.65);font-size:0.72rem;line-height:1.5;margin-bottom:3px;display:flex;gap:5px;"><span style="color:#8A6410;">&bull;</span><span>Timeline</span></li><li style="color:rgba(17,17,17,.65);font-size:0.72rem;line-height:1.5;margin-bottom:3px;display:flex;gap:5px;"><span style="color:#8A6410;">&bull;</span><span>Payment Link</span></li></ul></div></div>
-<div style="background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:6px;overflow:hidden;display:flex;flex-direction:column;"><div class="mfg-body" style="padding:18px 16px 14px;"><div style="color:#8A6410;font-size:0.78rem;font-weight:900;letter-spacing:2px;margin-bottom:5px;">04</div><h3 style="color:#111;font-size:0.85rem;font-weight:800;margin:0 0 9px;text-transform:uppercase;letter-spacing:0.4px;line-height:1.25;">Patterning</h3><ul style="list-style:none;margin:0;padding:0;"><li style="color:rgba(17,17,17,.65);font-size:0.72rem;line-height:1.5;margin-bottom:3px;display:flex;gap:5px;"><span style="color:#8A6410;">&bull;</span><span>Size Chart &amp; Pattern Making</span></li></ul></div></div>
-<div style="background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:6px;overflow:hidden;display:flex;flex-direction:column;"><div class="mfg-body" style="padding:18px 16px 14px;"><div style="color:#8A6410;font-size:0.78rem;font-weight:900;letter-spacing:2px;margin-bottom:5px;">05</div><h3 style="color:#111;font-size:0.85rem;font-weight:800;margin:0 0 9px;text-transform:uppercase;letter-spacing:0.4px;line-height:1.25;">Sample Making</h3><ul style="list-style:none;margin:0;padding:0;"><li style="color:rgba(17,17,17,.65);font-size:0.72rem;line-height:1.5;margin-bottom:3px;display:flex;gap:5px;"><span style="color:#8A6410;">&bull;</span><span>Fabric &amp; Trim Sourcing</span></li><li style="color:rgba(17,17,17,.65);font-size:0.72rem;line-height:1.5;margin-bottom:3px;display:flex;gap:5px;"><span style="color:#8A6410;">&bull;</span><span>Secondary Processes</span></li><li style="color:rgba(17,17,17,.65);font-size:0.72rem;line-height:1.5;margin-bottom:3px;display:flex;gap:5px;"><span style="color:#8A6410;">&bull;</span><span>Sewing</span></li><li style="color:rgba(17,17,17,.65);font-size:0.72rem;line-height:1.5;margin-bottom:3px;display:flex;gap:5px;"><span style="color:#8A6410;">&bull;</span><span>Shipping</span></li></ul></div></div>
-<div style="background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:6px;overflow:hidden;display:flex;flex-direction:column;"><div class="mfg-body" style="padding:18px 16px 14px;"><div style="color:#8A6410;font-size:0.78rem;font-weight:900;letter-spacing:2px;margin-bottom:5px;">06</div><h3 style="color:#111;font-size:0.85rem;font-weight:800;margin:0 0 9px;text-transform:uppercase;letter-spacing:0.4px;line-height:1.25;">Sample Evaluation</h3><ul style="list-style:none;margin:0;padding:0;"><li style="color:rgba(17,17,17,.65);font-size:0.72rem;line-height:1.5;margin-bottom:3px;display:flex;gap:5px;"><span style="color:#8A6410;">&bull;</span><span>Buyer Review</span></li><li style="color:rgba(17,17,17,.65);font-size:0.72rem;line-height:1.5;margin-bottom:3px;display:flex;gap:5px;"><span style="color:#8A6410;">&bull;</span><span>Revision &amp; Approval</span></li></ul></div></div>
-<div style="background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:6px;overflow:hidden;display:flex;flex-direction:column;"><div class="mfg-body" style="padding:18px 16px 14px;"><div style="color:#8A6410;font-size:0.78rem;font-weight:900;letter-spacing:2px;margin-bottom:5px;">07</div><h3 style="color:#111;font-size:0.85rem;font-weight:800;margin:0 0 9px;text-transform:uppercase;letter-spacing:0.4px;line-height:1.25;">Quotation</h3><ul style="list-style:none;margin:0;padding:0;"><li style="color:rgba(17,17,17,.65);font-size:0.72rem;line-height:1.5;margin-bottom:3px;display:flex;gap:5px;"><span style="color:#8A6410;">&bull;</span><span>Unit Pricing</span></li><li style="color:rgba(17,17,17,.65);font-size:0.72rem;line-height:1.5;margin-bottom:3px;display:flex;gap:5px;"><span style="color:#8A6410;">&bull;</span><span>Customized Accessories</span></li><li style="color:rgba(17,17,17,.65);font-size:0.72rem;line-height:1.5;margin-bottom:3px;display:flex;gap:5px;"><span style="color:#8A6410;">&bull;</span><span>Deposit</span></li></ul></div></div>
-<div style="background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:6px;overflow:hidden;display:flex;flex-direction:column;"><div class="mfg-body" style="padding:18px 16px 14px;"><div style="color:#8A6410;font-size:0.78rem;font-weight:900;letter-spacing:2px;margin-bottom:5px;">08</div><h3 style="color:#111;font-size:0.85rem;font-weight:800;margin:0 0 9px;text-transform:uppercase;letter-spacing:0.4px;line-height:1.25;">Sourcing</h3><ul style="list-style:none;margin:0;padding:0;"><li style="color:rgba(17,17,17,.65);font-size:0.72rem;line-height:1.5;margin-bottom:3px;display:flex;gap:5px;"><span style="color:#8A6410;">&bull;</span><span>Raw Material Sourcing &amp; Trim Customization</span></li><li style="color:rgba(17,17,17,.65);font-size:0.72rem;line-height:1.5;margin-bottom:3px;display:flex;gap:5px;"><span style="color:#8A6410;">&bull;</span><span>Mold Making</span></li></ul></div></div>
-<div style="background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:6px;overflow:hidden;display:flex;flex-direction:column;"><div class="mfg-body" style="padding:18px 16px 14px;"><div style="color:#8A6410;font-size:0.78rem;font-weight:900;letter-spacing:2px;margin-bottom:5px;">09</div><h3 style="color:#111;font-size:0.85rem;font-weight:800;margin:0 0 9px;text-transform:uppercase;letter-spacing:0.4px;line-height:1.25;">Grading</h3><ul style="list-style:none;margin:0;padding:0;"><li style="color:rgba(17,17,17,.65);font-size:0.72rem;line-height:1.5;margin-bottom:3px;display:flex;gap:5px;"><span style="color:#8A6410;">&bull;</span><span>Size Grading &amp; Final Specs Verification</span></li></ul></div></div>
-<div style="background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:6px;overflow:hidden;display:flex;flex-direction:column;"><div class="mfg-body" style="padding:18px 16px 14px;"><div style="color:#8A6410;font-size:0.78rem;font-weight:900;letter-spacing:2px;margin-bottom:5px;">10</div><h3 style="color:#111;font-size:0.85rem;font-weight:800;margin:0 0 9px;text-transform:uppercase;letter-spacing:0.4px;line-height:1.25;">Fulfillment</h3><ul style="list-style:none;margin:0;padding:0;"><li style="color:rgba(17,17,17,.65);font-size:0.72rem;line-height:1.5;margin-bottom:3px;display:flex;gap:5px;"><span style="color:#8A6410;">&bull;</span><span>Bulk Production</span></li><li style="color:rgba(17,17,17,.65);font-size:0.72rem;line-height:1.5;margin-bottom:3px;display:flex;gap:5px;"><span style="color:#8A6410;">&bull;</span><span>QC Inspection</span></li><li style="color:rgba(17,17,17,.65);font-size:0.72rem;line-height:1.5;margin-bottom:3px;display:flex;gap:5px;"><span style="color:#8A6410;">&bull;</span><span>Packaging</span></li><li style="color:rgba(17,17,17,.65);font-size:0.72rem;line-height:1.5;margin-bottom:3px;display:flex;gap:5px;"><span style="color:#8A6410;">&bull;</span><span>Remaining Payment</span></li><li style="color:rgba(17,17,17,.65);font-size:0.72rem;line-height:1.5;margin-bottom:3px;display:flex;gap:5px;"><span style="color:#8A6410;">&bull;</span><span>Shipping</span></li></ul></div></div>
-</div>
-<style>
-.tl-wrap{margin-top:34px}
-.tl-head{display:flex;align-items:center;gap:14px;margin-bottom:14px}
-.tl-head>span:first-child{font-size:0.78rem;font-weight:900;letter-spacing:2px;color:#8A6410;text-transform:uppercase;white-space:nowrap}
-.tl-head>i{flex:1;height:1px;background:rgba(0,0,0,.12);display:block}
-.tl-head>span:last-child{font-size:0.78rem;color:rgba(17,17,17,.55);text-align:right}
-.tl-row{display:flex;align-items:center;gap:20px;flex-wrap:wrap;background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:6px;padding:18px 22px;margin-bottom:12px}
-.tl-label{min-width:112px}
-.tl-label>b{display:block;font-size:0.78rem;font-weight:900;letter-spacing:2px;color:#8A6410;line-height:1}
-.tl-label>span{display:block;font-size:0.95rem;font-weight:800;color:#111;text-transform:uppercase;letter-spacing:0.4px;margin-top:4px}
-.tl-steps{display:flex;align-items:center;flex-wrap:wrap;gap:8px;flex:1;min-width:0;justify-content:space-between}
-.tl-step{display:flex;flex-direction:column;gap:2px;padding:7px 13px;border-radius:4px;background:rgba(0,0,0,.03);border:1px solid rgba(0,0,0,.06);flex:1}
-.tl-step>b{font-size:0.8rem;font-weight:800;color:#111;white-space:nowrap}
-.tl-step>span{font-size:0.72rem;font-weight:800;color:#8A6410;white-space:nowrap}
-.tl-arrow{color:rgba(17,17,17,.3);font-weight:900;font-size:0.9rem;line-height:1}
-.tl-total{margin-left:auto;text-align:right;padding-left:8px}
-.tl-total>b{display:block;font-size:1.5rem;font-weight:900;color:#8A6410;line-height:1;white-space:nowrap}
-.tl-total>span{display:block;font-size:0.68rem;font-weight:700;letter-spacing:1px;color:rgba(17,17,17,.5);text-transform:uppercase;margin-top:4px}
-@media (max-width:768px){
-.tl-head{flex-wrap:wrap;gap:5px}
-.tl-head>i{display:none}
-.tl-row{flex-direction:column;align-items:stretch;gap:14px;padding:16px}
-.tl-steps{flex-direction:column;align-items:stretch;gap:6px}
-.tl-step{flex:none}
-.tl-arrow{display:none}
-.tl-total{margin-left:0;text-align:left;border-top:1px solid rgba(0,0,0,.07);padding:10px 0 0}
-.tl-step>b,.tl-step>span{white-space:normal}
-.tl-head>span:last-child{font-size:0.72rem}
-}
-</style>
-<div class="tl-wrap">
-<div class="tl-head"><span>Lead Time</span><i></i><span>Special processes may require extra days</span></div>
-<div class="tl-row">
-<div class="tl-label"><b>01</b><span>Sample</span></div>
-<div class="tl-steps">
-<div class="tl-step"><b>Fabric &amp; Trim Sourcing</b><span>7 days</span></div><span class="tl-arrow">&rarr;</span>
-<div class="tl-step"><b>Pattern Making</b><span>3 days</span></div><span class="tl-arrow">&rarr;</span>
-<div class="tl-step"><b>Sample Making</b><span>4 days</span></div>
-</div>
-<div class="tl-total"><b>14 days</b><span>Total</span></div>
-</div>
-<div class="tl-row">
-<div class="tl-label"><b>02</b><span>Bulk</span></div>
-<div class="tl-steps">
-<div class="tl-step"><b>Fabric &amp; Trim Sourcing</b><span>7 days</span></div><span class="tl-arrow">&rarr;</span>
-<div class="tl-step"><b>Sewing</b><span>10 days</span></div><span class="tl-arrow">&rarr;</span>
-<div class="tl-step"><b>Packing</b><span>3 days</span></div>
-</div>
-<div class="tl-total"><b>20 days</b><span>Total</span></div>
-</div>
-</div>
-
-</div>
-</section>
-
-<section id="street-marquee" style="background:#f7f7f7;padding:0;font-family:var(--font-body);overflow:hidden;">
-<style>
-@keyframes streetScrollL{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-.street-track{display:flex;width:max-content}
-.street-track-l{animation:streetScrollL 70s linear infinite}
-.street-track img{height:330px;width:auto;border-radius:4px;flex-shrink:0;margin-right:12px}
-.street-row{overflow:hidden;margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw)}
-.street-row:hover .street-track{animation-play-state:paused}
-@media (max-width:768px){.street-track img{height:170px!important;margin-right:8px!important}}
-</style>
-<div class="street-row"><div class="street-track street-track-l"><img loading="lazy" src="images/street-01.webp" alt="Custom streetwear garment" width="660" height="660" decoding="async"><img loading="lazy" src="images/street-02.webp" alt="Custom streetwear garment" width="660" height="660" decoding="async"><img loading="lazy" src="images/street-03.webp" alt="Custom streetwear garment" width="660" height="660" decoding="async"><img loading="lazy" src="images/street-04.webp" alt="Custom streetwear garment" width="660" height="660" decoding="async"><img loading="lazy" src="images/street-05.webp" alt="Custom streetwear garment" width="660" height="660" decoding="async"><img loading="lazy" src="images/street-06.webp" alt="Custom streetwear garment" width="660" height="660" decoding="async"><img loading="lazy" src="images/street-07.webp" alt="Custom streetwear garment" width="660" height="660" decoding="async"><img loading="lazy" src="images/street-08.webp" alt="Custom streetwear garment" width="660" height="660" decoding="async"><img loading="lazy" src="images/street-09.webp" alt="Custom streetwear garment" width="660" height="660" decoding="async"><img loading="lazy" src="images/street-10.webp" alt="Custom streetwear garment" width="660" height="660" decoding="async"><img loading="lazy" src="images/street-11.webp" alt="Custom streetwear garment" width="660" height="660" decoding="async"><img loading="lazy" src="images/street-12.webp" alt="Custom streetwear garment" width="660" height="660" decoding="async"><img loading="lazy" src="images/street-13.webp" alt="Custom streetwear garment" width="660" height="660" decoding="async"><img loading="lazy" src="images/street-14.webp" alt="Custom streetwear garment" width="660" height="660" decoding="async"><img loading="lazy" src="images/street-15.webp" alt="Custom streetwear garment" width="660" height="660" decoding="async"><img loading="lazy" src="images/street-16.webp" alt="Custom streetwear garment" width="660" height="660" decoding="async"><img loading="lazy" src="images/street-01.webp" alt="Custom streetwear garment" width="660" height="660" decoding="async"><img loading="lazy" src="images/street-02.webp" alt="Custom streetwear garment" width="660" height="660" decoding="async"><img loading="lazy" src="images/street-03.webp" alt="Custom streetwear garment" width="660" height="660" decoding="async"><img loading="lazy" src="images/street-04.webp" alt="Custom streetwear garment" width="660" height="660" decoding="async"><img loading="lazy" src="images/street-05.webp" alt="Custom streetwear garment" width="660" height="660" decoding="async"><img loading="lazy" src="images/street-06.webp" alt="Custom streetwear garment" width="660" height="660" decoding="async"><img loading="lazy" src="images/street-07.webp" alt="Custom streetwear garment" width="660" height="660" decoding="async"><img loading="lazy" src="images/street-08.webp" alt="Custom streetwear garment" width="660" height="660" decoding="async"><img loading="lazy" src="images/street-09.webp" alt="Custom streetwear garment" width="660" height="660" decoding="async"><img loading="lazy" src="images/street-10.webp" alt="Custom streetwear garment" width="660" height="660" decoding="async"><img loading="lazy" src="images/street-11.webp" alt="Custom streetwear garment" width="660" height="660" decoding="async"><img loading="lazy" src="images/street-12.webp" alt="Custom streetwear garment" width="660" height="660" decoding="async"><img loading="lazy" src="images/street-13.webp" alt="Custom streetwear garment" width="660" height="660" decoding="async"><img loading="lazy" src="images/street-14.webp" alt="Custom streetwear garment" width="660" height="660" decoding="async"><img loading="lazy" src="images/street-15.webp" alt="Custom streetwear garment" width="660" height="660" decoding="async"><img loading="lazy" src="images/street-16.webp" alt="Custom streetwear garment" width="660" height="660" decoding="async"></div></div>
-</section>
-
-
-
-
 
 <section style="background:#f7f7f7;padding:80px 5%;font-family:var(--font-body);">
 <div style="max-width:1200px;margin:0 auto;">
@@ -627,6 +539,77 @@ if(!('IntersectionObserver' in window)){go();return}new IntersectionObserver(fun
 <div class="pk-row"><div class="pk-track pk-track-l"><img loading="lazy" fetchpriority="high" src="images/packaging-labels.webp" alt="Custom packaging" style="aspect-ratio:1200/400" decoding="async"><img loading="lazy" fetchpriority="high" src="images/packaging-labels.webp" alt="Custom packaging" style="aspect-ratio:1200/400" decoding="async"><img loading="lazy" fetchpriority="high" src="images/packaging-labels.webp" alt="Custom packaging" style="aspect-ratio:1200/400" decoding="async"><img loading="lazy" fetchpriority="high" src="images/packaging-labels.webp" alt="Custom packaging" style="aspect-ratio:1200/400" decoding="async"><img loading="lazy" fetchpriority="high" src="images/packaging-labels.webp" alt="Custom packaging" style="aspect-ratio:1200/400" decoding="async"><img loading="lazy" fetchpriority="high" src="images/packaging-labels.webp" alt="Custom packaging" style="aspect-ratio:1200/400" decoding="async"><img loading="lazy" fetchpriority="high" src="images/packaging-labels.webp" alt="Custom packaging" style="aspect-ratio:1200/400" decoding="async"><img loading="lazy" fetchpriority="high" src="images/packaging-labels.webp" alt="Custom packaging" style="aspect-ratio:1200/400" decoding="async"></div></div>
 </section>
 
+<section class="mfg-block" style="background:#f7f7f7;padding:80px 5%;font-family:var(--font-body);">
+<div style="max-width:1200px;margin:0 auto;">
+<h2 style="font-size:clamp(1.6rem,3vw,2.2rem);font-weight:900;color:#111;text-align:center;margin-bottom:8px;">Manufacturing Process</h2>
+<p style="color:rgba(17,17,17,.6);font-size:1.05rem;text-align:center;margin-bottom:40px;max-width:600px;margin-left:auto;margin-right:auto;">Weekly progress updates, with additional notes provided at key milestones.</p>
+<div id="mfg-cards" style="display:grid;grid-template-columns:repeat(5,1fr);gap:18px;">
+<div style="background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:6px;overflow:hidden;display:flex;flex-direction:column;"><div class="mfg-body" style="padding:18px 16px 14px;"><div style="color:#8A6410;font-size:0.78rem;font-weight:900;letter-spacing:2px;margin-bottom:5px;">01</div><h3 style="color:#111;font-size:0.85rem;font-weight:800;margin:0 0 9px;text-transform:uppercase;letter-spacing:0.4px;line-height:1.25;">Consulting</h3><ul style="list-style:none;margin:0;padding:0;"><li style="color:rgba(17,17,17,.65);font-size:0.72rem;line-height:1.5;margin-bottom:3px;display:flex;gap:5px;"><span style="color:#8A6410;">&bull;</span><span>Style</span></li><li style="color:rgba(17,17,17,.65);font-size:0.72rem;line-height:1.5;margin-bottom:3px;display:flex;gap:5px;"><span style="color:#8A6410;">&bull;</span><span>Previous Work Sharing</span></li><li style="color:rgba(17,17,17,.65);font-size:0.72rem;line-height:1.5;margin-bottom:3px;display:flex;gap:5px;"><span style="color:#8A6410;">&bull;</span><span>Tech Pack</span></li><li style="color:rgba(17,17,17,.65);font-size:0.72rem;line-height:1.5;margin-bottom:3px;display:flex;gap:5px;"><span style="color:#8A6410;">&bull;</span><span>Fabric &amp; Techniques</span></li></ul></div></div>
+<div style="background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:6px;overflow:hidden;display:flex;flex-direction:column;"><div class="mfg-body" style="padding:18px 16px 14px;"><div style="color:#8A6410;font-size:0.78rem;font-weight:900;letter-spacing:2px;margin-bottom:5px;">02</div><h3 style="color:#111;font-size:0.85rem;font-weight:800;margin:0 0 9px;text-transform:uppercase;letter-spacing:0.4px;line-height:1.25;">Documentation</h3><ul style="list-style:none;margin:0;padding:0;"><li style="color:rgba(17,17,17,.65);font-size:0.72rem;line-height:1.5;margin-bottom:3px;display:flex;gap:5px;"><span style="color:#8A6410;">&bull;</span><span>Pre-Production File</span></li><li style="color:rgba(17,17,17,.65);font-size:0.72rem;line-height:1.5;margin-bottom:3px;display:flex;gap:5px;"><span style="color:#8A6410;">&bull;</span><span><a href="https://api.whatsapp.com/send/?phone=8613922181466&text=Hi%20JYG%2C%20I%27d%20like%20to%20know%20more%20about%20your%20manufacturing%20process%20%28from%20jyggarment.com%29" target="_blank" rel="noopener" style="color:#8A6410;font-weight:800;text-decoration:underline;text-underline-offset:2px;">Comment &ldquo;Tech Pack&rdquo; to Get Template</a></span></li></ul></div></div>
+<div style="background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:6px;overflow:hidden;display:flex;flex-direction:column;"><div class="mfg-body" style="padding:18px 16px 14px;"><div style="color:#8A6410;font-size:0.78rem;font-weight:900;letter-spacing:2px;margin-bottom:5px;">03</div><h3 style="color:#111;font-size:0.85rem;font-weight:800;margin:0 0 9px;text-transform:uppercase;letter-spacing:0.4px;line-height:1.25;">Sampling Terms</h3><ul style="list-style:none;margin:0;padding:0;"><li style="color:rgba(17,17,17,.65);font-size:0.72rem;line-height:1.5;margin-bottom:3px;display:flex;gap:5px;"><span style="color:#8A6410;">&bull;</span><span>Sample Cost</span></li><li style="color:rgba(17,17,17,.65);font-size:0.72rem;line-height:1.5;margin-bottom:3px;display:flex;gap:5px;"><span style="color:#8A6410;">&bull;</span><span>Estimated Bulk Price</span></li><li style="color:rgba(17,17,17,.65);font-size:0.72rem;line-height:1.5;margin-bottom:3px;display:flex;gap:5px;"><span style="color:#8A6410;">&bull;</span><span>Timeline</span></li><li style="color:rgba(17,17,17,.65);font-size:0.72rem;line-height:1.5;margin-bottom:3px;display:flex;gap:5px;"><span style="color:#8A6410;">&bull;</span><span>Payment Link</span></li></ul></div></div>
+<div style="background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:6px;overflow:hidden;display:flex;flex-direction:column;"><div class="mfg-body" style="padding:18px 16px 14px;"><div style="color:#8A6410;font-size:0.78rem;font-weight:900;letter-spacing:2px;margin-bottom:5px;">04</div><h3 style="color:#111;font-size:0.85rem;font-weight:800;margin:0 0 9px;text-transform:uppercase;letter-spacing:0.4px;line-height:1.25;">Patterning</h3><ul style="list-style:none;margin:0;padding:0;"><li style="color:rgba(17,17,17,.65);font-size:0.72rem;line-height:1.5;margin-bottom:3px;display:flex;gap:5px;"><span style="color:#8A6410;">&bull;</span><span>Size Chart &amp; Pattern Making</span></li></ul></div></div>
+<div style="background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:6px;overflow:hidden;display:flex;flex-direction:column;"><div class="mfg-body" style="padding:18px 16px 14px;"><div style="color:#8A6410;font-size:0.78rem;font-weight:900;letter-spacing:2px;margin-bottom:5px;">05</div><h3 style="color:#111;font-size:0.85rem;font-weight:800;margin:0 0 9px;text-transform:uppercase;letter-spacing:0.4px;line-height:1.25;">Sample Making</h3><ul style="list-style:none;margin:0;padding:0;"><li style="color:rgba(17,17,17,.65);font-size:0.72rem;line-height:1.5;margin-bottom:3px;display:flex;gap:5px;"><span style="color:#8A6410;">&bull;</span><span>Fabric &amp; Trim Sourcing</span></li><li style="color:rgba(17,17,17,.65);font-size:0.72rem;line-height:1.5;margin-bottom:3px;display:flex;gap:5px;"><span style="color:#8A6410;">&bull;</span><span>Secondary Processes</span></li><li style="color:rgba(17,17,17,.65);font-size:0.72rem;line-height:1.5;margin-bottom:3px;display:flex;gap:5px;"><span style="color:#8A6410;">&bull;</span><span>Sewing</span></li><li style="color:rgba(17,17,17,.65);font-size:0.72rem;line-height:1.5;margin-bottom:3px;display:flex;gap:5px;"><span style="color:#8A6410;">&bull;</span><span>Shipping</span></li></ul></div></div>
+<div style="background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:6px;overflow:hidden;display:flex;flex-direction:column;"><div class="mfg-body" style="padding:18px 16px 14px;"><div style="color:#8A6410;font-size:0.78rem;font-weight:900;letter-spacing:2px;margin-bottom:5px;">06</div><h3 style="color:#111;font-size:0.85rem;font-weight:800;margin:0 0 9px;text-transform:uppercase;letter-spacing:0.4px;line-height:1.25;">Sample Evaluation</h3><ul style="list-style:none;margin:0;padding:0;"><li style="color:rgba(17,17,17,.65);font-size:0.72rem;line-height:1.5;margin-bottom:3px;display:flex;gap:5px;"><span style="color:#8A6410;">&bull;</span><span>Buyer Review</span></li><li style="color:rgba(17,17,17,.65);font-size:0.72rem;line-height:1.5;margin-bottom:3px;display:flex;gap:5px;"><span style="color:#8A6410;">&bull;</span><span>Revision &amp; Approval</span></li></ul></div></div>
+<div style="background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:6px;overflow:hidden;display:flex;flex-direction:column;"><div class="mfg-body" style="padding:18px 16px 14px;"><div style="color:#8A6410;font-size:0.78rem;font-weight:900;letter-spacing:2px;margin-bottom:5px;">07</div><h3 style="color:#111;font-size:0.85rem;font-weight:800;margin:0 0 9px;text-transform:uppercase;letter-spacing:0.4px;line-height:1.25;">Quotation</h3><ul style="list-style:none;margin:0;padding:0;"><li style="color:rgba(17,17,17,.65);font-size:0.72rem;line-height:1.5;margin-bottom:3px;display:flex;gap:5px;"><span style="color:#8A6410;">&bull;</span><span>Unit Pricing</span></li><li style="color:rgba(17,17,17,.65);font-size:0.72rem;line-height:1.5;margin-bottom:3px;display:flex;gap:5px;"><span style="color:#8A6410;">&bull;</span><span>Customized Accessories</span></li><li style="color:rgba(17,17,17,.65);font-size:0.72rem;line-height:1.5;margin-bottom:3px;display:flex;gap:5px;"><span style="color:#8A6410;">&bull;</span><span>Deposit</span></li></ul></div></div>
+<div style="background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:6px;overflow:hidden;display:flex;flex-direction:column;"><div class="mfg-body" style="padding:18px 16px 14px;"><div style="color:#8A6410;font-size:0.78rem;font-weight:900;letter-spacing:2px;margin-bottom:5px;">08</div><h3 style="color:#111;font-size:0.85rem;font-weight:800;margin:0 0 9px;text-transform:uppercase;letter-spacing:0.4px;line-height:1.25;">Sourcing</h3><ul style="list-style:none;margin:0;padding:0;"><li style="color:rgba(17,17,17,.65);font-size:0.72rem;line-height:1.5;margin-bottom:3px;display:flex;gap:5px;"><span style="color:#8A6410;">&bull;</span><span>Raw Material Sourcing &amp; Trim Customization</span></li><li style="color:rgba(17,17,17,.65);font-size:0.72rem;line-height:1.5;margin-bottom:3px;display:flex;gap:5px;"><span style="color:#8A6410;">&bull;</span><span>Mold Making</span></li></ul></div></div>
+<div style="background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:6px;overflow:hidden;display:flex;flex-direction:column;"><div class="mfg-body" style="padding:18px 16px 14px;"><div style="color:#8A6410;font-size:0.78rem;font-weight:900;letter-spacing:2px;margin-bottom:5px;">09</div><h3 style="color:#111;font-size:0.85rem;font-weight:800;margin:0 0 9px;text-transform:uppercase;letter-spacing:0.4px;line-height:1.25;">Grading</h3><ul style="list-style:none;margin:0;padding:0;"><li style="color:rgba(17,17,17,.65);font-size:0.72rem;line-height:1.5;margin-bottom:3px;display:flex;gap:5px;"><span style="color:#8A6410;">&bull;</span><span>Size Grading &amp; Final Specs Verification</span></li></ul></div></div>
+<div style="background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:6px;overflow:hidden;display:flex;flex-direction:column;"><div class="mfg-body" style="padding:18px 16px 14px;"><div style="color:#8A6410;font-size:0.78rem;font-weight:900;letter-spacing:2px;margin-bottom:5px;">10</div><h3 style="color:#111;font-size:0.85rem;font-weight:800;margin:0 0 9px;text-transform:uppercase;letter-spacing:0.4px;line-height:1.25;">Fulfillment</h3><ul style="list-style:none;margin:0;padding:0;"><li style="color:rgba(17,17,17,.65);font-size:0.72rem;line-height:1.5;margin-bottom:3px;display:flex;gap:5px;"><span style="color:#8A6410;">&bull;</span><span>Bulk Production</span></li><li style="color:rgba(17,17,17,.65);font-size:0.72rem;line-height:1.5;margin-bottom:3px;display:flex;gap:5px;"><span style="color:#8A6410;">&bull;</span><span>QC Inspection</span></li><li style="color:rgba(17,17,17,.65);font-size:0.72rem;line-height:1.5;margin-bottom:3px;display:flex;gap:5px;"><span style="color:#8A6410;">&bull;</span><span>Packaging</span></li><li style="color:rgba(17,17,17,.65);font-size:0.72rem;line-height:1.5;margin-bottom:3px;display:flex;gap:5px;"><span style="color:#8A6410;">&bull;</span><span>Remaining Payment</span></li><li style="color:rgba(17,17,17,.65);font-size:0.72rem;line-height:1.5;margin-bottom:3px;display:flex;gap:5px;"><span style="color:#8A6410;">&bull;</span><span>Shipping</span></li></ul></div></div>
+</div>
+<style>
+.tl-wrap{margin-top:34px}
+.tl-head{display:flex;align-items:center;gap:14px;margin-bottom:14px}
+.tl-head>span:first-child{font-size:0.78rem;font-weight:900;letter-spacing:2px;color:#8A6410;text-transform:uppercase;white-space:nowrap}
+.tl-head>i{flex:1;height:1px;background:rgba(0,0,0,.12);display:block}
+.tl-head>span:last-child{font-size:0.78rem;color:rgba(17,17,17,.55);text-align:right}
+.tl-row{display:flex;align-items:center;gap:20px;flex-wrap:wrap;background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:6px;padding:18px 22px;margin-bottom:12px}
+.tl-label{min-width:112px}
+.tl-label>b{display:block;font-size:0.78rem;font-weight:900;letter-spacing:2px;color:#8A6410;line-height:1}
+.tl-label>span{display:block;font-size:0.95rem;font-weight:800;color:#111;text-transform:uppercase;letter-spacing:0.4px;margin-top:4px}
+.tl-steps{display:flex;align-items:center;flex-wrap:wrap;gap:8px;flex:1;min-width:0;justify-content:space-between}
+.tl-step{display:flex;flex-direction:column;gap:2px;padding:7px 13px;border-radius:4px;background:rgba(0,0,0,.03);border:1px solid rgba(0,0,0,.06);flex:1}
+.tl-step>b{font-size:0.8rem;font-weight:800;color:#111;white-space:nowrap}
+.tl-step>span{font-size:0.72rem;font-weight:800;color:#8A6410;white-space:nowrap}
+.tl-arrow{color:rgba(17,17,17,.3);font-weight:900;font-size:0.9rem;line-height:1}
+.tl-total{margin-left:auto;text-align:right;padding-left:8px}
+.tl-total>b{display:block;font-size:1.5rem;font-weight:900;color:#8A6410;line-height:1;white-space:nowrap}
+.tl-total>span{display:block;font-size:0.68rem;font-weight:700;letter-spacing:1px;color:rgba(17,17,17,.5);text-transform:uppercase;margin-top:4px}
+@media (max-width:768px){
+.tl-head{flex-wrap:wrap;gap:5px}
+.tl-head>i{display:none}
+.tl-row{flex-direction:column;align-items:stretch;gap:14px;padding:16px}
+.tl-steps{flex-direction:column;align-items:stretch;gap:6px}
+.tl-step{flex:none}
+.tl-arrow{display:none}
+.tl-total{margin-left:0;text-align:left;border-top:1px solid rgba(0,0,0,.07);padding:10px 0 0}
+.tl-step>b,.tl-step>span{white-space:normal}
+.tl-head>span:last-child{font-size:0.72rem}
+}
+</style>
+<div class="tl-wrap">
+<div class="tl-head"><span>Lead Time</span><i></i><span>Special processes may require extra days</span></div>
+<div class="tl-row">
+<div class="tl-label"><b>01</b><span>Sample</span></div>
+<div class="tl-steps">
+<div class="tl-step"><b>Fabric &amp; Trim Sourcing</b><span>7 days</span></div><span class="tl-arrow">&rarr;</span>
+<div class="tl-step"><b>Pattern Making</b><span>3 days</span></div><span class="tl-arrow">&rarr;</span>
+<div class="tl-step"><b>Sample Making</b><span>4 days</span></div>
+</div>
+<div class="tl-total"><b>14 days</b><span>Total</span></div>
+</div>
+<div class="tl-row">
+<div class="tl-label"><b>02</b><span>Bulk</span></div>
+<div class="tl-steps">
+<div class="tl-step"><b>Fabric &amp; Trim Sourcing</b><span>7 days</span></div><span class="tl-arrow">&rarr;</span>
+<div class="tl-step"><b>Sewing</b><span>10 days</span></div><span class="tl-arrow">&rarr;</span>
+<div class="tl-step"><b>Packing</b><span>3 days</span></div>
+</div>
+<div class="tl-total"><b>20 days</b><span>Total</span></div>
+</div>
+</div>
+
+</div>
+</section>
+
 <style>
 /* opacity is 1 from the very start so the poster is visible immediately
    while the video buffers. This used to be opacity:0 until the 'canplay'
@@ -660,6 +643,23 @@ if(!('IntersectionObserver' in window)){go();return}new IntersectionObserver(fun
 <div style="text-align:center;flex:1;min-width:120px;"><div style="font-size:1.8rem;font-weight:900;color:#D4A843;">200K</div><div style="color:rgba(255,255,255,.5);font-size:0.8rem;text-transform:uppercase;margin-top:4px;">Units Annually</div></div>
 </div>
 </section>
+
+<section id="street-marquee" style="background:#f7f7f7;padding:0;font-family:var(--font-body);overflow:hidden;">
+<style>
+@keyframes streetScrollL{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.street-track{display:flex;width:max-content}
+.street-track-l{animation:streetScrollL 70s linear infinite}
+.street-track img{height:330px;width:auto;border-radius:4px;flex-shrink:0;margin-right:12px}
+.street-row{overflow:hidden;margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw)}
+.street-row:hover .street-track{animation-play-state:paused}
+@media (max-width:768px){.street-track img{height:170px!important;margin-right:8px!important}}
+</style>
+<div class="street-row"><div class="street-track street-track-l"><img loading="lazy" src="images/street-01.webp" alt="Custom streetwear garment" width="660" height="660" decoding="async"><img loading="lazy" src="images/street-02.webp" alt="Custom streetwear garment" width="660" height="660" decoding="async"><img loading="lazy" src="images/street-03.webp" alt="Custom streetwear garment" width="660" height="660" decoding="async"><img loading="lazy" src="images/street-04.webp" alt="Custom streetwear garment" width="660" height="660" decoding="async"><img loading="lazy" src="images/street-05.webp" alt="Custom streetwear garment" width="660" height="660" decoding="async"><img loading="lazy" src="images/street-06.webp" alt="Custom streetwear garment" width="660" height="660" decoding="async"><img loading="lazy" src="images/street-07.webp" alt="Custom streetwear garment" width="660" height="660" decoding="async"><img loading="lazy" src="images/street-08.webp" alt="Custom streetwear garment" width="660" height="660" decoding="async"><img loading="lazy" src="images/street-09.webp" alt="Custom streetwear garment" width="660" height="660" decoding="async"><img loading="lazy" src="images/street-10.webp" alt="Custom streetwear garment" width="660" height="660" decoding="async"><img loading="lazy" src="images/street-11.webp" alt="Custom streetwear garment" width="660" height="660" decoding="async"><img loading="lazy" src="images/street-12.webp" alt="Custom streetwear garment" width="660" height="660" decoding="async"><img loading="lazy" src="images/street-13.webp" alt="Custom streetwear garment" width="660" height="660" decoding="async"><img loading="lazy" src="images/street-14.webp" alt="Custom streetwear garment" width="660" height="660" decoding="async"><img loading="lazy" src="images/street-15.webp" alt="Custom streetwear garment" width="660" height="660" decoding="async"><img loading="lazy" src="images/street-16.webp" alt="Custom streetwear garment" width="660" height="660" decoding="async"><img loading="lazy" src="images/street-01.webp" alt="Custom streetwear garment" width="660" height="660" decoding="async"><img loading="lazy" src="images/street-02.webp" alt="Custom streetwear garment" width="660" height="660" decoding="async"><img loading="lazy" src="images/street-03.webp" alt="Custom streetwear garment" width="660" height="660" decoding="async"><img loading="lazy" src="images/street-04.webp" alt="Custom streetwear garment" width="660" height="660" decoding="async"><img loading="lazy" src="images/street-05.webp" alt="Custom streetwear garment" width="660" height="660" decoding="async"><img loading="lazy" src="images/street-06.webp" alt="Custom streetwear garment" width="660" height="660" decoding="async"><img loading="lazy" src="images/street-07.webp" alt="Custom streetwear garment" width="660" height="660" decoding="async"><img loading="lazy" src="images/street-08.webp" alt="Custom streetwear garment" width="660" height="660" decoding="async"><img loading="lazy" src="images/street-09.webp" alt="Custom streetwear garment" width="660" height="660" decoding="async"><img loading="lazy" src="images/street-10.webp" alt="Custom streetwear garment" width="660" height="660" decoding="async"><img loading="lazy" src="images/street-11.webp" alt="Custom streetwear garment" width="660" height="660" decoding="async"><img loading="lazy" src="images/street-12.webp" alt="Custom streetwear garment" width="660" height="660" decoding="async"><img loading="lazy" src="images/street-13.webp" alt="Custom streetwear garment" width="660" height="660" decoding="async"><img loading="lazy" src="images/street-14.webp" alt="Custom streetwear garment" width="660" height="660" decoding="async"><img loading="lazy" src="images/street-15.webp" alt="Custom streetwear garment" width="660" height="660" decoding="async"><img loading="lazy" src="images/street-16.webp" alt="Custom streetwear garment" width="660" height="660" decoding="async"></div></div>
+</section>
+
+
+
+
 
 <section id="products" style="background:#f7f7f7;padding:80px 5%;font-family:var(--font-body);overflow:hidden;scroll-margin-top:80px;"><style>
 .pg-card .pg-img-1{transition:opacity .4s ease}

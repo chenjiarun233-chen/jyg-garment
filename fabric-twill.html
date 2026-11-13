@@ -117,14 +117,28 @@ h1{font-family:var(--font-heading);font-weight:900}
  ]
 }
 </script>
+<style id="nav-mobile">
+@media (max-width:640px){
+  header nav{gap:12px!important}
+  header nav a[href="index.html#fabric"],
+  header nav a[href="index.html#craftsmanship"]{display:none!important}
+  header nav a[href="catalog.html"]{font-size:.82rem!important;white-space:nowrap}
+  header nav a[href*="forms.gle"]{padding:7px 11px!important;font-size:.72rem!important;white-space:nowrap}
+}
+</style>
+<style id="spec-note-css">
+.spec-note{margin:14px 0 0;font-size:.82rem;line-height:1.65;color:#666}
+@media (max-width:860px){.spec-note{font-size:.78rem;margin-top:12px}}
+</style>
 </head>
 <body>
 <header style="position:fixed;top:0;left:0;width:100%;z-index:1000;background:rgba(255,255,255,0.9);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,0,0,.07);font-family:var(--font-body);">
     <div style="max-width:1200px;margin:0 auto;padding:15px 5%;display:flex;justify-content:space-between;align-items:center;">
         <a href="index.html" style="font-size:1.4rem;font-weight:900;color:#111;letter-spacing:-0.5px;text-decoration:none;display:inline-block;">JYG<span style="color:#8A6410;">garment</span></a>
         <nav style="display:flex;gap:26px;align-items:center;">
-            <a href="index.html#craftsmanship" style="color:#111;text-decoration:none;font-size:0.92rem;font-weight:700;">All Crafts</a>
-            <a href="catalog.html" style="color:#111;text-decoration:none;font-size:0.92rem;font-weight:700;">Catalog</a>
+            <a href="index.html#fabric" style="color:#8A6410;text-decoration:none;font-size:0.92rem;font-weight:700;transition:0.3s;" onmouseover="this.style.color='#8A6410'" onmouseout="this.style.color='#8A6410'">Fabrics</a>
+            <a href="index.html#craftsmanship" style="color:#111;text-decoration:none;font-size:0.92rem;font-weight:700;transition:0.3s;" onmouseover="this.style.color='#8A6410'" onmouseout="this.style.color='#111'">Crafts</a>
+            <a href="catalog.html" style="color:#111;text-decoration:none;font-size:0.92rem;font-weight:700;transition:0.3s;" onmouseover="this.style.color='#8A6410'" onmouseout="this.style.color='#111'">Catalog</a>
             <a href="https://forms.gle/3CfexRc11pb5HynY6" target="_blank" rel="noopener" style="background:#D4A843;color:#000;padding:8px 18px;border-radius:4px;text-decoration:none;font-size:0.88rem;font-weight:800;text-transform:uppercase;">Contact Us</a>
         </nav>
     </div>
@@ -138,19 +152,19 @@ h1{font-family:var(--font-heading);font-weight:900}
 <div class="craft-info">
 <p class="eyebrow">Fabric Library</p>
 <h1>Twill</h1>
-<p class="lede">A woven with a diagonal line running through it &mdash; denser and more abrasion-resistant than a plain weave.</p>
+<p class="lede">A durable woven fabric recognized by its distinctive diagonal surface lines and strong, versatile construction.</p>
 <div class="body">
-<p>Twill is a woven construction where the weft crosses over two or more warp threads on each pass, stepping one thread sideways each time. That offset produces the diagonal rib the fabric is named for, and a denser, stronger cloth than a plain weave at the same yarn count.</p>
-<p>It is a woven, not a knit, so it does not stretch unless elastane is added. Weight decides the end use: light twills drape into shirts and overshirts, heavy twills hold a crease in chinos, work jackets and chore coats.</p>
+<p>Twill is created using a diagonal weave that gives the fabric a smooth yet textured appearance. It is generally more durable and resistant to everyday wear than plain-weave fabrics, while offering a good balance of structure, flexibility and comfort.</p>
 </div>
 <dl class="facts">
-<div><dt>Structure</dt><dd>2/1 or 3/1 twill weave (woven)</dd></div>
-<div><dt>Composition</dt><dd>Cotton, cotton-elastane, or blends</dd></div>
-<div><dt>Weight</dt><dd>120&ndash;320 gsm depending on end use</dd></div>
+<div><dt>Structure</dt><dd>Woven construction with a distinctive diagonal rib pattern</dd></div>
+<div><dt>Composition</dt><dd>Usually cotton, polyester, cotton-polyester blends or elastane blends</dd></div>
+<div><dt>Weight</dt><dd>180&ndash;350 gsm typical</dd></div>
 <div><dt>Width</dt><dd>145&ndash;160 cm</dd></div>
-<div><dt>Handfeel</dt><dd>Dense, dry, diagonal rib</dd></div>
-<div><dt>Best for</dt><dd>Chinos, work jackets, overshirts, denim alternatives</dd></div>
+<div><dt>Handfeel</dt><dd>Smooth, durable, substantial and slightly structured</dd></div>
+<div><dt>Best for</dt><dd>Chinos, trousers, overshirts, jackets, uniforms and workwear</dd></div>
 </dl>
+<p class="spec-note">Fabric specifications may vary depending on material composition, construction and finishing requirements. Custom weights, widths and fabric blends are available upon request.</p>
 <p class="refs-title">Made in this fabric</p>
 <div class="refs">
 <figure><img loading="lazy" src="images/fabrics/twill-1.webp" alt="Twill custom garment reference 1" width="657" height="849" decoding="async"><figcaption>Reference garment 1</figcaption></figure>

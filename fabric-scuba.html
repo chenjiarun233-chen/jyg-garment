@@ -117,14 +117,28 @@ h1{font-family:var(--font-heading);font-weight:900}
  ]
 }
 </script>
+<style id="nav-mobile">
+@media (max-width:640px){
+  header nav{gap:12px!important}
+  header nav a[href="index.html#fabric"],
+  header nav a[href="index.html#craftsmanship"]{display:none!important}
+  header nav a[href="catalog.html"]{font-size:.82rem!important;white-space:nowrap}
+  header nav a[href*="forms.gle"]{padding:7px 11px!important;font-size:.72rem!important;white-space:nowrap}
+}
+</style>
+<style id="spec-note-css">
+.spec-note{margin:14px 0 0;font-size:.82rem;line-height:1.65;color:#666}
+@media (max-width:860px){.spec-note{font-size:.78rem;margin-top:12px}}
+</style>
 </head>
 <body>
 <header style="position:fixed;top:0;left:0;width:100%;z-index:1000;background:rgba(255,255,255,0.9);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,0,0,.07);font-family:var(--font-body);">
     <div style="max-width:1200px;margin:0 auto;padding:15px 5%;display:flex;justify-content:space-between;align-items:center;">
         <a href="index.html" style="font-size:1.4rem;font-weight:900;color:#111;letter-spacing:-0.5px;text-decoration:none;display:inline-block;">JYG<span style="color:#8A6410;">garment</span></a>
         <nav style="display:flex;gap:26px;align-items:center;">
-            <a href="index.html#craftsmanship" style="color:#111;text-decoration:none;font-size:0.92rem;font-weight:700;">All Crafts</a>
-            <a href="catalog.html" style="color:#111;text-decoration:none;font-size:0.92rem;font-weight:700;">Catalog</a>
+            <a href="index.html#fabric" style="color:#8A6410;text-decoration:none;font-size:0.92rem;font-weight:700;transition:0.3s;" onmouseover="this.style.color='#8A6410'" onmouseout="this.style.color='#8A6410'">Fabrics</a>
+            <a href="index.html#craftsmanship" style="color:#111;text-decoration:none;font-size:0.92rem;font-weight:700;transition:0.3s;" onmouseover="this.style.color='#8A6410'" onmouseout="this.style.color='#111'">Crafts</a>
+            <a href="catalog.html" style="color:#111;text-decoration:none;font-size:0.92rem;font-weight:700;transition:0.3s;" onmouseover="this.style.color='#8A6410'" onmouseout="this.style.color='#111'">Catalog</a>
             <a href="https://forms.gle/3CfexRc11pb5HynY6" target="_blank" rel="noopener" style="background:#D4A843;color:#000;padding:8px 18px;border-radius:4px;text-decoration:none;font-size:0.88rem;font-weight:800;text-transform:uppercase;">Contact Us</a>
         </nav>
     </div>
@@ -138,19 +152,19 @@ h1{font-family:var(--font-heading);font-weight:900}
 <div class="craft-info">
 <p class="eyebrow">Fabric Library</p>
 <h1>Scuba</h1>
-<p class="lede">A bonded double-face knit with a clean, structured hand &mdash; it holds a crease and a shape that jersey cannot.</p>
+<p class="lede">A smooth, structured double-knit fabric that offers a clean appearance with a soft, slightly spongy feel.</p>
 <div class="body">
-<p>Scuba is a double-face knit, often with a light bonding layer between the two faces, usually in polyester with a small elastane content. It is thicker and denser than jersey and it does not drape softly: it holds the shape it is cut into.</p>
-<p>That makes it the fabric for structured dresses, neat joggers and neoprene-style outerwear, where the silhouette is the design. Seams sit flat and edges can be left raw without curling, which is why it also suits clean, minimal finishing.</p>
+<p>Scuba fabric is made with two knitted layers, giving it more body and stability than ordinary jersey. Its smooth surface, slight stretch and excellent shape retention make it a popular choice for modern silhouettes that require structure without feeling overly stiff.</p>
 </div>
 <dl class="facts">
-<div><dt>Structure</dt><dd>Bonded double-face knit</dd></div>
-<div><dt>Composition</dt><dd>Polyester with a small elastane content</dd></div>
-<div><dt>Weight</dt><dd>220&ndash;300 gsm typical</dd></div>
+<div><dt>Structure</dt><dd>Double-knit construction with a compact, smooth surface</dd></div>
+<div><dt>Composition</dt><dd>Usually polyester and elastane, sometimes blended with rayon or other fibers</dd></div>
+<div><dt>Weight</dt><dd>250&ndash;350 gsm typical</dd></div>
 <div><dt>Width</dt><dd>150&ndash;180 cm</dd></div>
-<div><dt>Handfeel</dt><dd>Dense, smooth, holds a crease</dd></div>
-<div><dt>Best for</dt><dd>Structured dresses, joggers, neoprene-style outerwear</dd></div>
+<div><dt>Handfeel</dt><dd>Smooth, soft, springy and slightly structured</dd></div>
+<div><dt>Best for</dt><dd>Structured hoodies, sweatshirts, dresses, skirts, jackets and contemporary casualwear</dd></div>
 </dl>
+<p class="spec-note">Fabric specifications may vary depending on material composition, construction and finishing requirements. Custom weights, widths and fabric blends are available upon request.</p>
 <p class="refs-title">Made in this fabric</p>
 <div class="refs">
 <figure><img loading="lazy" src="images/fabrics/scuba-1.webp" alt="Scuba custom garment reference 1" width="693" height="614" decoding="async"><figcaption>Reference garment 1</figcaption></figure>
@@ -160,7 +174,7 @@ h1{font-family:var(--font-heading);font-weight:900}
 <div class="craft-cta">
 <p>Want to see the full Scuba range, weights and colours at the mill? Or send us your spec and we will come back with a costed quote.</p>
 <div class="fab-btns">
-<a class="btn-mill" href="https://jufengtextile.en.alibaba.com/search/product?SearchText=Scuba" target="_blank" rel="nofollow noopener">Browse Scuba at our mill &rarr;</a>
+<a class="btn-mill" href="https://jufengtextile.en.alibaba.com/search/product?SearchText=Lyocell" target="_blank" rel="nofollow noopener">Browse Scuba at our mill &rarr;</a>
 <a class="btn-quote" href="https://forms.gle/3CfexRc11pb5HynY6" target="_blank" rel="noopener">Request a quote</a>
 </div>
 <p class="mill-note">Opens our fabric partner Jufeng Textile on Alibaba.com in a new tab.</p>

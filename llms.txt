@@ -26,6 +26,7 @@
 - Design service: free (tech pack work, size chart, pattern making)
 - Shipping: 50+ countries
 - Industries: t-shirts, hoodies and sweatshirts, jackets, snap shirts, private label apparel
+- Fabric library: 12 stocked fabric families (single jersey, double pique, French terry, light and heavy fleece, polar fleece, rib knit, scuba, twill, waffle, jacquard, mesh); fabric links point to partner mill Jufeng Textile on Alibaba.com
 
 ## Product range
 
@@ -50,6 +51,7 @@
 
 - [Home](https://jyggarment.com/): company overview, manufacturing process, facility, team, story and client testimonials
 - [Product Catalog](https://jyggarment.com/catalog.html): 16 custom garment styles available for manufacturing quotes
+- [Fabric Library](https://jyggarment.com/index.html#fabric): the 12 fabrics we build garments from, each with its own page
 - [Request a quote](https://forms.gle/3CfexRc11pb5HynY6): quote form for custom production
 - [Sitemap](https://jyggarment.com/sitemap.xml)
 
@@ -87,6 +89,21 @@
 - [3D Embossing](https://jyggarment.com/craft-3d-embossing.html)
 - [Towel Embroidery](https://jyggarment.com/craft-towel-embroidery.html)
 - [Acid Wash](https://jyggarment.com/craft-acid-wash.html)
+
+### Fabric library pages (12)
+
+- [Double Pique](https://jyggarment.com/fabric-double-pique.html): polos, golf shirts, uniform tops, knit dresses
+- [French Terry](https://jyggarment.com/fabric-french-terry.html): sweatshirts, hoodies, shorts, lounge sets
+- [Heavy Fleece](https://jyggarment.com/fabric-heavy-fleece.html): heavyweight hoodies, winter crews, varsity bodies
+- [Jacquard](https://jyggarment.com/fabric-jacquard.html): statement knits, logo panels, textured outerwear
+- [Light Fleece](https://jyggarment.com/fabric-light-fleece.html): mid-weight hoodies, kids' wear, layering pieces
+- [Mesh](https://jyggarment.com/fabric-mesh.html): sports jerseys, linings, vent panels, caps
+- [Polar Fleece](https://jyggarment.com/fabric-polar-fleece.html): zip jackets, gilets, linings, outdoor mid-layers
+- [Rib Knit](https://jyggarment.com/fabric-rib-knit.html): cuffs, collars, hems, neckbands, fitted bodies
+- [Scuba](https://jyggarment.com/fabric-scuba.html): structured dresses, joggers, neoprene-style outerwear
+- [Single Jersey](https://jyggarment.com/fabric-single-jersey.html): t-shirts, long sleeves, base layers
+- [Twill](https://jyggarment.com/fabric-twill.html): chinos, work jackets, overshirts, denim alternatives
+- [Waffle](https://jyggarment.com/fabric-waffle.html): thermal long sleeves, henleys, lounge sets
 
 ## Social profiles
 

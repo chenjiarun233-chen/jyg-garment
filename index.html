@@ -922,7 +922,7 @@ if(!('IntersectionObserver' in window)){go();return}new IntersectionObserver(fun
 .pk-row::-webkit-scrollbar,.mq-row::-webkit-scrollbar,.ml-row::-webkit-scrollbar,
 .dt-row::-webkit-scrollbar{display:none!important;width:0!important;height:0!important}
 .street-row.is-drag,.fab-row.is-drag,.craft-row.is-drag,.pk-row.is-drag,
-.mq-row.is-drag,.ml-row.is-drag,.dt-row.is-drag{cursor:grabbing}
+.mq-row.is-drag,.ml-row.is-drag,.dt-row.is-drag{cursor:grabbing;-webkit-user-select:none;user-select:none}
 .street-row.is-drag img,.fab-row.is-drag img,.craft-row.is-drag img,.pk-row.is-drag img,
 .mq-row.is-drag img,.ml-row.is-drag img,.dt-row.is-drag img{pointer-events:none}
 .fab-track>a{display:block;flex:0 0 auto;line-height:0;text-decoration:none}
@@ -965,26 +965,37 @@ if(!('IntersectionObserver' in window)){go();return}new IntersectionObserver(fun
     row.addEventListener('pointerenter',function(e){if(e.pointerType==='mouse'&&!o.down)o.paused=true;});
     row.addEventListener('pointerleave',function(e){if(e.pointerType==='mouse'&&!o.down)o.paused=false;});
 
-    /* desktop: click-and-drag */
+    /* desktop: click-and-drag.
+       Pointer capture and preventDefault are deliberately NOT called on pointerdown:
+       capturing there retargets pointerup to the row, so the browser builds the
+       compatible click on the row instead of the <a> inside it and the link dies.
+       A press that never leaves the 4px threshold must stay an ordinary click. */
     var sx=0,sl=0,moved=false;
     row.addEventListener('pointerdown',function(e){
       if(e.pointerType!=='mouse'){o.paused=true;return;}
       o.down=true;moved=false;sx=e.clientX;sl=row.scrollLeft;
-      row.classList.add('is-drag');
-      try{row.setPointerCapture(e.pointerId);}catch(err){}
-      e.preventDefault();
     });
     row.addEventListener('pointermove',function(e){
       if(!o.down||e.pointerType!=='mouse')return;
       var dx=e.clientX-sx;
-      if(Math.abs(dx)>4)moved=true;
-      row.scrollLeft=sl-dx;                            /* drag past the seam is fine */
+      if(!moved){
+        if(Math.abs(dx)<=4)return;            /* still a click, not a drag */
+        moved=true;
+        row.classList.add('is-drag');
+        try{row.setPointerCapture(e.pointerId);}catch(err){}
+      }
+      e.preventDefault();
+      row.scrollLeft=sl-dx;                   /* drag past the seam is fine */
     });
+    row.addEventListener('dragstart',function(e){e.preventDefault();});
     function endDrag(e){
       if(!o.down)return;
       o.down=false;row.classList.remove('is-drag');
-      try{row.releasePointerCapture(e.pointerId);}catch(err){}
-      if(moved){row.dataset.noClick='1';setTimeout(function(){delete row.dataset.noClick;},90);}
+      if(moved){
+        try{row.releasePointerCapture(e.pointerId);}catch(err){}
+        row.dataset.noClick='1';
+        setTimeout(function(){delete row.dataset.noClick;},90);
+      }
       o.paused=false;
     }
     row.addEventListener('pointerup',endDrag);

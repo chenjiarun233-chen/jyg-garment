@@ -645,10 +645,10 @@ if(!('IntersectionObserver' in window)){go();return}new IntersectionObserver(fun
 
 /* ---------- cards ---------- */
 #garment-builder .gb-grid{display:grid;gap:14px}
-#garment-builder .gb-grid.c2{grid-template-columns:repeat(2,1fr)}
+#garment-builder .gb-grid.c2{grid-template-columns:repeat(2,minmax(0,420px))}
 #garment-builder .gb-grid.c3{grid-template-columns:repeat(3,1fr)}
 #garment-builder .gb-grid.c4{grid-template-columns:repeat(4,1fr)}
-#garment-builder .gb-card{position:relative;display:flex;flex-direction:column;width:100%;padding:0;background:#fff;border:1.5px solid rgba(17,17,17,.12);border-radius:8px;cursor:pointer;text-align:left;font-family:inherit;overflow:hidden;transition:border-color .2s,box-shadow .2s}
+#garment-builder .gb-card{position:relative;display:block;width:100%;padding:0;background:#fff;border:1.5px solid rgba(17,17,17,.12);border-radius:8px;cursor:pointer;text-align:left;font-family:inherit;overflow:hidden;transition:border-color .2s,box-shadow .2s}
 #garment-builder .gb-card:hover{border-color:rgba(138,100,16,.55);box-shadow:0 8px 20px rgba(0,0,0,.07)}
 #garment-builder .gb-card:focus-visible{outline:2px solid #8A6410;outline-offset:2px}
 #garment-builder .gb-card[aria-pressed="true"]{border-color:#8A6410;box-shadow:inset 0 0 0 1px #8A6410,0 8px 20px rgba(138,100,16,.12)}
@@ -658,23 +658,18 @@ if(!('IntersectionObserver' in window)){go();return}new IntersectionObserver(fun
     engines silently drop `aspect-ratio`, which collapsed this box to 0px and
     made the product images invisible. padding-top on a pseudo element works
     in every engine back to IE10, so the thumb always has a height. */
- /* Thumbnails are painted as a CSS BACKGROUND on this span - there is no <img>
-    element at all. Reason: on the client's device an <img> that decoded correctly
-    (naturalWidth > 0) still failed to paint inside a rotated/rounded, overflow:
-    hidden card, which left an empty box. A background image is drawn by the
-    normal background paint path, so it is immune to that clipping behaviour, and
-    it also removes every aspect-ratio / percentage-padding dependency: the height
-    below is a plain pixel value that cannot collapse.
-    Two consequences worth remembering:
-      1. `contain` keeps the whole garment visible at any box size.
-      2. If the PNG cannot be fetched, auditImages() labels the box instead of
-         letting it stay blank. */
- #garment-builder .gb-thumb{position:relative;display:block;flex:0 0 auto;height:420px;overflow:hidden;
-   background-color:#f1f0ee;background-repeat:no-repeat;background-position:center center;background-size:contain;
-   border-bottom:1px solid rgba(17,17,17,.06)}
- #garment-builder .gb-thumb.sq{height:210px}
- #garment-builder .gb-thumb[data-imgfail]:after{content:"Preview unavailable ";position:absolute;left:0;right:0;bottom:10px;text-align:center;font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:rgba(17,17,17,.45)}
-#garment-builder .gb-meta{padding:13px 14px 15px}
+ /* Thumbnails are a plain <img> carrying width/height attributes - nothing else.
+    Everything that can blank a picture on a non-Blink engine has been removed on
+    purpose: flexbox on the <button>, aspect-ratio, percentage padding,
+    object-fit, CSS-background painting, WebP decoding and lazy loading.
+    width="800" height="800" hands the engine an intrinsic 1:1 ratio before any
+    CSS is applied, so the box cannot collapse, and every file is a baseline-safe
+    JPEG, so no image decoder is a risk either. */
+ #garment-builder .gb-thumb{position:relative;display:block;width:100%;overflow:hidden;
+   background-color:#f1f0ee;border-bottom:1px solid rgba(17,17,17,.06);line-height:0}
+ #garment-builder .gb-thumb img{display:block;width:100%;height:auto;margin:0;padding:0;border:0}
+ #garment-builder .gb-thumb[data-imgfail]:after{content:"Preview unavailable";position:absolute;left:0;right:0;bottom:10px;text-align:center;font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:rgba(17,17,17,.45)}
+#garment-builder .gb-meta{display:block;padding:13px 14px 15px}
 #garment-builder .gb-meta h3{margin:0 0 4px;font-size:.92rem;font-weight:800;color:#111}
 #garment-builder .gb-meta p{margin:0;font-size:.78rem;line-height:1.5;color:rgba(17,17,17,.58)}
 
@@ -756,8 +751,6 @@ if(!('IntersectionObserver' in window)){go();return}new IntersectionObserver(fun
 }
 @media(max-width:420px){
   #garment-builder .gb-grid.c2{gap:10px}
-  #garment-builder .gb-thumb{height:168px}
-  #garment-builder .gb-thumb.sq{height:140px}
   #garment-builder .gb-meta{padding:10px 10px 12px}
   #garment-builder .gb-meta h3{font-size:.84rem}
   #garment-builder .gb-meta p{font-size:.72rem;line-height:1.45}
@@ -787,12 +780,12 @@ if(!('IntersectionObserver' in window)){go();return}new IntersectionObserver(fun
 <div class="gb-grid c2" data-group="product">
 <button type="button" class="gb-card" data-val="tshirt" aria-pressed="false">
 <span class="ck">&#10003;</span>
-<span class="gb-thumb" role="img" aria-label="Technical flat of a white crew neck T-shirt" data-img="images/builder/t-shirt.png" style="background-image:url(images/builder/t-shirt.png)"></span>
+<span class="gb-thumb" data-img="images/builder/t-shirt.jpg"><img src="images/builder/t-shirt.jpg" alt="Technical flat of a white crew neck T-shirt" width="800" height="800" loading="eager" decoding="async" onerror="this.parentNode.setAttribute('data-imgfail','1')"></span>
 <span class="gb-meta"><h3>T-Shirt</h3><p>Custom T-Shirts</p></span>
 </button>
 <button type="button" class="gb-card" data-val="sweat" aria-pressed="false">
 <span class="ck">&#10003;</span>
-<span class="gb-thumb" role="img" aria-label="Technical flat of a grey crew neck sweatshirt" data-img="images/builder/sweatshirt.png" style="background-image:url(images/builder/sweatshirt.png)"></span>
+<span class="gb-thumb" data-img="images/builder/sweatshirt.jpg"><img src="images/builder/sweatshirt.jpg" alt="Technical flat of a grey crew neck sweatshirt" width="800" height="800" loading="eager" decoding="async" onerror="this.parentNode.setAttribute('data-imgfail','1')"></span>
 <span class="gb-meta"><h3>Sweatshirt / Hoodie</h3><p>Custom Sweatshirts &amp; Hoodies</p></span>
 </button>
 </div>
@@ -805,17 +798,17 @@ if(!('IntersectionObserver' in window)){go();return}new IntersectionObserver(fun
 <div class="gb-grid c3" data-group="fit">
 <button type="button" class="gb-card" data-val="regular" aria-pressed="false">
 <span class="ck">&#10003;</span>
-<span class="gb-thumb" role="img" aria-label="Regular fit technical illustration" data-fit-img="regular" data-img="images/builder/t-shirt.png" style="background-image:url(images/builder/t-shirt.png)"></span>
+<span class="gb-thumb" data-fit-img="regular" data-img="images/builder/t-shirt.jpg"><img src="images/builder/t-shirt.jpg" alt="Regular fit technical illustration" width="800" height="800" loading="eager" decoding="async" onerror="this.parentNode.setAttribute('data-imgfail','1')"></span>
 <span class="gb-meta"><h3>Regular Fit</h3><p>A classic silhouette with balanced proportions and a comfortable fit.</p></span>
 </button>
 <button type="button" class="gb-card" data-val="raglan" aria-pressed="false">
 <span class="ck">&#10003;</span>
-<span class="gb-thumb" role="img" aria-label="Raglan fit technical illustration" data-fit-img="raglan" data-img="images/builder/fit-raglan-tee.png" style="background-image:url(images/builder/fit-raglan-tee.png)"></span>
+<span class="gb-thumb" data-fit-img="raglan" data-img="images/builder/fit-raglan-tee.jpg"><img src="images/builder/fit-raglan-tee.jpg" alt="Raglan fit technical illustration" width="800" height="800" loading="eager" decoding="async" onerror="this.parentNode.setAttribute('data-imgfail','1')"></span>
 <span class="gb-meta"><h3>Raglan Fit</h3><p>Diagonal shoulder seams extending to the neckline for greater freedom of movement.</p></span>
 </button>
 <button type="button" class="gb-card" data-val="drop" aria-pressed="false">
 <span class="ck">&#10003;</span>
-<span class="gb-thumb" role="img" aria-label="Drop shoulder fit technical illustration" data-fit-img="drop" data-img="images/builder/fit-drop-tee.png" style="background-image:url(images/builder/fit-drop-tee.png)"></span>
+<span class="gb-thumb" data-fit-img="drop" data-img="images/builder/fit-drop-tee.jpg"><img src="images/builder/fit-drop-tee.jpg" alt="Drop shoulder fit technical illustration" width="800" height="800" loading="eager" decoding="async" onerror="this.parentNode.setAttribute('data-imgfail','1')"></span>
 <span class="gb-meta"><h3>Drop Shoulder Fit</h3><p>A relaxed silhouette with lowered shoulder seams for an oversized look.</p></span>
 </button>
 </div>
@@ -831,12 +824,12 @@ if(!('IntersectionObserver' in window)){go();return}new IntersectionObserver(fun
 <div class="gb-grid c2" data-group="hem">
 <button type="button" class="gb-card" data-val="ribbed" aria-pressed="false">
 <span class="ck">&#10003;</span>
-<span class="gb-thumb sq" role="img" aria-label="Ribbed hem finish on a hoodie" data-img="images/builder/hem-ribbed.png" style="background-image:url(images/builder/hem-ribbed.png)"></span>
+<span class="gb-thumb" data-img="images/builder/hem-ribbed.jpg"><img src="images/builder/hem-ribbed.jpg" alt="Ribbed hem finish on a hoodie" width="800" height="800" loading="eager" decoding="async" onerror="this.parentNode.setAttribute('data-imgfail','1')"></span>
 <span class="gb-meta"><h3>Ribbed Hem</h3><p>Ribbed elastic waistband for a fitted finish.</p></span>
 </button>
 <button type="button" class="gb-card" data-val="straight" aria-pressed="false">
 <span class="ck">&#10003;</span>
-<span class="gb-thumb sq" role="img" aria-label="Straight open-bottom hem on a sweatshirt" data-img="images/builder/hem-straight.png" style="background-image:url(images/builder/hem-straight.png)"></span>
+<span class="gb-thumb" data-img="images/builder/hem-straight.jpg"><img src="images/builder/hem-straight.jpg" alt="Straight open-bottom hem on a sweatshirt" width="800" height="800" loading="eager" decoding="async" onerror="this.parentNode.setAttribute('data-imgfail','1')"></span>
 <span class="gb-meta"><h3>Straight Hem</h3><p>Straight open-bottom hem for a relaxed silhouette.</p></span>
 </button>
 </div>
@@ -846,22 +839,22 @@ if(!('IntersectionObserver' in window)){go();return}new IntersectionObserver(fun
 <div class="gb-grid c4" data-group="neck">
 <button type="button" class="gb-card" data-val="crew" aria-pressed="false">
 <span class="ck">&#10003;</span>
-<span class="gb-thumb sq" role="img" aria-label="Crew neck collar detail" data-img="images/builder/collar-crew.png" style="background-image:url(images/builder/collar-crew.png)"></span>
+<span class="gb-thumb" data-img="images/builder/collar-crew.jpg"><img src="images/builder/collar-crew.jpg" alt="Crew neck collar detail" width="800" height="800" loading="eager" decoding="async" onerror="this.parentNode.setAttribute('data-imgfail','1')"></span>
 <span class="gb-meta"><h3>Crew Neck</h3><p>Classic round ribbed neckline.</p></span>
 </button>
 <button type="button" class="gb-card" data-val="hooded" data-only="sweat" aria-pressed="false" hidden>
 <span class="ck">&#10003;</span>
-<span class="gb-thumb sq" role="img" aria-label="Hooded neck construction" data-img="images/builder/collar-hooded.png" style="background-image:url(images/builder/collar-hooded.png)"></span>
+<span class="gb-thumb" data-img="images/builder/collar-hooded.jpg"><img src="images/builder/collar-hooded.jpg" alt="Hooded neck construction" width="800" height="800" loading="eager" decoding="async" onerror="this.parentNode.setAttribute('data-imgfail','1')"></span>
 <span class="gb-meta"><h3>Hooded Neck</h3><p>Two-panel hood with adjustable drawcord.</p></span>
 </button>
 <button type="button" class="gb-card" data-val="stand" data-only="sweat" aria-pressed="false" hidden>
 <span class="ck">&#10003;</span>
-<span class="gb-thumb sq" role="img" aria-label="Stand collar with quarter zip" data-img="images/builder/collar-stand.png" style="background-image:url(images/builder/collar-stand.png)"></span>
+<span class="gb-thumb" data-img="images/builder/collar-stand.jpg"><img src="images/builder/collar-stand.jpg" alt="Stand collar with quarter zip" width="800" height="800" loading="eager" decoding="async" onerror="this.parentNode.setAttribute('data-imgfail','1')"></span>
 <span class="gb-meta"><h3>Stand Collar</h3><p>Raised collar with a quarter zip placket.</p></span>
 </button>
 <button type="button" class="gb-card" data-val="polo" aria-pressed="false">
 <span class="ck">&#10003;</span>
-<span class="gb-thumb sq" role="img" aria-label="Polo collar detail" data-img="images/builder/collar-polo.png" style="background-image:url(images/builder/collar-polo.png)"></span>
+<span class="gb-thumb" data-img="images/builder/collar-polo.jpg"><img src="images/builder/collar-polo.jpg" alt="Polo collar detail" width="800" height="800" loading="eager" decoding="async" onerror="this.parentNode.setAttribute('data-imgfail','1')"></span>
 <span class="gb-meta"><h3>Polo Collar</h3><p>Folded polo collar with a short placket.</p></span>
 </button>
 </div>
@@ -963,8 +956,8 @@ var GSM = {
   ]
 };
 var FITIMG = {
-  tshirt: {regular:"images/builder/t-shirt.png", raglan:"images/builder/fit-raglan-tee.png", drop:"images/builder/fit-drop-tee.png"},
-  sweat:  {regular:"images/builder/sweatshirt.png", raglan:"images/builder/fit-raglan-sweat.png", drop:"images/builder/fit-drop-sweat.png"}
+  tshirt: {regular:"images/builder/t-shirt.jpg", raglan:"images/builder/fit-raglan-tee.jpg", drop:"images/builder/fit-drop-tee.jpg"},
+  sweat:  {regular:"images/builder/sweatshirt.jpg", raglan:"images/builder/fit-raglan-sweat.jpg", drop:"images/builder/fit-drop-sweat.jpg"}
 };
 
 var ROOT = document.getElementById("garment-builder");
@@ -1012,7 +1005,9 @@ function syncProduct(){
     var k = box.getAttribute("data-fit-img");
     if(p && FITIMG[p] && FITIMG[p][k]){
       box.setAttribute("data-img", FITIMG[p][k]);
-      box.style.backgroundImage = "url(" + FITIMG[p][k] + ")";
+      var im = box.querySelector("img");
+      if(im) im.src = FITIMG[p][k];
+      box.removeAttribute("data-imgfail");
     }
   });
 
@@ -1310,24 +1305,19 @@ function submit(){
 }
 
 /* ---------- image safety net ----------
-   A handful of engines report a WebP they cannot decode as "complete" with
-   naturalWidth 0 instead of firing an error event, so an onerror fallback alone
-   still leaves an empty box. This sweep catches that case: any thumbnail that
-   finished loading but has no pixels is pushed to its PNG twin once, and if the
-   PNG fails too the box is labelled so the failure is visible instead of blank. */
+   Every thumbnail is now a real <img>, so a failure shows up as a real error
+   event instead of a silent blank box. The sweep also catches the engine quirk
+   that reports complete=true with naturalWidth 0, and labels the box so a
+   failure is visible rather than silently empty. */
 function auditImages(){
-  var list = $$(".gb-thumb[data-img]");
+  var list = $$(".gb-thumb img");
   for(var i = 0; i < list.length; i++){
-    var box = list[i];
-    var src = box.getAttribute("data-img");
-    if(!src || box.getAttribute("data-probed") === src) continue;
-    box.setAttribute("data-probed", src);
-    (function(b, s){
-      var probe = new Image();
-      probe.onload  = function(){ b.removeAttribute("data-imgfail"); };
-      probe.onerror = function(){ b.setAttribute("data-imgfail", s.split("/").pop()); };
-      probe.src = s;
-    })(box, src);
+    (function(im){
+      var box = im.parentNode;
+      im.onerror = function(){ box.setAttribute("data-imgfail","1"); };
+      im.onload  = function(){ box.removeAttribute("data-imgfail"); };
+      if(im.complete && im.naturalWidth === 0){ box.setAttribute("data-imgfail","1"); }
+    })(list[i]);
   }
 }
 

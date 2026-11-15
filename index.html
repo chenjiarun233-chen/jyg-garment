@@ -610,6 +610,751 @@ if(!('IntersectionObserver' in window)){go();return}new IntersectionObserver(fun
 </div>
 </section>
 
+<!-- ============================================================
+     CUSTOM GARMENT BUILDER  (6-step interactive inquiry form)
+     Self-contained: styles scoped to #garment-builder, vanilla JS.
+     Integrations that still need configuring are listed in GB_CONFIG
+     at the bottom of this section (endpoint / sales email / Dropbox).
+     ============================================================ -->
+<section id="garment-builder" style="background:#ffffff;padding:80px 5%;font-family:var(--font-body);color:#111;scroll-margin-top:80px;">
+<style>
+#garment-builder *{box-sizing:border-box}
+#garment-builder [hidden]{display:none!important}
+#garment-builder .gb-wrap{max-width:1120px;margin:0 auto}
+#garment-builder h2.gb-h{font-size:clamp(1.6rem,3vw,2.2rem);font-weight:900;color:#111;text-align:center;margin:0 0 10px;font-family:var(--font-heading);letter-spacing:-.01em}
+#garment-builder .gb-sub{max-width:640px;margin:0 auto 34px;text-align:center;color:rgba(17,17,17,.6);font-size:1rem;line-height:1.65}
+
+/* ---------- progress ---------- */
+#garment-builder .gb-prog{display:flex;max-width:860px;margin:0 auto 12px;gap:4px}
+#garment-builder .gb-pstep{flex:1;text-align:center;font-size:.66rem;letter-spacing:.07em;text-transform:uppercase;font-weight:800;color:rgba(17,17,17,.32)}
+#garment-builder .gb-pstep .n{display:block;width:26px;height:26px;margin:0 auto 7px;border-radius:50%;border:1.5px solid rgba(17,17,17,.16);background:#fff;color:rgba(17,17,17,.4);font-size:.72rem;line-height:23px;font-weight:800;transition:.25s}
+#garment-builder .gb-pstep.done .n{border-color:#8A6410;color:#8A6410}
+#garment-builder .gb-pstep.on{color:#111}
+#garment-builder .gb-pstep.on .n{background:#8A6410;border-color:#8A6410;color:#fff}
+#garment-builder .gb-bar{max-width:860px;height:3px;margin:0 auto 36px;background:rgba(17,17,17,.08);border-radius:3px;overflow:hidden}
+#garment-builder .gb-bar i{display:block;height:100%;width:16.6%;background:#8A6410;border-radius:3px;transition:width .35s ease}
+
+/* ---------- panes ---------- */
+#garment-builder .gb-pane{display:none}
+#garment-builder .gb-pane.on{display:block;animation:gbIn .3s ease both}
+@keyframes gbIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+#garment-builder .gb-stitle{font-size:1.05rem;font-weight:900;margin:0 0 5px}
+#garment-builder .gb-ssub{margin:0 0 22px;font-size:.86rem;line-height:1.6;color:rgba(17,17,17,.58)}
+#garment-builder .gb-grouph{font-size:.74rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:#8A6410;margin:26px 0 12px}
+#garment-builder .gb-grouph:first-of-type{margin-top:0}
+
+/* ---------- cards ---------- */
+#garment-builder .gb-grid{display:grid;gap:14px}
+#garment-builder .gb-grid.c2{grid-template-columns:repeat(2,1fr)}
+#garment-builder .gb-grid.c3{grid-template-columns:repeat(3,1fr)}
+#garment-builder .gb-grid.c4{grid-template-columns:repeat(4,1fr)}
+#garment-builder .gb-card{position:relative;display:flex;flex-direction:column;width:100%;padding:0;background:#fff;border:1.5px solid rgba(17,17,17,.12);border-radius:8px;cursor:pointer;text-align:left;font-family:inherit;overflow:hidden;transition:border-color .2s,box-shadow .2s}
+#garment-builder .gb-card:hover{border-color:rgba(138,100,16,.55);box-shadow:0 8px 20px rgba(0,0,0,.07)}
+#garment-builder .gb-card:focus-visible{outline:2px solid #8A6410;outline-offset:2px}
+#garment-builder .gb-card[aria-pressed="true"]{border-color:#8A6410;box-shadow:inset 0 0 0 1px #8A6410,0 8px 20px rgba(138,100,16,.12)}
+#garment-builder .gb-card .ck{position:absolute;top:9px;right:9px;width:21px;height:21px;border-radius:50%;background:#8A6410;color:#fff;font-size:12px;line-height:21px;text-align:center;opacity:0;transform:scale(.6);transition:.18s}
+#garment-builder .gb-card[aria-pressed="true"] .ck{opacity:1;transform:scale(1)}
+#garment-builder .gb-thumb{--gb-pad:12px;position:relative;background:#fafaf9;aspect-ratio:4/5;overflow:hidden;border-bottom:1px solid rgba(17,17,17,.06)}
+#garment-builder .gb-thumb img{position:absolute;top:var(--gb-pad);left:var(--gb-pad);width:calc(100% - var(--gb-pad)*2);height:calc(100% - var(--gb-pad)*2);object-fit:contain;display:block}
+#garment-builder .gb-thumb.sq{aspect-ratio:1/1}
+#garment-builder .gb-meta{padding:13px 14px 15px}
+#garment-builder .gb-meta h3{margin:0 0 4px;font-size:.92rem;font-weight:800;color:#111}
+#garment-builder .gb-meta p{margin:0;font-size:.78rem;line-height:1.5;color:rgba(17,17,17,.58)}
+
+/* ---------- gsm cards ---------- */
+#garment-builder .gb-comp{display:inline-block;margin:0 0 16px;padding:5px 12px;border-radius:14px;background:rgba(138,100,16,.09);color:#8A6410;font-size:.72rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase}
+#garment-builder .gb-card.gsm{padding:18px 16px 20px}
+#garment-builder .gb-card.gsm .num{font-family:var(--font-heading);font-size:2.6rem;font-weight:800;line-height:1;color:#111;display:flex;align-items:baseline;gap:5px}
+#garment-builder .gb-card.gsm .num em{font-style:normal;font-size:.68rem;letter-spacing:.14em;font-weight:900;color:#8A6410;text-transform:uppercase}
+#garment-builder .gb-card.gsm .lbl{font-size:.9rem;font-weight:900;margin:8px 0 12px}
+#garment-builder .gb-card.gsm .temp{display:inline-block;font-size:.72rem;font-weight:800;color:#111;background:rgba(17,17,17,.05);border-radius:20px;padding:4px 11px;margin-bottom:11px}
+#garment-builder .gb-card.gsm .best{margin:0;font-size:.78rem;line-height:1.55;color:rgba(17,17,17,.6)}
+#garment-builder .gb-note{margin:16px 0 0;font-size:.74rem;line-height:1.6;color:rgba(17,17,17,.45)}
+
+/* ---------- review ---------- */
+#garment-builder .gb-rev{border:1.5px solid rgba(17,17,17,.1);border-radius:8px;overflow:hidden}
+#garment-builder .gb-rev .row{display:flex;align-items:center;gap:14px;padding:14px 16px;border-bottom:1px solid rgba(17,17,17,.07)}
+#garment-builder .gb-rev .row:last-child{border-bottom:none}
+#garment-builder .gb-rev .k{flex:0 0 180px;font-size:.72rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:rgba(17,17,17,.42)}
+#garment-builder .gb-rev .v{flex:1;font-size:.92rem;font-weight:700}
+#garment-builder .gb-rev button.e{flex:0 0 auto;padding:0;border:none;background:none;font-family:inherit;font-size:.72rem;font-weight:900;color:#8A6410;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+
+/* ---------- step 6 fields ---------- */
+#garment-builder .gb-fgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+#garment-builder .gb-field{display:flex;flex-direction:column}
+#garment-builder .gb-field.full{grid-column:1/-1}
+#garment-builder .gb-field label{font-size:.72rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:rgba(17,17,17,.5);margin-bottom:7px}
+#garment-builder .gb-field input{width:100%;padding:13px 14px;border:1.5px solid rgba(17,17,17,.14);border-radius:6px;background:#fff;font-family:inherit;font-size:.95rem;color:#111;transition:.18s}
+#garment-builder .gb-field input:focus{outline:none;border-color:#8A6410;box-shadow:0 0 0 3px rgba(138,100,16,.1)}
+#garment-builder .gb-field.bad input{border-color:#b3261e;box-shadow:0 0 0 3px rgba(179,38,30,.08)}
+#garment-builder .gb-err{display:none;margin-top:6px;font-size:.73rem;font-weight:700;color:#b3261e}
+#garment-builder .gb-field.bad .gb-err{display:block}
+#garment-builder .gb-drop{margin-top:4px;border:1.5px dashed rgba(17,17,17,.2);border-radius:8px;background:#fcfcfb;padding:26px 18px;text-align:center;cursor:pointer;transition:.2s}
+#garment-builder .gb-drop.over{border-color:#8A6410;background:rgba(138,100,16,.05)}
+#garment-builder .gb-drop h4{margin:0 0 6px;font-size:.94rem;font-weight:900}
+#garment-builder .gb-drop p{margin:0 0 14px;font-size:.78rem;line-height:1.55;color:rgba(17,17,17,.55)}
+#garment-builder .gb-drop .browse{display:inline-block;padding:10px 20px;border-radius:5px;background:#111;color:#fff;font-size:.76rem;font-weight:900;letter-spacing:.04em}
+#garment-builder .gb-flist{list-style:none;margin:12px 0 0;padding:0;display:flex;flex-direction:column;gap:8px}
+#garment-builder .gb-flist li{display:flex;align-items:center;gap:10px;padding:9px 12px;border:1px solid rgba(17,17,17,.1);border-radius:6px;background:#fff;font-size:.8rem}
+#garment-builder .gb-flist .nm{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:700}
+#garment-builder .gb-flist .sz{flex:0 0 auto;color:rgba(17,17,17,.45);font-size:.74rem;font-weight:700}
+#garment-builder .gb-flist button{flex:0 0 auto;width:22px;height:22px;border:none;border-radius:50%;background:rgba(17,17,17,.06);color:#111;font-size:13px;line-height:1;cursor:pointer}
+#garment-builder .gb-flist button:hover{background:rgba(179,38,30,.12);color:#b3261e}
+
+/* ---------- nav ---------- */
+#garment-builder .gb-nav{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:32px}
+#garment-builder .gb-btn{font-family:inherit;font-size:.78rem;font-weight:900;letter-spacing:.07em;text-transform:uppercase;padding:14px 28px;border-radius:5px;border:1.5px solid transparent;cursor:pointer;transition:.2s}
+#garment-builder .gb-btn.prev{background:#fff;border-color:rgba(17,17,17,.18);color:#111}
+#garment-builder .gb-btn.prev:hover:not(:disabled){border-color:#111}
+#garment-builder .gb-btn.next{background:#8A6410;color:#fff;border-color:#8A6410}
+#garment-builder .gb-btn.next:hover:not(:disabled){background:#6f4f0c;border-color:#6f4f0c}
+#garment-builder .gb-btn:disabled{opacity:.45;cursor:not-allowed}
+#garment-builder .gb-btn.wide{width:100%;justify-content:center}
+
+/* ---------- result ---------- */
+#garment-builder .gb-result{display:none;margin-top:26px;border:1.5px solid rgba(138,100,16,.35);border-radius:8px;background:rgba(138,100,16,.04);padding:24px}
+#garment-builder .gb-result.on{display:block}
+#garment-builder .gb-result h3{margin:0 0 10px;font-size:1.05rem;font-weight:900}
+#garment-builder .gb-result p{margin:0 0 14px;font-size:.86rem;line-height:1.65;color:rgba(17,17,17,.7)}
+#garment-builder .gb-result .acts{display:flex;flex-wrap:wrap;gap:10px}
+#garment-builder .gb-result a.gb-btn,#garment-builder .gb-result button.gb-btn{display:inline-flex;align-items:center;justify-content:center;text-decoration:none}
+#garment-builder .gb-warn{margin:16px 0 0;padding:12px 14px;border-left:3px solid #8A6410;background:rgba(138,100,16,.06);font-size:.76rem;line-height:1.6;color:rgba(17,17,17,.7)}
+
+/* ---------- responsive ---------- */
+@media(max-width:860px){
+  #garment-builder .gb-grid.c4{grid-template-columns:repeat(2,1fr)}
+  #garment-builder .gb-rev .k{flex-basis:130px}
+}
+@media(max-width:640px){
+  #garment-builder{padding:60px 5%}
+  #garment-builder .gb-prog{margin-bottom:10px}
+  #garment-builder .gb-pstep{font-size:0}
+  #garment-builder .gb-pstep .n{font-size:.7rem;width:24px;height:24px;line-height:21px;margin-bottom:0}
+  #garment-builder .gb-grid.c3{grid-template-columns:repeat(2,1fr)}
+  #garment-builder .gb-fgrid{grid-template-columns:1fr}
+  #garment-builder .gb-nav{position:sticky;bottom:0;margin-top:24px;padding:12px 0;background:rgba(255,255,255,.97);border-top:1px solid rgba(17,17,17,.07)}
+  #garment-builder .gb-btn{padding:13px 20px;flex:1}
+  #garment-builder .gb-rev .row{flex-wrap:wrap;gap:6px 12px}
+  #garment-builder .gb-rev .k{flex-basis:100%}
+}
+@media(max-width:420px){
+  #garment-builder .gb-grid.c2{gap:10px}
+  #garment-builder .gb-thumb{--gb-pad:8px;aspect-ratio:1/1}
+  #garment-builder .gb-meta{padding:10px 10px 12px}
+  #garment-builder .gb-meta h3{font-size:.84rem}
+  #garment-builder .gb-meta p{font-size:.72rem;line-height:1.45}
+}
+</style>
+
+<div class="gb-wrap">
+<h2 class="gb-h">Build Your Custom Garment</h2>
+<p class="gb-sub">Choose your style, fabric and details. Tell us what you need, and our team will help bring your garment to life.</p>
+
+<div class="gb-prog" aria-hidden="true">
+<div class="gb-pstep on"><span class="n">1</span>Product</div>
+<div class="gb-pstep"><span class="n">2</span>Fit</div>
+<div class="gb-pstep"><span class="n">3</span>Details</div>
+<div class="gb-pstep"><span class="n">4</span>Weight</div>
+<div class="gb-pstep"><span class="n">5</span>Review</div>
+<div class="gb-pstep"><span class="n">6</span>Info</div>
+</div>
+<div class="gb-bar"><i id="gbBar"></i></div>
+
+<form id="gbForm" novalidate autocomplete="on">
+
+<!-- ================= STEP 1 ================= -->
+<div class="gb-pane on" data-pane="1">
+<h3 class="gb-stitle">Select Your Product</h3>
+<p class="gb-ssub">Start with the garment you want us to produce. Everything that follows is tailored to this choice.</p>
+<div class="gb-grid c2" data-group="product">
+<button type="button" class="gb-card" data-val="tshirt" aria-pressed="false">
+<span class="ck">&#10003;</span>
+<span class="gb-thumb"><img src="images/builder/t-shirt.webp" alt="Technical flat of a white crew neck T-shirt" width="667" height="1000" loading="lazy" decoding="async"></span>
+<span class="gb-meta"><h3>T-Shirt</h3><p>Custom T-Shirts</p></span>
+</button>
+<button type="button" class="gb-card" data-val="sweat" aria-pressed="false">
+<span class="ck">&#10003;</span>
+<span class="gb-thumb"><img src="images/builder/sweatshirt.webp" alt="Technical flat of a grey crew neck sweatshirt" width="1000" height="961" loading="lazy" decoding="async"></span>
+<span class="gb-meta"><h3>Sweatshirt / Hoodie</h3><p>Custom Sweatshirts &amp; Hoodies</p></span>
+</button>
+</div>
+</div>
+
+<!-- ================= STEP 2 ================= -->
+<div class="gb-pane" data-pane="2">
+<h3 class="gb-stitle">Choose Your Fit</h3>
+<p class="gb-ssub">Select the silhouette that best matches your design.</p>
+<div class="gb-grid c3" data-group="fit">
+<button type="button" class="gb-card" data-val="regular" aria-pressed="false">
+<span class="ck">&#10003;</span>
+<span class="gb-thumb"><img data-fit-img="regular" src="images/builder/t-shirt.webp" alt="Regular fit technical illustration" width="667" height="1000" loading="lazy" decoding="async"></span>
+<span class="gb-meta"><h3>Regular Fit</h3><p>A classic silhouette with balanced proportions and a comfortable fit.</p></span>
+</button>
+<button type="button" class="gb-card" data-val="raglan" aria-pressed="false">
+<span class="ck">&#10003;</span>
+<span class="gb-thumb"><img data-fit-img="raglan" src="images/builder/fit-raglan-tee.webp" alt="Raglan fit technical illustration" width="667" height="1000" loading="lazy" decoding="async"></span>
+<span class="gb-meta"><h3>Raglan Fit</h3><p>Diagonal shoulder seams extending to the neckline for greater freedom of movement.</p></span>
+</button>
+<button type="button" class="gb-card" data-val="drop" aria-pressed="false">
+<span class="ck">&#10003;</span>
+<span class="gb-thumb"><img data-fit-img="drop" src="images/builder/fit-drop-tee.webp" alt="Drop shoulder fit technical illustration" width="667" height="1000" loading="lazy" decoding="async"></span>
+<span class="gb-meta"><h3>Drop Shoulder Fit</h3><p>A relaxed silhouette with lowered shoulder seams for an oversized look.</p></span>
+</button>
+</div>
+</div>
+
+<!-- ================= STEP 3 ================= -->
+<div class="gb-pane" data-pane="3">
+<h3 class="gb-stitle">Customize Your Details</h3>
+<p class="gb-ssub">Pick the hem finish and neckline construction. Options adapt to the product you selected.</p>
+
+<div class="gb-hem-group" data-hemgroup hidden>
+<div class="gb-grouph">A &middot; Hem Style</div>
+<div class="gb-grid c2" data-group="hem">
+<button type="button" class="gb-card" data-val="ribbed" aria-pressed="false">
+<span class="ck">&#10003;</span>
+<span class="gb-thumb sq"><img src="images/builder/hem-ribbed.webp" alt="Ribbed hem finish on a hoodie" width="423" height="468" loading="lazy" decoding="async"></span>
+<span class="gb-meta"><h3>Ribbed Hem</h3><p>Ribbed elastic waistband for a fitted finish.</p></span>
+</button>
+<button type="button" class="gb-card" data-val="straight" aria-pressed="false">
+<span class="ck">&#10003;</span>
+<span class="gb-thumb sq"><img src="images/builder/hem-straight.webp" alt="Straight open-bottom hem on a sweatshirt" width="438" height="474" loading="lazy" decoding="async"></span>
+<span class="gb-meta"><h3>Straight Hem</h3><p>Straight open-bottom hem for a relaxed silhouette.</p></span>
+</button>
+</div>
+</div>
+
+<div class="gb-grouph">B &middot; Neckline / Collar Style</div>
+<div class="gb-grid c4" data-group="neck">
+<button type="button" class="gb-card" data-val="crew" aria-pressed="false">
+<span class="ck">&#10003;</span>
+<span class="gb-thumb sq"><img src="images/builder/collar-crew.webp" alt="Crew neck collar detail" width="378" height="390" loading="lazy" decoding="async"></span>
+<span class="gb-meta"><h3>Crew Neck</h3><p>Classic round ribbed neckline.</p></span>
+</button>
+<button type="button" class="gb-card" data-val="hooded" data-only="sweat" aria-pressed="false" hidden>
+<span class="ck">&#10003;</span>
+<span class="gb-thumb sq"><img src="images/builder/collar-hooded.webp" alt="Hooded neck construction" width="405" height="393" loading="lazy" decoding="async"></span>
+<span class="gb-meta"><h3>Hooded Neck</h3><p>Two-panel hood with adjustable drawcord.</p></span>
+</button>
+<button type="button" class="gb-card" data-val="stand" data-only="sweat" aria-pressed="false" hidden>
+<span class="ck">&#10003;</span>
+<span class="gb-thumb sq"><img src="images/builder/collar-stand.webp" alt="Stand collar with quarter zip" width="402" height="360" loading="lazy" decoding="async"></span>
+<span class="gb-meta"><h3>Stand Collar</h3><p>Raised collar with a quarter zip placket.</p></span>
+</button>
+<button type="button" class="gb-card" data-val="polo" aria-pressed="false">
+<span class="ck">&#10003;</span>
+<span class="gb-thumb sq"><img src="images/builder/collar-polo.webp" alt="Polo collar detail" width="417" height="366" loading="lazy" decoding="async"></span>
+<span class="gb-meta"><h3>Polo Collar</h3><p>Folded polo collar with a short placket.</p></span>
+</button>
+</div>
+</div>
+
+<!-- ================= STEP 4 ================= -->
+<div class="gb-pane" data-pane="4">
+<h3 class="gb-stitle">Choose Your Fabric Weight</h3>
+<p class="gb-ssub">Select the fabric weight that matches your preferred thickness, comfort and intended use.</p>
+<span class="gb-comp">100% Cotton</span>
+<div class="gb-grid c3" data-group="gsm" id="gbGsm"></div>
+<p class="gb-note">Temperature ranges are approximate and may vary depending on fabric construction, layering and wearing conditions.</p>
+</div>
+
+<!-- ================= STEP 5 ================= -->
+<div class="gb-pane" data-pane="5">
+<h3 class="gb-stitle">Review Your Custom Garment</h3>
+<p class="gb-ssub">Here's a summary of your selections. Please review your preferences before submitting your inquiry.</p>
+<div class="gb-rev" id="gbReview"></div>
+</div>
+
+<!-- ================= STEP 6 ================= -->
+<div class="gb-pane" data-pane="6">
+<h3 class="gb-stitle">Let's Bring Your Design to Life</h3>
+<p class="gb-ssub">Share your contact details and upload your tech pack. Our team will review your requirements and get back to you with the next steps.</p>
+
+<div class="gb-fgrid">
+<div class="gb-field" data-for="name">
+<label for="gbName">Full Name *</label>
+<input id="gbName" name="name" type="text" placeholder="Your name" autocomplete="name" required>
+<span class="gb-err">Please enter your full name.</span>
+</div>
+<div class="gb-field" data-for="phone">
+<label for="gbPhone">Phone Number *</label>
+<input id="gbPhone" name="phone" type="tel" placeholder="+1 555 000 0000" autocomplete="tel" required>
+<span class="gb-err">Please enter a reachable phone number.</span>
+</div>
+<div class="gb-field full" data-for="email">
+<label for="gbEmail">Business Email *</label>
+<input id="gbEmail" name="email" type="email" placeholder="you@company.com" autocomplete="email" required>
+<span class="gb-err">Please enter a valid business email address.</span>
+</div>
+</div>
+
+<div class="gb-grouph">Upload Your Tech Pack</div>
+<div class="gb-field full">
+<div class="gb-drop" id="gbDrop" role="button" tabindex="0" aria-label="Upload your tech pack files">
+<h4>Upload your Tech Pack</h4>
+<p>Upload your design files, technical drawings or reference documents.</p>
+<span class="browse">Drag &amp; Drop Files Here or Browse Files</span>
+<input id="gbFile" type="file" multiple accept=".pdf,.ai,.psd,.jpg,.jpeg,.png,.zip" style="display:none">
+</div>
+<ul class="gb-flist" id="gbFiles"></ul>
+<p class="gb-note" id="gbUploadNote">Optional. Accepted formats: PDF, AI, PSD, JPG, PNG, ZIP.</p>
+</div>
+</div>
+
+<div class="gb-nav">
+<button type="button" class="gb-btn prev" id="gbPrev">Back</button>
+<button type="button" class="gb-btn next" id="gbNext">Continue</button>
+</div>
+</form>
+
+<div class="gb-result" id="gbResult"></div>
+</div>
+
+<script>
+/* ===================================================================
+   CUSTOM GARMENT BUILDER — logic
+   INTEGRATIONS STILL TO CONFIGURE (see GB_CONFIG below):
+     1. endpoint  — POST target that stores the inquiry + emails sales.
+                    While empty, the form NEVER claims a successful send.
+     2. tech pack — no Dropbox / S3 / upload credentials are available,
+                    so files stay in the browser and are only listed.
+   Nothing here simulates a real submission or a real file upload.
+   =================================================================== */
+(function(){
+"use strict";
+
+var CFG = {
+  endpoint: "",                       /* <-- put your form/API URL here */
+  salesEmail: "jyggarment@foxmail.com",
+  inquiryForm: "https://forms.gle/3CfexRc11pb5HynY6",
+  showPoloForSweatshirt: false,       /* spec 6.4 = false · spec 3B = true */
+  maxFileMB: 25
+};
+
+var P  = {tshirt:"T-Shirt", sweat:"Sweatshirt / Hoodie"};
+var F  = {regular:"Regular Fit", raglan:"Raglan Fit", drop:"Drop Shoulder Fit"};
+var H  = {ribbed:"Ribbed Hem", straight:"Straight Hem"};
+var N  = {crew:"Crew Neck", hooded:"Hooded Neck", stand:"Stand Collar", polo:"Polo Collar"};
+var GSM = {
+  tshirt: [
+    {v:200, l:"Lightweight",      t:"18–28°C", b:"Everyday T-shirts, summer basics."},
+    {v:300, l:"Midweight",        t:"15–25°C", b:"Premium T-shirts, relaxed fits."},
+    {v:400, l:"Heavyweight",      t:"10–20°C", b:"Heavyweight T-shirts, streetwear."}
+  ],
+  sweat: [
+    {v:300, l:"Midweight",        t:"12–22°C", b:"Light hoodies, everyday sweatshirts."},
+    {v:400, l:"Heavyweight",      t:"5–18°C",  b:"Premium hoodies, casual streetwear."},
+    {v:500, l:"Ultra Heavyweight",t:"0–12°C",  b:"Heavy hoodies, winter streetwear."}
+  ]
+};
+var FITIMG = {
+  tshirt: {regular:"images/builder/t-shirt.webp", raglan:"images/builder/fit-raglan-tee.webp", drop:"images/builder/fit-drop-tee.webp"},
+  sweat:  {regular:"images/builder/sweatshirt.webp", raglan:"images/builder/fit-raglan-sweat.webp", drop:"images/builder/fit-drop-sweat.webp"}
+};
+
+var ROOT = document.getElementById("garment-builder");
+if(!ROOT) return;
+function $(s){ return ROOT.querySelector(s); }
+function $$(s){ return Array.prototype.slice.call(ROOT.querySelectorAll(s)); }
+function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+function kb(n){ return n<1024 ? n+" B" : (n/1024 < 1024 ? (n/1024).toFixed(0)+" KB" : (n/1048576).toFixed(1)+" MB"); }
+
+var state = {step:1, product:"", fit:"", hem:"", neck:"", gsm:0, files:[], busy:false, sent:false};
+var NOTE_DEFAULT = "Optional. Accepted formats: PDF, AI, PSD, JPG, PNG, ZIP.";
+
+/* ---------- conditional rules ---------- */
+function allowedNecks(p){
+  if(p === "sweat"){
+    var a = ["crew","hooded","stand"];
+    if(CFG.showPoloForSweatshirt) a.push("polo");
+    return a;
+  }
+  return ["crew","polo"];
+}
+function gsmAllowed(p, v){
+  return (GSM[p]||[]).some(function(g){ return g.v === v; });
+}
+
+/* ---------- painting ---------- */
+function paintGroup(group){
+  var box = ROOT.querySelector('[data-group="'+group+'"]');
+  if(!box) return;
+  var cur = group === "gsm" ? String(state.gsm) : state[group];
+  Array.prototype.forEach.call(box.querySelectorAll(".gb-card"), function(c){
+    c.setAttribute("aria-pressed", c.getAttribute("data-val") === cur ? "true" : "false");
+  });
+}
+
+function syncProduct(){
+  var p = state.product;
+  var hemBox = $("[data-hemgroup]");
+  if(hemBox) hemBox.hidden = (p !== "sweat");
+
+  var allowed = allowedNecks(p);
+  $$('[data-group="neck"] .gb-card').forEach(function(c){
+    c.hidden = allowed.indexOf(c.getAttribute("data-val")) < 0;
+  });
+
+  $$("[data-fit-img]").forEach(function(img){
+    var k = img.getAttribute("data-fit-img");
+    if(p && FITIMG[p] && FITIMG[p][k]) img.src = FITIMG[p][k];
+  });
+
+  renderGsm();
+  paintGroup("product");
+  paintGroup("hem");
+  paintGroup("neck");
+  paintGroup("fit");
+}
+
+function renderGsm(){
+  var box = $("#gbGsm");
+  if(!box) return;
+  var list = GSM[state.product] || [];
+  box.innerHTML = list.map(function(g){
+    return '<button type="button" class="gb-card gsm" data-val="'+g.v+'" aria-pressed="'+(state.gsm===g.v?"true":"false")+'">'
+      + '<span class="ck">&#10003;</span>'
+      + '<div class="num">'+g.v+'<em>gsm</em></div>'
+      + '<div class="lbl">'+esc(g.l)+'</div>'
+      + '<div class="temp">'+esc(g.t)+'</div>'
+      + '<p class="best">Best for: '+esc(g.b)+'</p>'
+      + '</button>';
+  }).join("");
+}
+
+/* ---------- review ---------- */
+function renderReview(){
+  var rows = [];
+  function push(k, v, step){ if(v) rows.push({k:k, v:v, step:step}); }
+  push("Product Type", P[state.product], 1);
+  push("Fit", F[state.fit], 2);
+  if(state.product === "sweat") push("Hem Style", H[state.hem], 3);
+  push("Neckline / Collar", N[state.neck], 3);
+  push("Fabric Composition", "100% Cotton", 4);
+  push("Fabric Weight", state.gsm ? state.gsm + " GSM" : "", 4);
+
+  var box = $("#gbReview");
+  box.innerHTML = rows.map(function(r){
+    return '<div class="row"><span class="k">'+esc(r.k)+'</span><span class="v">'+esc(r.v)+'</span>'
+      + '<button type="button" class="e" data-edit="'+r.step+'">Edit</button></div>';
+  }).join("") || '<div class="row"><span class="v">No selections yet.</span></div>';
+}
+
+box_edit_delegate();
+function box_edit_delegate(){
+  $("#gbReview").addEventListener("click", function(e){
+    var b = e.target.closest("[data-edit]");
+    if(b) go(parseInt(b.getAttribute("data-edit"),10));
+  });
+}
+
+/* ---------- validation ---------- */
+function stepValid(n){
+  if(n === 1) return !!state.product;
+  if(n === 2) return !!state.fit;
+  if(n === 3) return !!state.neck && (state.product !== "sweat" || !!state.hem);
+  if(n === 4) return !!state.gsm && gsmAllowed(state.product, state.gsm);
+  if(n === 5) return stepValid(1) && stepValid(2) && stepValid(3) && stepValid(4);
+  if(n === 6) return fieldsValid(false);
+  return false;
+}
+
+function fieldsValid(mark){
+  var name = $("#gbName"), phone = $("#gbPhone"), email = $("#gbEmail");
+  var checks = [
+    [name,  name.value.trim().length >= 2],
+    [phone, phone.value.replace(/[^0-9]/g,"").length >= 6],
+    [email, /^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/.test(email.value.trim())]
+  ];
+  var ok = true;
+  checks.forEach(function(c){
+    var f = c[0].closest(".gb-field");
+    if(f && mark) f.classList.toggle("bad", !c[1]);
+    if(!c[1]) ok = false;
+  });
+  return ok;
+}
+
+function syncNext(){
+  var next = $("#gbNext"), prev = $("#gbPrev");
+  if(!next) return;
+  if(state.sent){
+    next.textContent = "Inquiry sent"; next.disabled = true;
+    prev.style.visibility = "hidden";
+    return;
+  }
+  if(state.step === 6){
+    next.textContent = state.busy ? "Submitting…" : "Submit Custom Inquiry";
+    next.disabled = state.busy;
+  } else {
+    next.textContent = "Continue";
+    next.disabled = !stepValid(state.step);
+  }
+  prev.style.visibility = state.step === 1 ? "hidden" : "visible";
+}
+
+/* ---------- step navigation ---------- */
+function go(n, scroll){
+  if(n < 1 || n > 6) return;
+  state.step = n;
+  $$(".gb-pane").forEach(function(p){ p.classList.toggle("on", +p.getAttribute("data-pane") === n); });
+  $$(".gb-pstep").forEach(function(s, i){
+    s.classList.toggle("on", i+1 === n);
+    s.classList.toggle("done", i+1 < n);
+  });
+  $("#gbBar").style.width = (n / 6 * 100) + "%";
+  if(n === 4) renderGsm();
+  if(n === 5) renderReview();
+  syncNext();
+  if(scroll !== false){
+    var y = ROOT.getBoundingClientRect().top + window.pageYOffset - 70;
+    window.scrollTo({top:y < 0 ? 0 : y, behavior:"smooth"});
+  }
+}
+
+/* ---------- selection ---------- */
+function select(group, val){
+  if(group === "product"){
+    if(state.product !== val){
+      if(state.product){
+        if(state.hem && val !== "sweat") state.hem = "";
+        if(state.neck && allowedNecks(val).indexOf(state.neck) < 0) state.neck = "";
+        state.gsm = 0;   /* GSM lists are product-specific: never carry one across products */
+      }
+      state.product = val;
+    }
+    syncProduct();
+    if(state.step === 1){
+      setTimeout(function(){ if(state.step === 1 && state.product) go(2); }, 320);
+    }
+  } else if(group === "gsm"){
+    state.gsm = parseInt(val, 10) || 0;
+  } else if(group === "fit" || group === "hem" || group === "neck"){
+    state[group] = val;
+  } else {
+    return;
+  }
+  paintGroup(group);
+  syncNext();
+}
+
+ROOT.addEventListener("click", function(e){
+  var card = e.target.closest(".gb-card");
+  if(card && !card.hidden && card.getAttribute("data-group-parent") !== "1"){
+    var box = card.closest("[data-group]");
+    if(box) select(box.getAttribute("data-group"), card.getAttribute("data-val"));
+  }
+});
+
+$("#gbPrev").addEventListener("click", function(){ if(state.step > 1) go(state.step - 1); });
+$("#gbNext").addEventListener("click", function(){
+  if(state.step === 6){ submit(); return; }
+  if(!stepValid(state.step)) return;
+  go(state.step + 1);
+});
+$("#gbForm").addEventListener("submit", function(e){ e.preventDefault(); if(state.step === 6) submit(); });
+
+/* ---------- file upload (client side only) ---------- */
+var drop = $("#gbDrop"), fileInput = $("#gbFile"), fileList = $("#gbFiles"), upNote = $("#gbUploadNote");
+
+function setNote(msg){ if(upNote) upNote.textContent = msg; }
+
+function renderFiles(){
+  fileList.innerHTML = state.files.map(function(f, i){
+    return '<li><span class="nm">'+esc(f.name)+'</span><span class="sz">'+kb(f.size)+'</span>'
+      + '<button type="button" data-rm="'+i+'" aria-label="Remove '+esc(f.name)+'">&times;</button></li>';
+  }).join("");
+}
+fileList.addEventListener("click", function(e){
+  var b = e.target.closest("[data-rm]");
+  if(!b) return;
+  state.files.splice(parseInt(b.getAttribute("data-rm"),10), 1);
+  renderFiles();
+});
+
+function addFiles(list){
+  var skipped = [];
+  Array.prototype.forEach.call(list, function(f){
+    if(f.size > CFG.maxFileMB * 1024 * 1024){ skipped.push(f.name); return; }
+    var dup = state.files.some(function(x){ return x.name === f.name && x.size === f.size; });
+    if(!dup) state.files.push(f);
+  });
+  renderFiles();
+  if(skipped.length){
+    setNote("Skipped (over "+CFG.maxFileMB+" MB): " + skipped.join(", ") + ". Please send large files by email.");
+  } else {
+    setNote(NOTE_DEFAULT);
+  }
+}
+
+drop.addEventListener("click", function(){ fileInput.click(); });
+drop.addEventListener("keydown", function(e){
+  if(e.key === "Enter" || e.key === " "){ e.preventDefault(); fileInput.click(); }
+});
+fileInput.addEventListener("change", function(){ addFiles(fileInput.files); fileInput.value = ""; });
+["dragenter","dragover"].forEach(function(t){
+  drop.addEventListener(t, function(e){ e.preventDefault(); drop.classList.add("over"); });
+});
+["dragleave","drop"].forEach(function(t){
+  drop.addEventListener(t, function(e){ e.preventDefault(); drop.classList.remove("over"); });
+});
+drop.addEventListener("drop", function(e){
+  if(e.dataTransfer && e.dataTransfer.files) addFiles(e.dataTransfer.files);
+});
+
+/* ---------- payload + submission ---------- */
+function buildPayload(){
+  return {
+    form: "Custom Garment Builder",
+    submittedAt: new Date().toISOString(),
+    page: location.href,
+    productType: P[state.product] || "",
+    productKey: state.product,
+    fit: F[state.fit] || "",
+    hemStyle: state.product === "sweat" ? (H[state.hem] || "") : null,
+    neckline: N[state.neck] || "",
+    fabricComposition: "100% Cotton",
+    fabricWeightGsm: state.gsm || null,
+    contact: {
+      fullName: $("#gbName").value.trim(),
+      phone: $("#gbPhone").value.trim(),
+      businessEmail: $("#gbEmail").value.trim()
+    },
+    techPack: {
+      uploaded: false,
+      note: "Upload storage not connected. Filenames recorded only.",
+      files: state.files.map(function(f){ return {name:f.name, size:f.size, type:f.type}; })
+    }
+  };
+}
+
+function summaryText(p){
+  var L = [];
+  L.push("CUSTOM GARMENT INQUIRY");
+  L.push("");
+  L.push("Product type: " + p.productType);
+  L.push("Fit: " + p.fit);
+  if(p.hemStyle) L.push("Hem style: " + p.hemStyle);
+  L.push("Neckline / collar: " + p.neckline);
+  L.push("Fabric composition: " + p.fabricComposition);
+  L.push("Fabric weight: " + p.fabricWeightGsm + " GSM");
+  L.push("");
+  L.push("Name: " + p.contact.fullName);
+  L.push("Phone: " + p.contact.phone);
+  L.push("Business email: " + p.contact.businessEmail);
+  if(p.techPack.files.length){
+    L.push("");
+    L.push("Tech pack files (to be attached separately):");
+    p.techPack.files.forEach(function(f){ L.push("  - " + f.name + " (" + kb(f.size) + ")"); });
+  }
+  return L.join("\n");
+}
+
+function showResult(html){ var r = $("#gbResult"); r.innerHTML = html; r.classList.add("on"); }
+
+function showSuccess(){
+  state.sent = true;
+  syncNext();
+  showResult('<h3>Thank you for your inquiry!</h3>'
+    + '<p>Our team has received your requirements and will get back to you shortly.</p>');
+}
+
+function showManual(p, err){
+  var text = summaryText(p);
+  var subject = "Custom Garment Inquiry — " + p.productType + " / " + p.fit;
+  var mailto = "mailto:" + CFG.salesEmail
+    + "?subject=" + encodeURIComponent(subject)
+    + "&body=" + encodeURIComponent(text);
+  var fileNote = state.files.length
+    ? '<p class="gb-warn">Please attach these files to the email — they are still on your device and have not been uploaded:<br>'
+      + state.files.map(function(f){ return esc(f.name); }).join(" &middot; ") + '</p>'
+    : '';
+  var why = CFG.endpoint
+    ? "We could not reach our inquiry server just now" + (err ? " (" + esc(err) + ")" : "") + "."
+    : "The automatic inquiry sender and the tech-pack upload storage have not been connected yet, so nothing has been transmitted.";
+
+  showResult('<h3>Your selections are ready — one more step to send them</h3>'
+    + '<p>' + why + ' Your inquiry has <strong>not</strong> been submitted yet. Copy the summary below and send it to us, or open our inquiry form.</p>'
+    + '<div class="acts">'
+    +   '<a class="gb-btn next" href="' + esc(mailto) + '">Email this inquiry</a>'
+    +   '<button type="button" class="gb-btn prev" id="gbCopy">Copy summary</button>'
+    +   '<a class="gb-btn prev" href="' + esc(CFG.inquiryForm) + '" target="_blank" rel="noopener">Open inquiry form</a>'
+    + '</div>'
+    + fileNote
+    + '<p class="gb-note" style="margin-top:16px">Summary to send:</p>'
+    + '<textarea readonly rows="9" style="width:100%;padding:12px;border:1px solid rgba(17,17,17,.14);border-radius:6px;font:inherit;font-size:.8rem;line-height:1.6;resize:vertical" id="gbSummary">' + esc(text) + '</textarea>');
+
+  var copyBtn = $("#gbCopy");
+  if(copyBtn){
+    copyBtn.addEventListener("click", function(){
+      var ta = $("#gbSummary");
+      ta.select();
+      var done = false;
+      try { done = document.execCommand("copy"); } catch(e){}
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(ta.value).then(function(){ copyBtn.textContent = "Copied"; }, function(){ copyBtn.textContent = done ? "Copied" : "Select & copy above"; });
+      } else {
+        copyBtn.textContent = done ? "Copied" : "Select & copy above";
+      }
+    });
+  }
+  $("#gbResult").scrollIntoView({behavior:"smooth", block:"center"});
+}
+
+function submit(){
+  if(state.busy || state.sent) return;
+
+  if(!fieldsValid(true)){
+    var bad = ROOT.querySelector(".gb-field.bad input");
+    if(bad) bad.focus();
+    return;
+  }
+  for(var i = 1; i <= 4; i++){
+    if(!stepValid(i)){ go(i); return; }
+  }
+
+  var payload = buildPayload();
+
+  if(!CFG.endpoint){
+    showManual(payload, "");
+    return;
+  }
+
+  state.busy = true;
+  syncNext();
+  var guard = setTimeout(function(){ state.busy = false; syncNext(); }, 20000);
+
+  fetch(CFG.endpoint, {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify(payload)
+  }).then(function(r){
+    clearTimeout(guard);
+    if(!r.ok) throw new Error("HTTP " + r.status);
+    state.busy = false;
+    showSuccess();
+  }).catch(function(e){
+    clearTimeout(guard);
+    state.busy = false;
+    syncNext();
+    showManual(payload, e && e.message ? e.message : "network error");
+  });
+}
+
+/* ---------- boot ---------- */
+["gbName","gbPhone","gbEmail"].forEach(function(id){
+  var el = document.getElementById(id);
+  if(el) el.addEventListener("input", function(){
+    var f = el.closest(".gb-field");
+    if(f) f.classList.remove("bad");
+  });
+});
+syncProduct();
+go(1, false);
+})();
+</script>
+</section>
+
 <style>
 /* opacity is 1 from the very start so the poster is visible immediately
    while the video buffers. This used to be opacity:0 until the 'canplay'

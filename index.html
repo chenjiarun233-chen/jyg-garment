@@ -658,10 +658,14 @@ if(!('IntersectionObserver' in window)){go();return}new IntersectionObserver(fun
     engines silently drop `aspect-ratio`, which collapsed this box to 0px and
     made the product images invisible. padding-top on a pseudo element works
     in every engine back to IE10, so the thumb always has a height. */
- #garment-builder .gb-thumb{position:relative;display:block;flex:0 0 auto;min-height:120px;background:#fafaf9;overflow:hidden;border-bottom:1px solid rgba(17,17,17,.06)}
- #garment-builder .gb-thumb:before{content:"";display:block;width:100%;height:0;padding-top:125%}
- #garment-builder .gb-thumb.sq:before{padding-top:100%}
+ /* The thumb box gets an EXPLICIT pixel height. No aspect-ratio, no percentage
+    padding, no pseudo-element: nothing here can be dropped by an older engine.
+    A fixed height also means the box never collapses even if the image fails,
+    and the light grey fill makes a failed image obvious instead of invisible. */
+ #garment-builder .gb-thumb{position:relative;display:block;flex:0 0 auto;height:420px;background:#f1f0ee;overflow:hidden;border-bottom:1px solid rgba(17,17,17,.06)}
+ #garment-builder .gb-thumb.sq{height:210px}
  #garment-builder .gb-thumb img{position:absolute;top:12px;left:12px;z-index:1;width:calc(100% - 24px);height:calc(100% - 24px);object-fit:contain;display:block}
+ #garment-builder .gb-thumb[data-imgfail]:after{content:"Preview unavailable ";position:absolute;left:0;right:0;bottom:10px;text-align:center;font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:rgba(17,17,17,.45)}
 #garment-builder .gb-meta{padding:13px 14px 15px}
 #garment-builder .gb-meta h3{margin:0 0 4px;font-size:.92rem;font-weight:800;color:#111}
 #garment-builder .gb-meta p{margin:0;font-size:.78rem;line-height:1.5;color:rgba(17,17,17,.58)}
@@ -744,8 +748,8 @@ if(!('IntersectionObserver' in window)){go();return}new IntersectionObserver(fun
 }
 @media(max-width:420px){
   #garment-builder .gb-grid.c2{gap:10px}
-  #garment-builder .gb-thumb{min-height:0}
-  #garment-builder .gb-thumb:before{padding-top:100%}
+  #garment-builder .gb-thumb{height:168px}
+  #garment-builder .gb-thumb.sq{height:140px}
   #garment-builder .gb-thumb img{top:8px;left:8px;width:calc(100% - 16px);height:calc(100% - 16px)}
   #garment-builder .gb-meta{padding:10px 10px 12px}
   #garment-builder .gb-meta h3{font-size:.84rem}
@@ -776,12 +780,12 @@ if(!('IntersectionObserver' in window)){go();return}new IntersectionObserver(fun
 <div class="gb-grid c2" data-group="product">
 <button type="button" class="gb-card" data-val="tshirt" aria-pressed="false">
 <span class="ck">&#10003;</span>
-<span class="gb-thumb"><img onerror="if(/\.webp$/i.test(this.src)){this.src=this.src.replace(/\.webp$/i,'.png')}" src="images/builder/t-shirt.webp" alt="Technical flat of a white crew neck T-shirt" width="667" height="1000" loading="eager" decoding="async"></span>
+<span class="gb-thumb"><img onerror="if(/\.webp$/i.test(this.src)){this.src=this.src.replace(/\.webp$/i,'.png')}else{if(this.parentNode)this.parentNode.setAttribute('data-imgfail',this.src.split('/').pop())}" src="images/builder/t-shirt.webp" alt="Technical flat of a white crew neck T-shirt" width="667" height="1000" loading="eager" decoding="async"></span>
 <span class="gb-meta"><h3>T-Shirt</h3><p>Custom T-Shirts</p></span>
 </button>
 <button type="button" class="gb-card" data-val="sweat" aria-pressed="false">
 <span class="ck">&#10003;</span>
-<span class="gb-thumb"><img onerror="if(/\.webp$/i.test(this.src)){this.src=this.src.replace(/\.webp$/i,'.png')}" src="images/builder/sweatshirt.webp" alt="Technical flat of a grey crew neck sweatshirt" width="1000" height="961" loading="eager" decoding="async"></span>
+<span class="gb-thumb"><img onerror="if(/\.webp$/i.test(this.src)){this.src=this.src.replace(/\.webp$/i,'.png')}else{if(this.parentNode)this.parentNode.setAttribute('data-imgfail',this.src.split('/').pop())}" src="images/builder/sweatshirt.webp" alt="Technical flat of a grey crew neck sweatshirt" width="1000" height="961" loading="eager" decoding="async"></span>
 <span class="gb-meta"><h3>Sweatshirt / Hoodie</h3><p>Custom Sweatshirts &amp; Hoodies</p></span>
 </button>
 </div>
@@ -794,17 +798,17 @@ if(!('IntersectionObserver' in window)){go();return}new IntersectionObserver(fun
 <div class="gb-grid c3" data-group="fit">
 <button type="button" class="gb-card" data-val="regular" aria-pressed="false">
 <span class="ck">&#10003;</span>
-<span class="gb-thumb"><img onerror="if(/\.webp$/i.test(this.src)){this.src=this.src.replace(/\.webp$/i,'.png')}" data-fit-img="regular" src="images/builder/t-shirt.webp" alt="Regular fit technical illustration" width="667" height="1000" loading="eager" decoding="async"></span>
+<span class="gb-thumb"><img onerror="if(/\.webp$/i.test(this.src)){this.src=this.src.replace(/\.webp$/i,'.png')}else{if(this.parentNode)this.parentNode.setAttribute('data-imgfail',this.src.split('/').pop())}" data-fit-img="regular" src="images/builder/t-shirt.webp" alt="Regular fit technical illustration" width="667" height="1000" loading="eager" decoding="async"></span>
 <span class="gb-meta"><h3>Regular Fit</h3><p>A classic silhouette with balanced proportions and a comfortable fit.</p></span>
 </button>
 <button type="button" class="gb-card" data-val="raglan" aria-pressed="false">
 <span class="ck">&#10003;</span>
-<span class="gb-thumb"><img onerror="if(/\.webp$/i.test(this.src)){this.src=this.src.replace(/\.webp$/i,'.png')}" data-fit-img="raglan" src="images/builder/fit-raglan-tee.webp" alt="Raglan fit technical illustration" width="667" height="1000" loading="eager" decoding="async"></span>
+<span class="gb-thumb"><img onerror="if(/\.webp$/i.test(this.src)){this.src=this.src.replace(/\.webp$/i,'.png')}else{if(this.parentNode)this.parentNode.setAttribute('data-imgfail',this.src.split('/').pop())}" data-fit-img="raglan" src="images/builder/fit-raglan-tee.webp" alt="Raglan fit technical illustration" width="667" height="1000" loading="eager" decoding="async"></span>
 <span class="gb-meta"><h3>Raglan Fit</h3><p>Diagonal shoulder seams extending to the neckline for greater freedom of movement.</p></span>
 </button>
 <button type="button" class="gb-card" data-val="drop" aria-pressed="false">
 <span class="ck">&#10003;</span>
-<span class="gb-thumb"><img onerror="if(/\.webp$/i.test(this.src)){this.src=this.src.replace(/\.webp$/i,'.png')}" data-fit-img="drop" src="images/builder/fit-drop-tee.webp" alt="Drop shoulder fit technical illustration" width="667" height="1000" loading="eager" decoding="async"></span>
+<span class="gb-thumb"><img onerror="if(/\.webp$/i.test(this.src)){this.src=this.src.replace(/\.webp$/i,'.png')}else{if(this.parentNode)this.parentNode.setAttribute('data-imgfail',this.src.split('/').pop())}" data-fit-img="drop" src="images/builder/fit-drop-tee.webp" alt="Drop shoulder fit technical illustration" width="667" height="1000" loading="eager" decoding="async"></span>
 <span class="gb-meta"><h3>Drop Shoulder Fit</h3><p>A relaxed silhouette with lowered shoulder seams for an oversized look.</p></span>
 </button>
 </div>
@@ -820,12 +824,12 @@ if(!('IntersectionObserver' in window)){go();return}new IntersectionObserver(fun
 <div class="gb-grid c2" data-group="hem">
 <button type="button" class="gb-card" data-val="ribbed" aria-pressed="false">
 <span class="ck">&#10003;</span>
-<span class="gb-thumb sq"><img onerror="if(/\.webp$/i.test(this.src)){this.src=this.src.replace(/\.webp$/i,'.png')}" src="images/builder/hem-ribbed.webp" alt="Ribbed hem finish on a hoodie" width="423" height="468" loading="eager" decoding="async"></span>
+<span class="gb-thumb sq"><img onerror="if(/\.webp$/i.test(this.src)){this.src=this.src.replace(/\.webp$/i,'.png')}else{if(this.parentNode)this.parentNode.setAttribute('data-imgfail',this.src.split('/').pop())}" src="images/builder/hem-ribbed.webp" alt="Ribbed hem finish on a hoodie" width="423" height="468" loading="eager" decoding="async"></span>
 <span class="gb-meta"><h3>Ribbed Hem</h3><p>Ribbed elastic waistband for a fitted finish.</p></span>
 </button>
 <button type="button" class="gb-card" data-val="straight" aria-pressed="false">
 <span class="ck">&#10003;</span>
-<span class="gb-thumb sq"><img onerror="if(/\.webp$/i.test(this.src)){this.src=this.src.replace(/\.webp$/i,'.png')}" src="images/builder/hem-straight.webp" alt="Straight open-bottom hem on a sweatshirt" width="438" height="474" loading="eager" decoding="async"></span>
+<span class="gb-thumb sq"><img onerror="if(/\.webp$/i.test(this.src)){this.src=this.src.replace(/\.webp$/i,'.png')}else{if(this.parentNode)this.parentNode.setAttribute('data-imgfail',this.src.split('/').pop())}" src="images/builder/hem-straight.webp" alt="Straight open-bottom hem on a sweatshirt" width="438" height="474" loading="eager" decoding="async"></span>
 <span class="gb-meta"><h3>Straight Hem</h3><p>Straight open-bottom hem for a relaxed silhouette.</p></span>
 </button>
 </div>
@@ -835,22 +839,22 @@ if(!('IntersectionObserver' in window)){go();return}new IntersectionObserver(fun
 <div class="gb-grid c4" data-group="neck">
 <button type="button" class="gb-card" data-val="crew" aria-pressed="false">
 <span class="ck">&#10003;</span>
-<span class="gb-thumb sq"><img onerror="if(/\.webp$/i.test(this.src)){this.src=this.src.replace(/\.webp$/i,'.png')}" src="images/builder/collar-crew.webp" alt="Crew neck collar detail" width="378" height="390" loading="eager" decoding="async"></span>
+<span class="gb-thumb sq"><img onerror="if(/\.webp$/i.test(this.src)){this.src=this.src.replace(/\.webp$/i,'.png')}else{if(this.parentNode)this.parentNode.setAttribute('data-imgfail',this.src.split('/').pop())}" src="images/builder/collar-crew.webp" alt="Crew neck collar detail" width="378" height="390" loading="eager" decoding="async"></span>
 <span class="gb-meta"><h3>Crew Neck</h3><p>Classic round ribbed neckline.</p></span>
 </button>
 <button type="button" class="gb-card" data-val="hooded" data-only="sweat" aria-pressed="false" hidden>
 <span class="ck">&#10003;</span>
-<span class="gb-thumb sq"><img onerror="if(/\.webp$/i.test(this.src)){this.src=this.src.replace(/\.webp$/i,'.png')}" src="images/builder/collar-hooded.webp" alt="Hooded neck construction" width="405" height="393" loading="eager" decoding="async"></span>
+<span class="gb-thumb sq"><img onerror="if(/\.webp$/i.test(this.src)){this.src=this.src.replace(/\.webp$/i,'.png')}else{if(this.parentNode)this.parentNode.setAttribute('data-imgfail',this.src.split('/').pop())}" src="images/builder/collar-hooded.webp" alt="Hooded neck construction" width="405" height="393" loading="eager" decoding="async"></span>
 <span class="gb-meta"><h3>Hooded Neck</h3><p>Two-panel hood with adjustable drawcord.</p></span>
 </button>
 <button type="button" class="gb-card" data-val="stand" data-only="sweat" aria-pressed="false" hidden>
 <span class="ck">&#10003;</span>
-<span class="gb-thumb sq"><img onerror="if(/\.webp$/i.test(this.src)){this.src=this.src.replace(/\.webp$/i,'.png')}" src="images/builder/collar-stand.webp" alt="Stand collar with quarter zip" width="402" height="360" loading="eager" decoding="async"></span>
+<span class="gb-thumb sq"><img onerror="if(/\.webp$/i.test(this.src)){this.src=this.src.replace(/\.webp$/i,'.png')}else{if(this.parentNode)this.parentNode.setAttribute('data-imgfail',this.src.split('/').pop())}" src="images/builder/collar-stand.webp" alt="Stand collar with quarter zip" width="402" height="360" loading="eager" decoding="async"></span>
 <span class="gb-meta"><h3>Stand Collar</h3><p>Raised collar with a quarter zip placket.</p></span>
 </button>
 <button type="button" class="gb-card" data-val="polo" aria-pressed="false">
 <span class="ck">&#10003;</span>
-<span class="gb-thumb sq"><img onerror="if(/\.webp$/i.test(this.src)){this.src=this.src.replace(/\.webp$/i,'.png')}" src="images/builder/collar-polo.webp" alt="Polo collar detail" width="417" height="366" loading="eager" decoding="async"></span>
+<span class="gb-thumb sq"><img onerror="if(/\.webp$/i.test(this.src)){this.src=this.src.replace(/\.webp$/i,'.png')}else{if(this.parentNode)this.parentNode.setAttribute('data-imgfail',this.src.split('/').pop())}" src="images/builder/collar-polo.webp" alt="Polo collar detail" width="417" height="366" loading="eager" decoding="async"></span>
 <span class="gb-meta"><h3>Polo Collar</h3><p>Folded polo collar with a short placket.</p></span>
 </button>
 </div>
@@ -875,7 +879,7 @@ if(!('IntersectionObserver' in window)){go();return}new IntersectionObserver(fun
 <!-- ================= STEP 6 ================= -->
 <div class="gb-pane" data-pane="6">
 <h3 class="gb-stitle">Let's Bring Your Design to Life</h3>
-<p class="gb-ssub">Share your contact details and upload your tech pack. Our team will review your requirements and get back to you with the next steps.</p>
+<p class="gb-ssub">Share your contact details. The button below opens WhatsApp with everything you have chosen already written into the message, so you only need to press send.</p>
 
 <div class="gb-fgrid">
 <div class="gb-field" data-for="name">
@@ -895,17 +899,7 @@ if(!('IntersectionObserver' in window)){go();return}new IntersectionObserver(fun
 </div>
 </div>
 
-<div class="gb-grouph">Upload Your Tech Pack</div>
-<div class="gb-field full">
-<div class="gb-drop" id="gbDrop" role="button" tabindex="0" aria-label="Upload your tech pack files">
-<h4>Upload your Tech Pack</h4>
-<p>Upload your design files, technical drawings or reference documents.</p>
-<span class="browse">Drag &amp; Drop Files Here or Browse Files</span>
-<input id="gbFile" type="file" multiple accept=".pdf,.ai,.psd,.jpg,.jpeg,.png,.zip" style="display:none">
-</div>
-<ul class="gb-flist" id="gbFiles"></ul>
- <p class="gb-note" id="gbUploadNote">Optional. Accepted formats: PDF, AI, PSD, JPG, PNG, ZIP. Total upload limit 10 MB.</p>
-</div>
+
 </div>
 
 <div class="gb-nav">
@@ -920,28 +914,20 @@ if(!('IntersectionObserver' in window)){go();return}new IntersectionObserver(fun
 <script>
 /* ===================================================================
     CUSTOM GARMENT BUILDER — logic
-    DELIVERY: inquiries + tech-pack attachments go to salesEmail through the
-    FormSubmit relay (CFG.emailRelay). It needs a one-time "Activate Form" click
-    from that inbox. A custom JSON API can be plugged into CFG.endpoint instead.
-    If neither is reachable the form downgrades to a manual copy-and-send panel
-    and says plainly that nothing was transmitted — it never fakes success.
+    DELIVERY: no backend, no credentials. "Submit Custom Inquiry" opens WhatsApp
+    with the sales number in CFG.whatsapp and writes every selection into the
+    pre-filled message body, so the buyer only presses send inside WhatsApp.
+    The tech-pack upload was removed from this step on client request.
    =================================================================== */
 (function(){
 "use strict";
-
  var CFG = {
    /* ---------- delivery ----------
-      1) emailRelay : FormSubmit AJAX endpoint. Emails the inquiry AND the tech-pack
-                      attachments to salesEmail. One-time activation is required: the
-                      first submit makes FormSubmit email an "Activate Form" link to
-                      salesEmail; click it once and every later inquiry goes through.
-      2) endpoint   : optional custom API (JSON POST). Leave empty unless a backend exists.
-      3) ccEmail    : optional second recipient, e.g. a WeCom/enterprise mailbox.
-      If both emailRelay and endpoint are empty the form falls back to a manual
-      "copy & send" panel and never claims a successful submission. */
-   emailRelay: "https://formsubmit.co/ajax/jyggarment@foxmail.com",
-   endpoint: "",
-   ccEmail: "",
+      The inquiry is handed to WhatsApp, not to a server: the button builds a
+      wa.me deep link carrying CFG.whatsapp and the whole configuration as
+      pre-filled text. Nothing to host, nothing to authorise, nothing that can
+      silently fail. Change the number here if sales moves lines. */
+   whatsapp: "8613922181466",
    salesEmail: "jyggarment@foxmail.com",
    inquiryForm: "https://forms.gle/3CfexRc11pb5HynY6",
 
@@ -950,9 +936,7 @@ if(!('IntersectionObserver' in window)){go();return}new IntersectionObserver(fun
 
    /* ---------- behaviour ---------- */
    autoAdvance: true,                  /* move on as soon as the current step is complete */
-   autoAdvanceMs: 320,
-   maxFileMB: 10,                      /* per file */
-   maxTotalMB: 10                      /* FormSubmit caps the sum of all attachments at 10 MB */
+   autoAdvanceMs: 320
  };
 
 var P  = {tshirt:"T-Shirt", sweat:"Sweatshirt / Hoodie"};
@@ -981,10 +965,8 @@ if(!ROOT) return;
 function $(s){ return ROOT.querySelector(s); }
 function $$(s){ return Array.prototype.slice.call(ROOT.querySelectorAll(s)); }
 function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
-function kb(n){ return n<1024 ? n+" B" : (n/1024 < 1024 ? (n/1024).toFixed(0)+" KB" : (n/1048576).toFixed(1)+" MB"); }
 
- var state = {step:1, product:"", fit:"", hem:"", neck:"", gsm:0, files:[], busy:false, sent:false, editing:false};
- var NOTE_DEFAULT = "Optional. Accepted formats: PDF, AI, PSD, JPG, PNG, ZIP. Total upload limit " + CFG.maxTotalMB + " MB.";
+ var state = {step:1, product:"", fit:"", hem:"", neck:"", gsm:0, busy:false, editing:false};
 
 /* ---------- conditional rules ---------- */
 function allowedNecks(p){
@@ -1025,6 +1007,7 @@ function syncProduct(){
   });
 
   renderGsm();
+  auditImages();
   paintGroup("product");
   paintGroup("hem");
   paintGroup("neck");
@@ -1129,6 +1112,7 @@ function go(n, scroll){
   $("#gbBar").style.width = (n / 6 * 100) + "%";
   if(n === 4) renderGsm();
   if(n === 5) renderReview();
+  auditImages();
   syncNext();
   if(scroll !== false){
     var y = ROOT.getBoundingClientRect().top + window.pageYOffset - 70;
@@ -1191,57 +1175,6 @@ ROOT.addEventListener("click", function(e){
  });
 $("#gbForm").addEventListener("submit", function(e){ e.preventDefault(); if(state.step === 6) submit(); });
 
-/* ---------- file upload (client side only) ---------- */
-var drop = $("#gbDrop"), fileInput = $("#gbFile"), fileList = $("#gbFiles"), upNote = $("#gbUploadNote");
-
-function setNote(msg){ if(upNote) upNote.textContent = msg; }
-
-function renderFiles(){
-  fileList.innerHTML = state.files.map(function(f, i){
-    return '<li><span class="nm">'+esc(f.name)+'</span><span class="sz">'+kb(f.size)+'</span>'
-      + '<button type="button" data-rm="'+i+'" aria-label="Remove '+esc(f.name)+'">&times;</button></li>';
-  }).join("");
-}
-fileList.addEventListener("click", function(e){
-  var b = e.target.closest("[data-rm]");
-  if(!b) return;
-  state.files.splice(parseInt(b.getAttribute("data-rm"),10), 1);
-  renderFiles();
-});
-
- function addFiles(list){
-   var skipped = [], overTotal = false;
-   Array.prototype.forEach.call(list, function(f){
-     if(f.size > CFG.maxFileMB * 1024 * 1024){ skipped.push(f.name); return; }
-     var dup = state.files.some(function(x){ return x.name === f.name && x.size === f.size; });
-     if(dup) return;
-     if(totalBytes() + f.size > CFG.maxTotalMB * 1024 * 1024){ overTotal = true; return; }
-     state.files.push(f);
-   });
-   renderFiles();
-   if(skipped.length){
-     setNote("Skipped (over " + CFG.maxFileMB + " MB): " + skipped.join(", ") + ". Please email files this large to " + CFG.salesEmail + ".");
-   } else if(overTotal){
-     setNote("Attachments are capped at " + CFG.maxTotalMB + " MB in total, so the extra files were not added. Email them to " + CFG.salesEmail + " instead.");
-   } else {
-     setNote(NOTE_DEFAULT);
-   }
- }
-
-drop.addEventListener("click", function(){ fileInput.click(); });
-drop.addEventListener("keydown", function(e){
-  if(e.key === "Enter" || e.key === " "){ e.preventDefault(); fileInput.click(); }
-});
-fileInput.addEventListener("change", function(){ addFiles(fileInput.files); fileInput.value = ""; });
-["dragenter","dragover"].forEach(function(t){
-  drop.addEventListener(t, function(e){ e.preventDefault(); drop.classList.add("over"); });
-});
-["dragleave","drop"].forEach(function(t){
-  drop.addEventListener(t, function(e){ e.preventDefault(); drop.classList.remove("over"); });
-});
-drop.addEventListener("drop", function(e){
-  if(e.dataTransfer && e.dataTransfer.files) addFiles(e.dataTransfer.files);
-});
 
 /* ---------- payload + submission ---------- */
 function buildPayload(){
@@ -1260,18 +1193,13 @@ function buildPayload(){
       fullName: $("#gbName").value.trim(),
       phone: $("#gbPhone").value.trim(),
       businessEmail: $("#gbEmail").value.trim()
-    },
-    techPack: {
-      uploaded: false,
-      note: "Upload storage not connected. Filenames recorded only.",
-      files: state.files.map(function(f){ return {name:f.name, size:f.size, type:f.type}; })
     }
   };
 }
 
-function summaryText(p){
+function inquiryText(p){
   var L = [];
-  L.push("CUSTOM GARMENT INQUIRY");
+  L.push("Hi JYG, I would like to build a custom garment. My selections:");
   L.push("");
   L.push("Product type: " + p.productType);
   L.push("Fit: " + p.fit);
@@ -1282,169 +1210,119 @@ function summaryText(p){
   L.push("");
   L.push("Name: " + p.contact.fullName);
   L.push("Phone: " + p.contact.phone);
-  L.push("Business email: " + p.contact.businessEmail);
-  if(p.techPack.files.length){
-    L.push("");
-    L.push("Tech pack files (to be attached separately):");
-    p.techPack.files.forEach(function(f){ L.push("  - " + f.name + " (" + kb(f.size) + ")"); });
-  }
+  L.push("Email: " + p.contact.businessEmail);
+  L.push("");
+  L.push("(Sent from the Custom Garment Builder on jyggarment.com)");
   return L.join("\n");
+}
+
+function whatsappUrl(text){
+  return "https://wa.me/" + CFG.whatsapp + "?text=" + encodeURIComponent(text);
 }
 
 function showResult(html){ var r = $("#gbResult"); r.innerHTML = html; r.classList.add("on"); }
 
-function showSuccess(){
-  state.sent = true;
-  syncNext();
-  showResult('<h3>Thank you for your inquiry!</h3>'
-    + '<p>Our team has received your requirements and will get back to you shortly.</p>');
+/* Hand the inquiry to WhatsApp. window.open is called straight from the click so
+   the browser still treats it as a user gesture; if it is blocked anyway we keep
+   the panel open with a real link the buyer can tap. We never claim the message
+   was delivered — only WhatsApp can send it. */
+function openWhatsapp(p){
+  var text = inquiryText(p);
+  var url  = whatsappUrl(text);
+
+  if(!CFG.whatsapp){
+    showThreadPanel(p, text, url, "no-number");
+    return;
+  }
+
+  var win = null;
+  try { win = window.open(url, "_blank"); } catch(e){ win = null; }
+  showThreadPanel(p, text, url, win ? "" : "blocked");
 }
 
-function showManual(p, err){
-  var text = summaryText(p);
-  var subject = "Custom Garment Inquiry — " + p.productType + " / " + p.fit;
-  var mailto = "mailto:" + CFG.salesEmail
-    + "?subject=" + encodeURIComponent(subject)
-    + "&body=" + encodeURIComponent(text);
-  var fileNote = state.files.length
-    ? '<p class="gb-warn">Please attach these files to the email — they are still on your device and have not been uploaded:<br>'
-      + state.files.map(function(f){ return esc(f.name); }).join(" &middot; ") + '</p>'
-    : '';
-   var why = (CFG.emailRelay || CFG.endpoint)
-     ? "We could not send your inquiry just now" + (err ? " (" + esc(err) + ")" : "") + "."
-     : "The automatic inquiry sender has not been connected yet, so nothing has been transmitted.";
+function showThreadPanel(p, text, url, why){
+  var head, line;
+  if(why === "no-number"){
+    head = "Your selections are ready";
+    line = "Our WhatsApp number has not been configured yet, so nothing was sent. Use the summary below to reach us.";
+  } else if(why === "blocked"){
+    head = "Almost there — open WhatsApp";
+    line = "Your browser blocked the new tab. Tap the button below and WhatsApp will open with your inquiry already written.";
+  } else {
+    head = "Opening WhatsApp…";
+    line = "A WhatsApp chat with our team just opened in a new tab, with your whole configuration already in the message. Press <strong>send</strong> in WhatsApp and we will take it from there.";
+  }
 
-  showResult('<h3>Your selections are ready — one more step to send them</h3>'
-    + '<p>' + why + ' Your inquiry has <strong>not</strong> been submitted yet. Copy the summary below and send it to us, or open our inquiry form.</p>'
+  showResult('<h3>' + head + '</h3>'
+    + '<p>' + line + '</p>'
     + '<div class="acts">'
-    +   '<a class="gb-btn next" href="' + esc(mailto) + '">Email this inquiry</a>'
-    +   '<button type="button" class="gb-btn prev" id="gbCopy">Copy summary</button>'
-    +   '<a class="gb-btn prev" href="' + esc(CFG.inquiryForm) + '" target="_blank" rel="noopener">Open inquiry form</a>'
+    +   '<a class="gb-btn next" href="' + esc(url) + '" target="_blank" rel="noopener">Open WhatsApp</a>'
+    +   '<button type="button" class="gb-btn prev" id="gbCopy">Copy message</button>'
     + '</div>'
-    + fileNote
-    + '<p class="gb-note" style="margin-top:16px">Summary to send:</p>'
-    + '<textarea readonly rows="9" style="width:100%;padding:12px;border:1px solid rgba(17,17,17,.14);border-radius:6px;font:inherit;font-size:.8rem;line-height:1.6;resize:vertical" id="gbSummary">' + esc(text) + '</textarea>');
+    + '<p class="gb-note" style="margin-top:16px">WhatsApp number: <strong>+' + esc(CFG.whatsapp) + '</strong> &middot; or email <strong>' + esc(CFG.salesEmail) + '</strong></p>'
+    + '<p class="gb-note">Your message:</p>'
+    + '<textarea readonly rows="10" style="width:100%;padding:12px;border:1px solid rgba(17,17,17,.14);border-radius:6px;font:inherit;font-size:.8rem;line-height:1.6;resize:vertical" id="gbSummary">' + esc(text) + '</textarea>');
 
   var copyBtn = $("#gbCopy");
   if(copyBtn){
     copyBtn.addEventListener("click", function(){
       var ta = $("#gbSummary");
+      if(!ta) return;
       ta.select();
       var done = false;
       try { done = document.execCommand("copy"); } catch(e){}
       if(navigator.clipboard && navigator.clipboard.writeText){
-        navigator.clipboard.writeText(ta.value).then(function(){ copyBtn.textContent = "Copied"; }, function(){ copyBtn.textContent = done ? "Copied" : "Select & copy above"; });
+        navigator.clipboard.writeText(ta.value).then(
+          function(){ copyBtn.textContent = "Copied"; },
+          function(){ copyBtn.textContent = done ? "Copied" : "Select & copy above"; });
       } else {
         copyBtn.textContent = done ? "Copied" : "Select & copy above";
       }
     });
   }
-  $("#gbResult").scrollIntoView({behavior:"smooth", block:"center"});
+  var box = $("#gbResult");
+  if(box && box.scrollIntoView) box.scrollIntoView({behavior:"smooth", block:"center"});
 }
 
- function totalBytes(){
-   return state.files.reduce(function(a, f){ return a + f.size; }, 0);
- }
+function submit(){
+  if(state.busy) return;
 
- function busyTimer(ms){
-   state.busy = true;
-   syncNext();
-   return setTimeout(function(){ state.busy = false; syncNext(); }, ms);
- }
+  if(!fieldsValid(true)){
+    var bad = ROOT.querySelector(".gb-field.bad input");
+    if(bad) bad.focus();
+    return;
+  }
+  for(var i = 1; i <= 4; i++){
+    if(!stepValid(i)){ go(i); return; }
+  }
 
- /* ---------- delivery A: email relay (FormSubmit) ----------
-    Sends the inquiry AND the tech-pack attachments to salesEmail.
-    FormSubmit requires a one-time activation: the first attempt makes it email an
-    "Activate Form" link to salesEmail. Until that link is clicked, success:"false"
-    comes back and we fall through to the manual panel — never a fake success. */
- function sendByEmail(p){
-   if(totalBytes() > CFG.maxTotalMB * 1024 * 1024){
-     showManual(p, "your tech pack is larger than " + CFG.maxTotalMB + " MB");
-     return;
-   }
-   var fd = new FormData();
-   fd.append("_subject",  "Custom Garment Inquiry — " + p.productType + " / " + p.fit);
-   fd.append("_template", "table");
-   fd.append("_captcha",  "false");
-   fd.append("_replyto",  p.contact.businessEmail);
-   if(CFG.ccEmail) fd.append("_cc", CFG.ccEmail);
-   fd.append("Product Type",       p.productType);
-   fd.append("Fit",                p.fit);
-   fd.append("Hem Style",          p.hemStyle || "-");
-   fd.append("Neckline / Collar",  p.neckline);
-   fd.append("Fabric Composition", p.fabricComposition);
-   fd.append("Fabric Weight",      p.fabricWeightGsm ? p.fabricWeightGsm + " GSM" : "-");
-   fd.append("Full Name",          p.contact.fullName);
-   fd.append("Phone",              p.contact.phone);
-   fd.append("Business Email",     p.contact.businessEmail);
-   fd.append("Submitted At",       p.submittedAt);
-   fd.append("Page",               p.page);
-   fd.append("Tech Pack",          state.files.length
-     ? state.files.map(function(f){ return f.name + " (" + kb(f.size) + ")"; }).join(", ")
-     : "None");
-   state.files.forEach(function(f, i){ fd.append("techpack_" + (i + 1), f, f.name); });
+  openWhatsapp(buildPayload());
+}
 
-   var guard = busyTimer(45000);
-   fetch(CFG.emailRelay, { method: "POST", body: fd })
-     .then(function(r){
-       return r.json().catch(function(){ return {}; }).then(function(j){
-         return { ok: r.ok, status: r.status, json: j || {} };
-       });
-     })
-     .then(function(res){
-       clearTimeout(guard);
-       state.busy = false;
-       syncNext();
-       if(res.ok && String(res.json.success) === "true"){ showSuccess(); return; }
-       showManual(p, res.json.message || ("HTTP " + res.status));
-     })
-     .catch(function(e){
-       clearTimeout(guard);
-       state.busy = false;
-       syncNext();
-       showManual(p, e && e.message ? e.message : "network error");
-     });
- }
-
- /* ---------- delivery B: custom JSON API (kept for a future backend) ---------- */
- function sendByApi(p){
-   var guard = busyTimer(20000);
-   fetch(CFG.endpoint, {
-     method: "POST",
-     headers: {"Content-Type": "application/json"},
-     body: JSON.stringify(p)
-   }).then(function(r){
-     clearTimeout(guard);
-     if(!r.ok) throw new Error("HTTP " + r.status);
-     state.busy = false;
-     syncNext();
-     showSuccess();
-   }).catch(function(e){
-     clearTimeout(guard);
-     state.busy = false;
-     syncNext();
-     showManual(p, e && e.message ? e.message : "network error");
-   });
- }
-
- function submit(){
-   if(state.busy || state.sent) return;
-
-   if(!fieldsValid(true)){
-     var bad = ROOT.querySelector(".gb-field.bad input");
-     if(bad) bad.focus();
-     return;
-   }
-   for(var i = 1; i <= 4; i++){
-     if(!stepValid(i)){ go(i); return; }
-   }
-
-   var payload = buildPayload();
-
-   if(CFG.emailRelay){ sendByEmail(payload); return; }
-   if(CFG.endpoint){   sendByApi(payload);   return; }
-   showManual(payload, "");
- }
+/* ---------- image safety net ----------
+   A handful of engines report a WebP they cannot decode as "complete" with
+   naturalWidth 0 instead of firing an error event, so an onerror fallback alone
+   still leaves an empty box. This sweep catches that case: any thumbnail that
+   finished loading but has no pixels is pushed to its PNG twin once, and if the
+   PNG fails too the box is labelled so the failure is visible instead of blank. */
+function auditImages(){
+  var list = $$(".gb-thumb img");
+  for(var i = 0; i < list.length; i++){
+    var img = list[i], box = img.parentNode;
+    if(!img.complete) continue;
+    if(img.naturalWidth > 0){
+      if(box && box.removeAttribute) box.removeAttribute("data-imgfail");
+      continue;
+    }
+    var src = img.getAttribute("src") || "";
+    if(/\.webp$/i.test(src)){
+      img.onload = function(){ if(box && box.removeAttribute) box.removeAttribute("data-imgfail"); };
+      img.src = src.replace(/\.webp$/i, ".png");
+      continue;
+    }
+    if(box && box.setAttribute) box.setAttribute("data-imgfail", src.split("/").pop());
+  }
+}
 
 /* ---------- boot ---------- */
 ["gbName","gbPhone","gbEmail"].forEach(function(id){
@@ -1456,6 +1334,10 @@ function showManual(p, err){
 });
 syncProduct();
 go(1, false);
+auditImages();
+setTimeout(auditImages, 600);
+setTimeout(auditImages, 1800);
+window.addEventListener("load", function(){ setTimeout(auditImages, 300); });
 })();
 </script>
 </section>
